@@ -48,6 +48,11 @@ var modules = {
 // var restApiUrl = "http://192.168.1.33:8050/docpal/v1/";
 // var siteUrlDocpal = "http://192.168.1.33:8050/FrontendDocpal/app/#/";
 
+//Backup
+// var imageServer = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com/Backend-Docpal/upload/img/";
+// var restApiUrl = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com:8050/docpal/v1/";
+// var siteUrlDocpal = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com/FrontendDocpal/app/#/";
+
 var imageServer = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com/Backend-Docpal/upload/img/";
 var restApiUrl = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com:8050/docpal/v1/";
 var siteUrlDocpal = "http://ec2-18-195-12-108.eu-central-1.compute.amazonaws.com/FrontendDocpal/app/#/";
