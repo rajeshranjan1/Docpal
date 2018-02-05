@@ -1,0 +1,365 @@
+
+
+<footer>
+    <!-- new experiment -->
+    <!--  <img src="/assets/img/doclogo.png"> -->
+    <!-- end -->
+    <div class="footer-home">
+        <div class="container">
+            <!-- start 1st row -->
+            <div class="col-md-6 footer-logo-wpr">
+                <div style="" class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="faq_no">
+                        <img src="assets/img/doclogo.png" alt="Footer Logo">
+                        <p class="justify" ng-bind-html="about_us | limitTo: 400"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-menu">
+                <div class="col-md-12">
+                    <h3 class="footer-heading">Quick Links</h3>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-one">
+                        <li><a href="#/aboutUs">About Us</a></li>
+                        <li><a href="#/career">Career</a></li>
+                        <li><a href="#/team">Team</a></li>
+                        <li><a href="#/contactUs">Contact Us</a></li>
+                        <li><a href="#/health">Health</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-two">
+                        <li><a href="#/privacyPolicies">Privacy Policy</a></li>
+                        <li><a href="#/privacyPolicies">Doctors Network</a></li>
+                        <li><a href="#/privacyPolicies">Hospitals Network</a></li>
+                        <li><a href="#/privacyPolicies">Terms of Usage</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="social-footer-wpr">
+                    <div class="col-md-12">
+                        <h3 class="footer-heading">Social</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="social-left">
+                            <a href="https://www.facebook.com/DocPalHealthcare"><img src="assets/img/facebook.png" alt="facebook icon"></a>
+                            <a href="https://twitter.com/DocPalGroup"><img src="assets/img/twitter.png" alt="facebook icon"></a>
+                            <a href="#"><img src="assets/img/b.png" alt="bit icon"></a>
+                            <a href="#"><img src="assets/img/youtube.png" alt="youtube icon"></a>
+                            <a href="#"><img src="assets/img/pinterest.png" alt="Pinterest icon"></a>
+                            <a href="#"><img src="assets/img/google-plus.png" alt="Google plus icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- COPYRIGHT -->
+    <div class="ex-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ex-footer-text">
+                        <center class="copyright" >&copy; Docpal 2017 <!-- <a href="http://trancis.com" title="Startup Strategizing Company in Gurgaon" target="_blank">Design by</a> <a href="http://www.tranciscolabs.com/services/website-development" title="Website Development Company in Gurgaon" target="_blank">Trancisco Labs</a>  -->| All Right Reserved. </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer-home -->
+</footer>
+
+</div>
+
+<!-- LOGIN  MODAL -->
+<div class="modal fade" id="modal-container-7674" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="fa fa-remove">
+                    </i>
+                </button>
+                <h3 class="modal-title title-heading" id="myModalLabel">
+                    <i class="fa fa-heartbeat heart2">
+                    </i>
+                    Login
+                </h3>
+            </div>
+            <form ng-submit="loginform.$valid && login(logindata)"  name="loginform" novalidate>
+                <div class="modal-body" >
+                    <div class="">
+                        <div class="row">
+                            <div lcass="form-body">
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                    <div class="username left-addon">
+                                        <i class="fa fa-user input-placeholder-icon"></i>
+                                        <input type="email" class="form-control " placeholder="user name" name="loginemail" ng-model="logindata.email" required>
+                                    </div>
+                                    <span style="color:red" ng-show="submitted && loginform.loginemail.$invalid">
+                                        <span ng-show="loginform.loginemail.$error.required">Email is required.</span>
+                                        <span ng-show="loginform.loginemail.$error.email"> Not valid email!</span>
+                                    </span>  
+                                    <div class="password left-addon">
+                                        <i class="fa fa-lock input-placeholder-icon"></i>
+                                        <input type="password" class="form-control" name="loginpassword" placeholder="password" ng-model="logindata.password" required>
+                                    </div>
+                                    <span style="color:red" ng-show="submitted && loginform.password.$invalid">
+                                        <span ng-show="loginform.loginpassword.$error.required">Password is required.</span>
+                                    </span>  
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-3">
+                                            <button type="submit" class="btn btn-primary" value="Log In" ng-click="submitted = true">Submit</button>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-3">
+                                            <input type="button" class="btn btn-primary register-btn" value="Register" >
+                                        </div>
+                                    </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="chk-box">
+                                                <input type="checkbox">
+                                                <a class="anchor-tag-in-form">
+                                                    Remember me
+                                                </a>
+                                            </div>
+                                            </br>
+                                            <div class="remember-password">
+                                                forgot
+                                                <a href=""class="anchor-tag-in-form">
+                                                    Username
+                                                </a>
+                                                /
+                                                <a href="" class="anchor-tag-in-form">
+                                                    Password?
+                                                </a>
+                                            </div>
+                                            <div class="big-button-fb">
+                                                <div class="facebook-div">
+                                                    <i class="icon-fb">
+                                                    </i>
+                                                    <a class="anchor-tag-in-form">
+                                                        Login With Facebook
+                                                    </a>
+                                                </div>
+                                                <div class="google-div">
+                                                    <i class="icon-google">
+                                                    </i>
+                                                    <a class="anchor-tag-in-form">
+                                                        Login With Google+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+
+<!-- SIGN UP MODAL -->
+<div class="modal fade" id="modal-container-7675" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="fa fa-remove"></i>
+                </button>
+                <h3 class="modal-title title-heading" id="myModalLabel"> Sign Up </h3>
+            </div>
+            <div class="modal-body" >
+                <form ng-submit="myform.$valid && registeruser(user)"  name="myform" novalidate ng-app="myApp">
+                    <div class="username left-addon">
+                        <i class="fa fa-user input-placeholder-icon"></i>
+                        <input type="text" class="form-control " placeholder="User name" ng-model="user.name" name="user" required>
+                        <span style="color:red" ng-show="submitted && myform.user.$invalid">
+                            <span ng-show="myform.user.$error.required">Username is required.</span>
+                        </span>
+                    </div>
+                    <div class="username left-addon">
+                        <i class="fa fa-calendar input-placeholder-icon"></i>
+                        <input type="date" class="form-control " placeholder="Date of Birth" ng-model="user.dob" name="dob" required>
+                        <span style="color:red" ng-show="submitted && myform.dob.$invalid" >
+                            <span ng-show="myform.dob.$error.required">DOB is required.</span>
+                        </span>
+                    </div>
+                    <div class="gender">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="optradio" ng-model="user.gender" value="Male" required>
+                                Male
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="optradio" ng-model="user.gender" value="Female" required>
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.optradio.$invalid">
+                        <span ng-show="myform.optradio.$error.required">Gender is required.</span>
+                    </span>
+                    <div class="username left-addon">
+                        <i class="fa fa-phone input-placeholder-icon">
+                        </i>
+                        <input type="number" class="form-control " placeholder="Mobile Number" ng-model="user.mobile" name="mobile"  required>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.mobile.$invalid">
+                        <span ng-show="myform.mobile.$error.required">Mobile no. is required.</span>
+                    </span>
+                    <div class="username left-addon">
+                        <i class="fa fa-home input-placeholder-icon">
+                        </i>
+                        <input type="text" class="form-control" name="address" placeholder="Address" ng-model="user.address" required>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.address.$invalid">
+                        <span ng-show="myform.address.$error.required">Address is required.</span>
+                    </span>
+                    <div class="city left-addon">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control" name="city" placeholder="City" ng-model="user.city" required>
+                                <span style="color:red" ng-show="submitted && myform.city.$invalid">
+                                    <span ng-show="myform.city.$error.required">City is required.</span>
+                                </span>  
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="state-div">
+                                    <select class="form-control" ng-model="user.state" name="state" required>
+                                        <option value="state">
+                                            state
+                                        </option>
+                                        <option value="Uttarakhand">
+                                            Uttarakhand
+                                        </option>
+                                        <option value="Uttar Pardesh">
+                                            Uttar Pardesh
+                                        </option>
+                                        <option value="Delhi">
+                                            Delhi
+                                        </option>
+                                    </select>
+                                </div>
+                                <span style="color:red" ng-show="submitted && myform.state.$invalid">
+                                    <span ng-show="myform.state.$error.required">State is required.</span>
+                                </span>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="username left-addon">
+                        <i class="fa fa-envelope input-placeholder-icon">
+                        </i>
+                        <input type="email" class="form-control" placeholder="Email" ng-model="user.email" name="email" required>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.email.$invalid">
+                        <span ng-show="myform.email.$error.required">Email is required.</span>
+                        <span ng-show="myform.email.$error.email"> Not valid email!</span>
+                    </span>  
+                    <div class="username left-addon">
+                        <i class="fa fa-lock input-placeholder-icon">
+                        </i>
+                        <input type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password" required>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.password.$invalid">
+                        <span ng-show="myform.password.$error.required">Password is required.</span>
+                    </span> 
+                    <div class="username left-addon">
+                        <i class="fa fa-lock input-placeholder-icon">
+                        </i>
+                        <input type="password" class="form-control" placeholder="Confirm Password"   ng-model="user.confirmpassword" name="confirmpassword"  pw-check="user.password"  required>
+                    </div>
+                    <span style="color:red" ng-show="submitted && myform.confirmpassword.$invalid">
+                        <span ng-show="myform.confirmpassword.$error.match">Passwords do not match.</span> 
+                        <span data-ng-show="myform.user.confirmpassword.$error.match">Emails have to match!</span>
+                    </span> 
+                    <div class="row">
+                        <div class="submit-btn">
+                            <div class="col-md-2 col-sm-2 col-xs-3">
+                                <button  class="btn btn-primary" value="Submit"  ng-click="submitted = true">Submit</button>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-3">
+                                <input type="submit" class="btn btn-primary register-btn" value="Cancel" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .tooltip {
+        position: relative; opacity: 0; color: #FFF;
+        top: -91px;
+        right: 30px;
+        width: 100px;
+        padding: 10px;
+        line-height: 0.428571;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        background-color: rgba(0,0,30,0.5);
+        -webkit-box-shadow: 0px 0px 15px 2px rgba(255,255,255,.75);
+        box-shadow: 0px 0px 15px 2px rgba(255,255,255, .75);
+        -webkit-transition: .5s; transition: .5s;
+        -webkit-transform: rotateY(180deg); transform: rotateY(180deg);
+    }
+    .tooltip:after {
+        position: absolute; top: 100%; left: 50%; height: 0; width: 0;
+        border: 6px solid transparent; border-top: 6px solid rgba(0, 0, 30, 0.5);
+        content: ""; white-space: nowrap; color:#DDD;
+    }
+
+    .pluswa:hover .tooltip {
+        opacity: 1; top: -91px;
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+
+    .tooltiptxt{
+        color:#fff;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(".icon-down").click(function () {
+            $(".inner-section").slideUp("slow");
+            $(".icon-up").show();
+            $(this).hide();
+        });
+
+        $(".icon-up").click(function () {
+            $(".inner-section").slideDown("slow");
+            $(".icon-down").show();
+            $(this).hide();
+        });
+
+        $("#owl-demo").owlCarousel({
+            autoPlay: false, //Set AutoPlay to 3 seconds
+            items: 5,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+        });
+    });
+</script>
+
+
+

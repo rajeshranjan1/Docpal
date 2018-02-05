@@ -1,0 +1,24 @@
+<div class="col-md-3 col-sm-3 col-xs-12 padding15">
+            <div class="left-sidebar-div">
+              <div class="left-sidebar-heading-div">
+                <h3>
+                  Recent Post
+                </h3>
+              </div>
+              <div class="left-sidebar-data-div" ng-controller="usernotification">
+                <ul ng-repeat="notify in notification track by $index">
+                   <li>
+                    <a href="#/problemShow/{{notify.forumId}}">  <p>
+                    {{notify.repliedBy.name}} <span ng-show="notify.action=='relevant'">marked as relevant</span> 
+                    <span ng-show="notify.action=='follow'">followed </span>
+                    <span ng-show="notify.action=='feedback'">replied on</span>
+                    <span ng-show="notify.action=='comment'">commented on</span>
+                    <b>{{notify.question | limitTo: 30}}</b>
+                   </p>
+                   </a>
+                    </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>

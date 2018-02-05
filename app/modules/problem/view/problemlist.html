@@ -1,0 +1,414 @@
+<searchMenu>
+</searchMenu>
+<!-- end search section -->
+<!-- Central Part Starts here -->
+<section>
+    <div class="center-part-section">
+        <div class="container" ng-controller="problemCtrl">
+            <div class="center-part-section-inner">
+                <!-- drop down menu -->
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="left-sidebar">
+                            <div id="sidebar-wrapper2">
+                                <div class="search-section3">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="select-div">
+                                                <div class="category-new-li pop-up-custom">
+                                                    <span class="folder"><span class="icon-category"></span></span>
+                                                    <span class="category-li-span">
+                                                        <a href="" class="category-anchor">Category</a>
+                                                    </span>
+                                                    <span class="category-arrow-li"><i class="fa fa-angle-right"></i></span>
+                                                </div>
+                                            </div>
+                                            <!-- pop up -->
+                                            <div class="category-toggle-class-div pop-up-custom-div">
+                                                <div class="remove-btn"><i class="icon-delete"></i></div>
+
+                                                <ul class="toggle-ul">
+                                                    <li class="toggle-li" ng-repeat="x in docCat track by $index" addlist><span class="padding_span" ng-click="setFilterdata(x,'category')" ng-class="filter.category.indexOf(x) == -1 ? 'noactive' : 'blueactive'">{{x}}</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="new-filter-div">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 mypadding"><span class="filter-title-span">Your Filters</span></div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                                                            <div class="clear-all-div">
+                                                                <a href="" ng-click="clearFilter()">Clear all</a></div>
+                                                        </div>
+                                                        <div class="inner-filter-div">
+                                                            <span class="tag" ng-repeat="fil in filter.category track by $index" ng-click="crossclick(fil,'category')"> 
+{{fil}}  <i class="icon-cross72 icon-size"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- pop up -->
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="blank-data-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /#sidebar-wrapper -->
+                    </div>
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="center-part-section-inner">
+                            <!-- drop down menu -->
+                            <div class="filter-section-div2">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="main_sec_header">
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+
+                                                <div class="sort-div" ng-class="filter.sort == 'upvotes' ? 'active' : 'noactive'">
+                                                    <i class="icon-indent2"></i>
+                                                    <span class="newest-item" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'upvotes'; getFilterList(filter,'problems','#loadingPlaceholerProblem');">Sort by : Upvote question</span>
+
+                                                    <div class="up-down-icon">
+                                                        <i class="icon-triangle12 caret-up-icon" ng-class="filter.sort == 'upvotes' && filter.type == 'asc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'upvotes'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i><br>
+                                                        <i class="icon-triangle122 caret-down-icon" ng-class="filter.sort == 'upvotes' && filter.type == 'desc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'upvotes'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12 padding0">
+                                                <div ng-class="filter.sort == 'answers' ? 'active' : 'noactive'" class="sort-div">
+                                                    <span ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'answers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');">No of Answers</span>
+                                                    <div class="up-down-icon">
+                                                        <i class="icon-triangle12 caret-up-icon" ng-class="filter.sort == 'answers' && filter.type == 'asc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'answers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i><br>
+                                                        <i class="icon-triangle122 caret-down-icon" ng-class="filter.sort == 'answers' && filter.type == 'desc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'answers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <div class="sort-div" ng-class="filter.sort == 'followers' ? 'active' : 'noactive'">
+
+                                                    <span class="follow" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'followers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');">Followers</span>
+                                                    <div class="up-down-icon">
+                                                        <i class="icon-triangle12 caret-up-icon" ng-class="filter.sort == 'followers' && filter.type == 'asc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'followers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i><br>
+                                                        <i class="icon-triangle122 caret-down-icon" ng-class="filter.sort == 'followers' && filter.type == 'desc' ? 'green' : ''" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'followers'; getFilterList(filter,'problems','#loadingPlaceholerProblem');"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="loadingPlaceholerProblem">
+                                <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                                <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                                <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                                <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                                <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                            </div>
+                            <!-- end drop down -->
+                            <!--   <a href="#/addProblem">Ask problem</a> -->
+                            <!-- start page 1 content -->
+                            <div class="search-result-main-div2" ng-repeat="x in problemgetlists track by $index">
+                                <!-- start profile section -->
+                                <div class="main-comment-section">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="question-list-div">
+                                                <div class="main-img-div">
+                                                    <div class="img-div m-img">
+                                                        <a href="{{ x.details.role == 'doctor' ? '/#/singledoctorInfo/'+ x.details.userId : '/#/problemList' }}">
+<img ng-src="{{getUserImage(x.isPrivate == 'true' ? 'user' : x.details.role,x.isPrivate == 'true' ? '' : x.details.image,x.isPrivate == 'true' ? 'Male' : x.details.gender, x.isPrivate == 'true' ? '' : x.details.social_image)}}" alt="" class="img-responsive"></a>
+
+                                                        <p class="dr-name-para">{{ x.isPrivate == "true" ? 'Anonymous' : x.details.name }} </p>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="question-haed-list">
+                                                        <h4 class="question-class lessQ">
+                                                            {{x.question | limitTo: 300}} <span class="clickMore" style="cursor: pointer;">{{x.question.length > 300 ? '...' : ''}}</span>
+                                                        </h4>
+                                                        <h4 class='moreQ question-class' style=" display: none">{{x.question}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-comment-section" ng-show="x.answer[0].comment">
+                                                <div class="">
+                                                    <div class="main-img-div">
+                                                        <div class="img-div"><a href="#" ui-sref="singledoctorInfo({id:x.answer[0].repliedBy.userId,val:0})">
+<img ng-src="{{getUserImage(x.answer[0].repliedBy.role,x.answer[0].repliedBy.image,x.answer[0].repliedBy.gender,x.answer[0].repliedBy.social_image)}}" alt="" class="img-responsive"></a>
+                                                            <p class="dr-name-para">{{x.answer[0].repliedBy.name}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="profile-content">
+                                                        <p> {{x.answer[0].comment | limitTo: 250}} {{x.answer[0].comment.length > 250 ? '...' : ''}} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="comment">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <div class="smile-icon-div1">
+                                                            <div class="share-icon share_alt">
+
+                                                                <a id="check" href="" class="custom-btn myover check" data-container="body" data-toggle="popover" isPopover="true" data-placement="bottom" data-original-title="" title="">
+                                                                    <i class="icon-sharing3"></i>
+                                                                </a>
+
+
+
+                                                            </div>
+                                                            <span style="display:none" class="socailbutton">
+<button class="btn btn-medium font-bold"
+socialshare
+socialshare-provider="facebook"
+socialshare-type="feed"
+socialshare-via="145634995501895"
+socialshare-description="{{x.question}}"
+socialshare-caption="{{x.question}}"
+socialshare-url="{{siteUrlDocpal+'problemShow/'+x._id}}"
+socialshare-redirect-uri="https://facebook.com"
+socialshare-hashtags="problemlist"
+socialshare-popup-height="400"
+socialshare-popup-width="800"
+socialshare-trigger="click" >
+<i class="fa fa-facebook"></i>
+</button>
+
+<button class="btn btn-medium font-bold tw" 
+socialshare
+socialshare-provider="twitter"
+socialshare-text="{{x.question}}"
+socialshare-hashtags="problemlist"
+socialshare-url="{{x._id}}">
+<i class="fa fa-twitter"></i>
+</button>
+
+<button class="btn btn-medium font-bold go"
+socialshare
+socialshare-provider="google+"
+socialshare-text="720kb"
+socialshare-url="{{siteUrlDocpal+'problemShow/'+x._id}}"
+socialshare-description="{{x.question}}"
+socialshare-caption="{{x.question}}"
+socialshare-popup-height="300"
+socialshare-popup-width="400"
+socialshare-trigger="click">
+<i class="fa fa-google-plus"></i>
+</button>  
+</span>
+                                                            <div class="comment-btn-part">
+                                                                <div class="relevent-part">
+                                                                    <span class="icon-relevent smile"></span>
+                                                                    <button class="votenumber" ng-click="x=relevantProblem(x)" ng-class="{myclass:checkRelevant(x)}">Relevent</button>
+                                                                    <span class="pull-left relevantCount">{{x.upVoteDoctor}}</span>
+                                                                    <i class="fa fa-heartbeat smile smile1 fontsize"></i>
+                                                                    <button class="votenumber" ng-class="{myclass:checkFollow(x)}" ng-click="x=followProblem(x)">Follow </button>
+                                                                    <span class="pull-left followCount">{{x.followNumber}}</span>
+                                                                    <i class="icon-view1 smile smile1 fontsize pull-left"></i>
+                                                                    <button class="votenumber">Views</button>
+                                                                    <span class="pull-left">{{x.views || 0}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-4 col-xs-12 pull-right">
+                                                        <div class="comment-btn-div">
+                                                            <div class="hand-icon-div">
+                                                                <i class="icon-reply hand-lizard-icon"></i>
+                                                                <span class="numbers-para">{{x.answer.length == undefined ? '0' : x.answer.length}}</span>
+                                                            </div>
+
+
+                                                            <div class="user-eye-div">
+
+                                                                <button class="icon-report eye-icon votenumber" ng-click="toggleModal(x._id,x.details.userId,x.question)" ng-disabled="checkloginReport(x._id)" ng-class="{myclass:checkloginReport(x._id)}" id="openmodal"></button>
+
+                                                            </div>
+                                                            <div class="user-eye-div">
+                                                                  <a href="{{ imageServer+'/'+x.image }}" target="_blank" ng-show="x.image && x.image != ''"><i class="fa fa-paperclip"></i></a>
+                                                            </div>
+                                                            <div class="user-eye-div">
+                                                                <a class="report-btn" ui-sref="allanswer({id:x._id,views:x.views})">Reply</a>
+                                                            </div>
+                                                            <div class="user-eye-div" ng-show="ifOwnerProblem(x)">
+                                                                <a ng-click="delProblem(x._id); problemgetlists.splice($index,1)"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 padding0">
+
+                                <div class="btn_for_load_more" ng-show="problemgetlists.length > 0 && problemgetlists.length >= 10">
+                                    <a class="loadmore_btn" ng-click="showMore()">Load More</a>
+                                </div>
+
+                                <div class="btn_for_load_more" ng-show="problemgetlists.length <= 0">
+                                    No Problem To Show
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- end page 1 -->
+
+                    </div>
+                </div>
+                <modal title="Report" id="confirmAlert" visible="showModal">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="password">Confirm Box</label>
+                        </div>
+                        <button class="btn btn-default" ng-click="triggerEvent()">Yes</button>
+                        <button class="btn btn-default" ng-click="noTriggerEvent()">No</button>
+                    </form>
+                </modal>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="alertmodal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="fuller centeralign">
+                            <h3>Are you sure?</h3>
+                            <button type="button" class="btn yes-btn-custom">Yes</button>
+                            <button type="button" class="btn yes-btn-custom">No</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- animated-button -->
+    <div class="plus plus-effect-3 plus-effect-3a">
+        <a href="#/addProblem" class="plus" id="plus"><i class="fa fa-question"></i>
+</a>
+    </div>
+
+
+</section>
+<!-- Central Part Ends here -->
+
+
+<script type="text/javascript">
+    $(document).on('click', '.caret-down-icon', function() {
+        $(this).addClass("green");
+        $(".caret-up-icon").removeClass("green");
+    });
+    $(document).on('click', '.caret-up-icon', function() {
+        $(this).addClass("green");
+        $(".caret-down-icon").removeClass("green");
+    });
+    $(document).on('click', '.remove-other', function() {
+        $(".custom-nav-tabs-new li").removeClass("active");
+    });
+</script>
+
+
+<style>
+    .classet {
+        color: red;
+    }
+    
+    .myclass {
+        color: #1ba4aa;
+    }
+    
+    .socailbutton {
+        position: absolute;
+        width: 150px;
+        height: 35px;
+        box-shadow: 5px 6px 5px grey;
+        top: 35px;
+        background-color: #fff;
+        border-radius: 5px;
+        z-index: 9;
+        text-align: center;
+    }
+    
+    .socailbutton:after {}
+</style>
+
+
+<script type="text/javascript">
+    $(".select-div").unbind("click").click(function() {
+        $(this).next().toggle();
+    });
+    $(".remove-btn").click(function() {
+        $(this).parent().hide();
+    });
+    $(document).on('click', '.myover', function() {
+
+        $("[data-toggle = 'popover']").popover({
+            html: true,
+            content: function() {
+                return $(this).next().html();
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $("body").on('click', function(e) {
+        $('[isPopover="true"]').each(function() {
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
+
+    $(document).on('click', '.popover_docpal', function() {
+
+        var po = $(this).find("[isPopover = 'true']");
+        po.popover('show');
+
+    });
+    $(document).on('click', '.clickMore', function() {
+
+        $(this).closest(".question-haed-list").find('.lessQ').hide();
+        $(this).closest(".question-haed-list").find('.moreQ').show();
+
+
+    });
+
+
+
+    $(document).on('click', '#check', function() {
+        //  var a = $(this).next("span").css("display","none");
+        console.log("hello");
+        $(".socailbutton").css("display", "none");
+        var a = $(this).parent().next("span").css("display", "block");
+        console.log(a);
+        //   $(this).next("span").css("display","none");
+        //console.log(b);
+        //$("."+a).click();
+    });
+
+    $("body").click(function() {
+        $(".socailbutton").css("display", "none");
+    })
+</script>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docpal</title>
+		<link href="font-awesome-4.4.0/css/font-awesome.css" rel="stylesheet">
+	 	<link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/docpalp.css" rel="stylesheet">
+        <link href="css/docpal.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Starts Here -->
+    <header>
+        <div class="custom-header">
+            <nav class="navbar navbar-default">
+                <!-- pv icon bar -->
+                <div id="sidebar_dr" ng-hide="headerShowHide()" class="ng-hide">
+                    <div class="menu-tab">
+                        <div id="one"></div>
+                        <div id="two"></div>
+                        <div id="three"></div>
+                    </div>
+                    <div class="menu-hide">
+                        <nav class="nav_bars">
+                            <ul>
+                                <li ui-sref="homepage" href="#/"><a><i class="icon-hospitals custom-nav-icon">
+                                        </i>Home</a>
+                                </li>
+                               
+                                <li ng-click="logout1()"><a><i class="icon-signout1 custom-nav-icon">
+                                        </i>Sign Out</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pv icon bar -->
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header  col-md-10 ">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">
+                                Toggle navigation
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                        </button>
+                        <div class="col-md-3">
+                            <a href="" class="logo">
+                                <div class="title-icon" ui-sref="homepage" href="#/">
+                                    <img src="img/docpallogo1.svg">
+                                </div>
+                                <span style="position: relative; left: 40px; top: -11px;">Your Health Partner</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-4 pd-lr-0  text-right ">
+                            <a class="list-btn" id="user-reg-btn">List your practice on <strong>Docpal</strong></a>
+                        </div>
+                        <div class="col-md-4 col-xs-4   text-right">
+                            <a href="#" data-toggle="modal" class="list-btn" data-target="#hospitalLogin">For Clinic / Hospitals &amp; Test Labs</a> 
+                        </div>
+                        <div class="col-md-2 col-xs-4 text-right pd-lr-0 ">
+                            <div class="mr-tb-24">
+                                <div class="nav-section dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <img src="img/indianflag.png"> English
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu country-submenu">
+                                        <li><a href="#"><img src="img/indianflag.png"> ENGLISH</a></li>
+                                        <li><a href="#"><img src="img/french.png"> FRENCH</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pd-lr-0">
+                        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right custom-navbar">
+                              
+                                <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-login" data-target="#loginSignUpModal" ng-show="login"><span class="login_effect">Login</span></a> 
+                                </li>
+                                 <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-regsiter" data-target="#loginSignUpModal" ng-show="register"><span class="login_effect">Register</span></a> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+<div class="clinic-wpr">
+    <div class="container">
+        <div class="headings pg-head text-center">
+            <h3>Your Clinic listing claimed</h3>            
+            <div class="clinic-text text-center">
+                <p>Please help us with the below information</p>
+            </div>
+            
+        </div>
+        <div class="col-md-8 zero-margin">
+            <div class="inner-clinic">
+            	<div class="col-md-12 form-group clinic-claimed">
+            		<img src="img/claimed.png" alt="">
+                </div>
+                <div class="col-md-12 form-group text-center">
+                    <input type="checkbox" value="" name="Checkbox"> <span>By claiming this clinic, I agree to your <a href="javascript:void(0);">T&amp;C</a> &amp; <a href="javascript:void(0);">Privacy Policy.</a></span>
+                </div>
+                <div class="text-center form-group col-md-12">
+                    <button type="button" class="btn btn-success" >Claim my Clinic</button>
+                </div>
+            </div>
+          </div> 
+          
+    </div>
+</div>
+
+<footer class="ng-scope">
+    <!-- new experiment -->
+    <!--  <img src=""img/doclogo.png"> -->
+    <!-- end -->
+    <div class="footer-home">
+        <div class="container">
+            <!-- start 1st row -->
+            <div class="col-md-6 footer-logo-wpr">
+                <div style="" class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="faq_no">
+                        <img src="img/doclogo.png" alt="Footer Logo">
+                        <p class="justify ng-binding" ng-bind-html="about_us | limitTo: 400">Lorem Ipsum is <em><strong>simply dummy</strong></em> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-menu">
+                <div class="col-md-12">
+                    <h3 class="footer-heading">Quick Links</h3>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-one">
+                        <li><a href="#/aboutUs">About Us</a></li>
+                        <li><a href="#/career">Career</a></li>
+                        <li><a href="#/team">Team</a></li>
+                        <li><a href="#/contactUs">Contact Us</a></li>
+                        <li><a href="#/health">Health</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-two">
+                        <li><a href="#/privacyPolicies">Privacy Policy</a></li>
+                        <li><a href="#/privacyPolicies">Doctors Network</a></li>
+                        <li><a href="#/privacyPolicies">Hospitals Network</a></li>
+                        <li><a href="#/privacyPolicies">Terms of Usage</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="social-footer-wpr">
+                    <div class="col-md-12">
+                        <h3 class="footer-heading">Social</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="social-left">
+                            <a href="https://www.facebook.com/DocPalHealthcare"><img src="img/facebook.png" alt="facebook icon"></a>
+                            <a href="https://twitter.com/DocPalGroup"><img src="img/twitter.png" alt="facebook icon"></a>
+                            <a href="#"><img src="img/b.png" alt="bit icon"></a>
+                            <a href="#"><img src="img/youtube.png" alt="youtube icon"></a>
+                            <a href="#"><img src="img/pinterest.png" alt="Pinterest icon"></a>
+                            <a href="#"><img src="img/google-plus.png" alt="Google plus icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- COPYRIGHT -->
+    <div class="ex-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ex-footer-text">
+                        <center class="copyright">&copy; Docpal 2017| All Right Reserved. </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer-home -->
+</footer>
+
+
+
+</body>
+</html>

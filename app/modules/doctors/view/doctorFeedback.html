@@ -1,0 +1,162 @@
+<style type="text/css">
+    .rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .filled {
+  color: #1ba4aa;
+}
+</style>
+
+<div ng-controller="doctorFeedCltr">
+    <section id="main-header-section" ng-include="'modules/doctors/view/dr_header.view.html'"></section>
+    <!-- end search section -->
+    <!-- Central Part Starts from here -->
+    <section id="dr_notificatio">
+        <div class="section1-div">
+            <div class="container">
+                <div class="inner-section-div">
+                    <!-- drop down menu -->
+                    <div class="row">
+                        <!--  notification -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <doctormenu></doctormenu>
+                            <div class="center-part-div">
+                                <div class="tab-content">
+                                    <div id="doc_feed" class="tab-pane fade active in">
+                                        <div class="tab-details clearfix">
+                                            <div class="col-md-12 pd-lr-0">
+                                                <div class="col-md-6 pd-lr-8" ng-repeat="userFeedback in doctorFeedbacks | limitTo : 20">
+                                                    <div class="feedback-row  clearfix">
+                                                        <div class="col-md-2 clinic-feedback-user">
+                                                            <img ng-src="{{patientProfilePicLink}}" alt="" width="80px">
+                                                            <h5>{{userFeedback.patientName}}</h5>
+                                                        </div>
+                                                        <div class="col-md-10 clinic-feedback-details">
+                                                            <h6>{{userFeedback.createdDate}}</h6>
+                                                            <p>{{userFeedback.feedbackText}}</p>
+                                                        </div>
+                                                        <div class="col-md-12 pd-lr-0">
+                                                            <div class="col-md-3">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h5> Helpfulness</h5>
+                                                                <!--  <label>{{feed.rating.helpfulness}}</label> -->
+                                                                <!-- <div class="star-rating">
+                                                                    <li class="fa fa-star" data-rating="1" ></li>
+                                                                    <li class="fa fa-star" data-rating="2"></li>
+                                                                    <li class="fa fa-star" data-rating="3"></li>
+                                                                    <li class="fa fa-star-o" data-rating="4"></li>
+                                                                    <li class="fa fa-star-o" data-rating="5"></li>
+                                                                    <input type="hidden" name="whatever1" class="rating-value" value="{{feed.rating.helpfulness}}">
+                                                                </div> -->
+                                                                <!-- <div  ng-controller="ratingController">
+                                                                  <div>
+                                                                    <angular-star-rating max="maxValue" value='ratingValue' hover='changeOnHover' is-readonly='isReadonly'></angular-star-rating>
+                                                                  </div>
+                                                                </div> -->
+                                                                <div  ng-controller="RatingCtrl">
+                                                                    <div ng-init="rating = star.rating + 1" ng-readonly="all"></div>
+                                                                    <div class="star-rating" star-rating rating-value="rating"
+
+                                                                    data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h5>Wait time</h5>
+                                                               <!--  <div class="star-rating">
+                                                                    <span class="fa fa-star" data-rating="1"></span>
+                                                                    <span class="fa fa-star" data-rating="2"></span>
+                                                                    <span class="fa fa-star" data-rating="3"></span>
+                                                                    <span class="fa fa-star" data-rating="4"></span>
+                                                                    <span class="fa fa-star" data-rating="5"></span>
+                                                                    <input type="hidden" name="whatever1" class="rating-value" value="{{feed.rating.waitTime}}">
+                                                                </div> -->
+                                                                <!-- <label>{{feed.rating.waitTime}}</label> -->
+                                                                <div  ng-controller="RatingCtrl">
+                                                                    <div ng-init="rating = star.rating + 1" ng-readonly="all"></div>
+                                                                    <div class="star-rating" star-rating rating-value="rating"
+
+                                                                    data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h5>Overall rating</h5>
+                                                                <!-- <div class="star-rating">
+                                                                    <span class="fa fa-star" data-rating="1"></span>
+                                                                    <span class="fa fa-star" data-rating="2"></span>
+                                                                    <span class="fa fa-star" data-rating="3"></span>
+                                                                    <span class="fa fa-star" data-rating="4"></span>
+                                                                    <span class="fa fa-star-o" data-rating="5"></span>
+                                                                    <input type="hidden" name="whatever1" class="rating-value" value="{{feed.rating.overall}}">
+                                                                </div> -->
+                                                                <!-- <label>{{feed.rating.overall}}</label> -->
+                                                                <!-- <div ng-controller="ratingController">
+                                                                  <div >
+                                                                    <angular-star-rating max="maxValue" value='ratingValue' hover='changeOnHover' is-readonly='isReadonly'></angular-star-rating>
+                                                                  </div>
+                                                                </div> -->
+                                                                <div  ng-controller="RatingCtrl">
+                                                                    <div ng-init="rating = star.rating + 1" ng-readonly="all"></div>
+                                                                    <div class="star-rating" star-rating rating-value="rating"
+
+                                                                    data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="feed-reply">
+                                                            <form action="#" method="post" name="doctorReplyForm" ng-controller="formValidateCltr"  novalidate="">
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-3">
+                                                                    </div>
+                                                                    <div class="col-md-9 pd-lr-0">
+                                                                        <textarea class="form-control " style="margin: 10px 0;"  name="feedback" ng-model="feedback" required=""></textarea>
+                                                                        <span class="label label-danger" ng-show="doctorReplyForm.feedback.$dirty && doctorReplyForm.feedback.$error.required">
+                                                                            <span  >message is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 ">
+                                                                    <div class="col-md-4">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                    <div class="col-md-8 pd-r-0 text-right">
+                                                                        <a href="" class=" btn btn-danger btn-sm">Decline</a>
+                                                                        <a href="" class=" btn btn-success btn-sm">Approve</a>
+                                                                        <button type="submit" class="btn btn-info btn-sm " ng-disabled="doctorReplyForm.feedback.$dirty && doctorReplyForm.feedback.$invalid" ><i class="fa fa-reply" aria-hidden="true" ></i> Reply</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

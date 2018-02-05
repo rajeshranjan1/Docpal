@@ -1,0 +1,40 @@
+<div class="clinic-wpr" ng-controller="hospitalviewCtrl">
+    <div class="container">
+        <div class="headings pg-head text-center" ng-show="currpass">
+            <h3>Select your owned clinic</h3>            
+            <div class="clinic-text text-center col-md-8 zero-margin" ng-controller="hospitalviewCtrl">
+                <p>We found {{size}} profiles matching your details.Please select the best matching profile as per your credentials.For other duplicate profiles, we will merge them into a single one.</p>
+            </div>
+        </div>
+        <div class="col-md-8 zero-margin">
+            <div class="inner-clinic">
+            	<div class="col-md-12 clinic-row" ng-controller="hospitalviewCtrl" ng-repeat="clinic in clinics">
+                    <div class="clinic-radio">
+            		  <input type="radio" name="clinic_checked">
+                    </div>
+                    <div class="clinic-img">
+                        <img src="assets/img/person.png" alt="">
+                    </div>
+                    <div class="clinic-details" ng-controller="hospitalviewCtrl">
+                        <h4>{{clinic.name}}</h4>                        
+                        <p><i class="fa fa-map-marker"></i> {{clinic.location.completeaddres}}</p>
+                        <p>Dr. Harprasad Bainsla,Mr. R.K. Mondol</p>
+                    </div>
+                    <div class="clinic-claim">
+                        <label class="label label-success">Profile Claimed</label>
+                    </div>
+                    <div class="clinic-profile">
+                        <a href="view-clinic-profile.html" class="btn btn-info btn-sm">View Full Profile</a>
+                    </div>
+                </div>
+                 <div class="text-center form-group col-md-12 m-t-30">
+                    <a href="clinic-claimed.html" class="btn btn-custom-info" >Next</a>
+                </div>
+                 <div class="clinic-text  text-center form-group col-md-12">
+                        <p>Did not find your clinic profile? <a href="create-clinic.html">Create new clinic profile</a></p>
+                </div>
+               
+            </div>
+          </div> 
+    </div>
+</div>

@@ -1,0 +1,235 @@
+<section ng-app="trDocpal">
+
+  <div class="container">
+
+  <div class="Admin-section">
+  <div class="row">
+<div class="center-heading">
+    <h1>Lab Panel</h1>
+    <input type="button" class="btn btn-success" value="add new"  ng-click="addNewHospital()">
+  </div>
+    <div class="col-md-8 col-md-offset-2" ng-show="showDetails">
+
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Name</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.name">
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Location</label>
+        </div>
+
+        <div class="col-md-8" > 
+     <location-picker id="location" ng-model="lab.location"  placeholder="Place Location" ng-required="true"></location-picker>
+     
+
+        </div>
+
+      </div>
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>About</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.about">
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Awards</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.awards" ng-list=",">
+        </div>
+      </div>
+     
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Facility</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.facility" ng-list=",">
+        </div>
+      </div>
+     
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Certificate</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.certificate" ng-list=",">
+        </div>
+      </div>
+       <div class="common-row">
+        <div class="col-md-4">
+        <label>Test</label>
+        </div>
+        <div class="col-md-8">
+       
+        <div class="row" ng-repeat="t in test track by $index">
+         <div class="common-inner-row">
+          <div class="col-md-5"><input class="form-control" type="text" ng-model="t.testName"></div><div class="col-md-5"><input  class="form-control" type="text" ng-model="t.testPrice"></div><div class="col-md-2" ng-click="add3()"><i class="icon-round69 plus-btn display"></i></div>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Time</label>
+        </div>
+        <div class="col-md-8">
+          <!--- changes in time -->
+          <span class="" >
+           <div ng-repeat="avail in timining">
+        <ul class="dropdown-Days-ul-inadmin">
+          <li class="width9">
+            <p class="day-hospital">
+              Day
+            </p>
+          </li>
+          <li>
+            <div class="select-box-1 blk admin-blk">
+             
+            <select class="admin-select" name="singleSelect" ng-options="d for d in days" ng-model="avail.days[0]"></select>
+
+            </div>
+          </li>
+          <li class="width9">
+            <p class="day-hos-admin">
+              to
+            </p>
+          </li>
+          <li>
+            <div class="select-box-2 blk admin-blk">
+
+             <select class="admin-select" name="singleSelect" ng-options="d for d in days" ng-model="avail.days[1]"></select>
+            </div>
+
+          </li>
+        <li class="admin_select_li padding-impt" ng-click="removeDays($index)">
+        <i class="icon-cross72 plus-btn display top"></i>
+
+         </li>
+         <li ng-click="add()">
+           <i class="icon-round69 plus-btn display"></i>
+         </li>
+        </ul>
+          <div ng-repeat="timeSlot in avail.time">
+        <ul class="dropdown-Days-ul-inadmin">
+          <li>
+            <p class="day-hospital">
+              Time
+            </p>
+          </li>
+          <li class="admin_select_li">
+            <div class="blk admin-blk">
+            <select class="admin-select" ng-options="t for t in timeslotAvail" ng-model="timeSlot.startTime"></select>
+          </div>
+          </li>
+          <li class="admin_select_li">
+          <div class="blk admin-blk">
+            <select class="admin-select" ng-options="shift for shift in shifts" ng-model="timeSlot.shiftstart">
+              
+             
+            </select></div>
+          </li>
+        
+        <li class="width9 admin_select_li">
+            <p class="day-hos-admin">
+              to
+            </p>
+          </li>
+          <li class="admin_select_li">
+           <div class="blk admin-blk"> 
+ <select class="admin-select" ng-options="t for t in timeslotAvail" ng-model="timeSlot.endTime"></select>
+        </div>
+       </li>
+       <li class="admin_select_li">
+        <div class="blk admin-blk">
+            <select class="admin-select" ng-model="timeSlot.shiftend">
+              
+              <option value="AM">
+                AM
+              </option>
+              <option value="PM">
+                PM
+              </option>
+            </select>
+        </div>    
+          </li>
+          </li>
+         
+        <li class="admin_select_li padding-impt" ng-click="moreTime(avail,$index)">
+           <i class="icon-round69 plus-btn display"></i>
+         </li>
+         <li class="remove-btn-time-admin">
+           <i class="icon-cross72 display padding0" ng-click="deleteTime(avail,$index)"></i>
+         </li>
+        </ul>    
+
+      </div>
+      </div>
+      </span>
+     
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Memberships</label>
+        </div>
+        <div class="col-md-8">
+        <input type="text" class="form-control" ng-model="lab.membership" ng-list=",">
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-3 col-md-offset-5 submit-btn-admin">
+        <button type="button"class="btn btn-default" ng-click="savelabdata(lab)">Submit</button>
+        </div>
+      </div>
+    
+
+
+    </div>
+  </div>
+    <div ng-show="showImgUpload">
+      <div class="common-row">
+        <div class="col-md-4">
+        <label>Add Lab Image</label>
+        </div>
+        <div class="col-md-8">
+         <img ngf-src="picFile" ng-show="picFile" style="height: 88px; width: 88px;" class="img-responsive dr-profile-image thumb" ng-show="myForm.file.$valid" ngf-thumbnail="picFile">
+         <input  type="file" ngf-select ng-model="picFile" ng-change="changeSubmitIcon()" name="file" accept="image/*" ngf-max-size="2MB" required  ngf-model-invalid="errorFiles">
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-3 col-md-offset-5 submit-btn-admin">
+        <button type="button"class="btn btn-default" ng-click="saveLabImage(picFile)" ng-show="showAdd">Add Image</button>
+        </div>
+      </div>
+ 
+     
+      <div class="common-row" >
+        <div class="col-md-4">
+        <label>Add Lab Gallery</label>
+        </div>
+        <div class="col-md-8">
+         <img ngf-src="picgallery" ng-show="picgallery" style="height: 88px; width: 88px;" class="img-responsive dr-profile-image thumb" ng-show="myForm.file.$valid" ngf-thumbnail="picgallery">
+         <input  type="file" ngf-select ng-model="picgallery" ng-change="showGallery=true" name="file" accept="image/*" ngf-max-size="2MB" required  ngf-model-invalid="errorFiles">
+                    <input type="text" ng-model="imgCaption">
+        </div>
+      </div>
+      <div class="common-row">
+        <div class="col-md-3 col-md-offset-5 submit-btn-admin">
+        <button type="button"class="btn btn-default" ng-click="saveLabGallery(picgallery,imgCaption)" ng-show="showGallery">Add Gallery</button>
+        </div>
+      </div>
+    </div>
+</div>  
+</div>
+
+</section>
+

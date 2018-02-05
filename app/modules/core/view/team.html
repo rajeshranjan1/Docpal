@@ -1,0 +1,29 @@
+<div class="team-wpr">
+    <div class="container">
+        <div class="headings text-center">
+            <h2>Our Team</h2>
+            <div class="text-center">
+                <img src="assets/img/heart.png" alt="heart ">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="inner-team text-center">
+                <div class="col-md-10 zero-margin p-0">
+                    <div class="col-md-3" ng-repeat="x in teams track by $index">
+                        <div class="team-member">
+                            <figure class="team-pic">
+                                <img src="{{imageServer + x.image}}" alt="team ">
+                            </figure>
+                            <div class="team-details text-center">
+                                <h3>{{x.name }}</h3>
+                                <h5>{{x.designation}}</h5>
+                                <h6>{{x.experience}}</h6>
+                                <p class="justify" ng-bind-html="x.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

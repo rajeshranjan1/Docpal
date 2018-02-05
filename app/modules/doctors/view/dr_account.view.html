@@ -1,0 +1,197 @@
+
+ <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+                     <div class="Account-info"  >
+                       <div class="row" >
+                 <div class="col-lg-12 col-md-12 col-sm-12" >                          
+                          <div class="">
+                          <div class="account-section">
+                            <div class="edit-bttn" id="editbtn">
+                       <a>
+                         Edit
+                       </a>
+                     </div>
+                     <div class="save-bttn" id="savebtn" ng-click="saveAccountData(doctorInfoAllData)">
+                       <a>
+                         Save
+                       </a>
+                     </div>
+                     <div class="user-div"></div>
+                            <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                             <p class="aling_name"> Name</p>
+                            </div>
+                            <div class="col-md-3">
+                               <p class="wrap">{{doctorInfoAllData.name}}</p>
+
+                             <input type="text" class="editable-class-newtab" placeholder="My name" ng-model="doctorInfoAllData.name">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                             <p class="aling_name"> User Name</p>
+                            </div>
+                            <div class="col-md-3">
+                               <p class="wrap">{{doctorInfoAllData.username}}</p>
+
+                             <input type="text" class="editable-class-newtab" placeholder="My name" ng-model="doctorInfoAllData.username" readonly="">
+                            </div>
+                          </div>
+                        </div>
+                          <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                             <p class="aling_name"> Category</p>
+                            </div>
+                            <div class="col-md-3">
+                               <p class="wrap">{{doctorInfoAllData.speciality}}</p>
+
+                             <!-- <input type="text" class="editable-class-newtab" placeholder="My name" ng-model="doctorInfoAllData.speciality" > -->
+                              <select class="drpdwn margin_category editable-class-newtab" ng-model="doctorInfoAllData.speciality" name="category" style="margin: 0px !important;"> 
+          <option value="" ng-selected=true>Choose a Category</option>
+          <option value="{{x}}" ng-repeat="x in docCat track by $index">{{x}}</option>
+          </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                             <p class="aling_name"> Gender</p>
+                            </div>
+                            <div class="col-md-3">
+                              <p class="wrap">{{doctorInfoAllData.gender}}</p>
+
+                             
+  <select class="drpdown" ng-model="doctorInfoAllData.gender" ng-selected="doctorInfoAllData.gender">
+       <option value="Male">Male</option>
+  <option value="Female">Female</option>
+      <select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                             <p class="aling_name"> Blood Group</p>
+                            </div>
+                            <div class="col-md-3">
+                               <p class="wrap">{{doctorInfoAllData.BloodGroup}}</p>
+
+                             <!--input type="text" class="editable-class-newtab" placeholder="B+"!-->
+                             <select class="drpdown" ng-model="doctorInfoAllData.BloodGroup" ng-selected="doctorInfoAllData.BloodGroup">
+       <option value="B+">B+</option>
+       <option value="B-">B-</option>
+       <option value="AB+">AB+</option>
+       <option value="AB-">AB-</option>
+       <option value="A+">A+</option>
+       <option value="A-">A-</option>
+       <option value="O+">O+</option>
+       <option value="O-">O-</option>
+       <select>
+                            </div>
+                          </div>
+                        </div>
+                         <div class="user-name-div">
+                            
+                        </div>
+                        
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            <p class="aling_name"> Mobile No.<p>
+                            </div>
+                            <div class="col-md-3">
+                              <p class="wrap">{{doctorInfoAllData.mobile}}</p>
+                             <input type="text" class="editable-class-newtab" ng-model="doctorInfoAllData.mobile" placeholder="mobile no"> 
+                            </div>
+                          </div>
+                        </div>
+                     <section ng-controller="AccountCtrl">
+                      <div class="psw-btn">
+                      <p class="passwrd_change aling_name" ng-click="changePAssDiv()"> Change password</p></div>
+                      <div ng-show="passwordsection">
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+
+                          
+                            </div>
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" type="password" ng-model="account.curpass" id="input-4" ng-blur="checkpassword(account.curpass)" />
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">Current Password</span>
+                    </label>
+                    
+                </div>
+                <div class="msg-error" ng-show="currpass">
+    Current password does not found
+  </div>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+ <div class="">
+
+
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" type="password" id="pw1" ng-model="account.newpass" ng-required/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">New Password</span>
+                    </label>
+                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+
+                    <input class="input__field1 input__field--hoshi1" type="password" id="pw2" ng-model="account.matchpass" pw-check="account.newpass" ng-required/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">Confirm Password</span>
+                    </label>
+                   
+                </div>
+                 <div class="msg-error" ng-show="pwmatch">
+    Passwords don't match.
+  </div>
+                            </div>
+                          </div>
+                         
+                          <div class="col-md-3">
+                            <div class="password-div">
+                            <div class="cutom-create-btn">
+                                            <button class="btn create-btn-custom done" ng-disabled="passcheck" ng-click="passUpdate(account.matchpass)">Done</button>
+                                            <button class="btn create-btn-custom done" ng-click="passwordsection=false">Cancel</button>
+                                        </div>
+                                      </div>
+                            </div>
+                           </div>
+                          </div>
+                        </div>
+                       </div>
+                     </div>
+
+                     </section>
+                     </div>
+                   </div>
+                 </div>
+                 
+                 
+       

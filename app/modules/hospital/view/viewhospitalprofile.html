@@ -1,0 +1,198 @@
+<section>
+  <div class="services-div border-class-new">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+      <div class="abouth">
+        <h4>About</h4>
+        <p>
+          {{hospital.about}}
+        </p>
+      </div>
+    </div>
+    <div class="inner-sec">
+      <div class="col-md-12 col-sm-12 col-xs-12 spec-section">
+
+        <i class="icon-circle39 services-icon-new">
+  </i>
+
+        <h4 class="padding-margin">
+          Facility
+        </h4>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ul class="inner-li">
+            <li ng-repeat="x in hospital.services track by $index">
+              {{x}}
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="inner-sec">
+      <div class="col-md-12 col-sm-12 col-xs-12 spec-section">
+
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 padding00">
+
+          <div class="inner-sec">
+            <div class="col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="hospital.speciality.length > 0">
+              <div class="spec">
+                <i class="icon-medical96 services-icon-new">
+        </i>
+                <h4>
+                  Specialization
+                </h4>
+                <ul class="inner-li specialization-ul">
+                  <li class="padding14" ng-repeat="x in hospital.speciality track by $index">
+                    {{x}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00" ng-show="hospital.awards.length > 0">
+              <div class="spec">
+                <i class="icon-cup2 services-icon-new">
+        </i>
+                <h4>
+                  Awards
+                </h4>
+                <ul class="inner-li awards-ul">
+                  <li ng-repeat="x in hospital.awards track by $index" class="padding14">
+
+                    {{x}}
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="hospital.membership.length > 0">
+      <div class="spec">
+          <i class="icon-identification10 services-icon-new">
+
+            </i>
+            <h4>
+              Memberships
+            </h4>
+            <ul class="inner-li members-ul" >
+              <li class="padding14" ng-repeat="x in hospital.membership track by $index">
+             {{x}}
+              </li>
+            </ul>
+          </div>
+        </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <div class="inner_bttom_sec border-class-new">
+
+
+          <div class="col-md-4" ng-repeat="det in doctordetails track by $index">
+            <div class="search-result-main-div2 info_hospital_cards">
+              <!-- start profile section -->
+              <div class="profile-section">
+
+
+                <div class="my-image-section">
+
+                  <div class="img-div1">
+                    <img src="assets/img/Dr1.png" alt="" class="img-responsive border-round  e-img"></div>
+
+                </div>
+
+                <div class="info-section sec_new">
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+
+                      <h3 class="name-div">
+                        <a href="#">{{det.name}}</a>
+                      </h3>
+
+
+
+                      <div class="text-div">
+
+                        <span>
+                        
+                       {{det.speciality}}
+                        </span>
+                        <span>
+                        
+                       {{det.address[det.indexId].city}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--pv modal!-->
+
+
+          <!-- Trigger the modal with a button -->
+
+          <a href="#image-gallery" data-toggle="modal" ng-click="toggleModal()">
+            <i class="fa fa-ellipsis-h dott">
+                       </i>
+          </a>
+          <modal title="All Doctors" visible="showModal">
+
+
+
+            <div class="col-md-12">
+              <div class="">
+                <!-- start profile section -->
+                <div class="profile-section" ng-repeat="det in doctordetails track by $index">
+
+
+                  <div class="my-image-section">
+
+                    <div class="img-div1">
+                      <img src="assets/img/Dr1.png" alt="" class="img-responsive border-round  e-img"></div>
+
+                  </div>
+
+                  <div class="info-section sec_new">
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+
+                        <h3 class="name-div">
+                          <a href="#">{{det.name}}</a>
+                        </h3>
+
+
+
+                        <div class="text-div">
+
+                          <span>
+                        
+                       {{det.speciality}}
+                        </span>
+                          <span>
+                        
+                       {{det.address[det.indexId].city}}
+                        </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+
+
+        </modal>
+      </div>
+    </div>
+
+</section>

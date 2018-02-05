@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docpal</title>
+		<link href="font-awesome-4.4.0/css/font-awesome.css" rel="stylesheet">
+	 	<link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.min.css">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/docpalp.css" rel="stylesheet">
+        <link href="css/docpal.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Starts Here -->
+    <header>
+        <div class="custom-header">
+            <nav class="navbar navbar-default">
+                <!-- pv icon bar -->
+                <div id="sidebar_dr" ng-hide="headerShowHide()" class="ng-hide">
+                    <div class="menu-tab">
+                        <div id="one"></div>
+                        <div id="two"></div>
+                        <div id="three"></div>
+                    </div>
+                    <div class="menu-hide">
+                        <nav class="nav_bars">
+                            <ul>
+                                <li ui-sref="homepage" href="#/"><a><i class="icon-hospitals custom-nav-icon">
+                                        </i>Home</a>
+                                </li>
+                               
+                                <li ng-click="logout1()"><a><i class="icon-signout1 custom-nav-icon">
+                                        </i>Sign Out</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pv icon bar -->
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header  col-md-10 ">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">
+                                Toggle navigation
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                        </button>
+                        <div class="col-md-3">
+                            <a href="" class="logo">
+                                <div class="title-icon" ui-sref="homepage" href="#/">
+                                    <img src="img/docpallogo1.svg">
+                                </div>
+                                <span style="position: relative; left: 40px; top: -11px;">Your Health Partner</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-4 pd-lr-0  text-right ">
+                            <a class="list-btn" id="user-reg-btn">List your practice on <strong>Docpal</strong></a>
+                        </div>
+                        <div class="col-md-4 col-xs-4   text-right">
+                            <a href="#" data-toggle="modal" class="list-btn" data-target="#hospitalLogin">For Clinic / Hospitals &amp; Test Labs</a> 
+                        </div>
+                        <div class="col-md-2 col-xs-4 text-right pd-lr-0 ">
+                            <div class="mr-tb-24">
+                                <div class="nav-section dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <img src="img/indianflag.png"> English
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu country-submenu">
+                                        <li><a href="#"><img src="img/indianflag.png"> ENGLISH</a></li>
+                                        <li><a href="#"><img src="img/french.png"> FRENCH</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pd-lr-0">
+                        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right custom-navbar">
+                              
+                                <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-login" data-target="#loginSignUpModal" ng-show="login"><span class="login_effect">Login</span></a> 
+                                </li>
+                                 <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-regsiter" data-target="#loginSignUpModal" ng-show="register"><span class="login_effect">Register</span></a> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+<div class="clinic-wpr">
+    <div class="container">        
+        <div class="col-md-10 zero-margin">
+            <div class="inner-clinic-detail">
+            	<div class="col-md-12 clinic-detail-row p-0">
+                    <div class="col-md-4 clinic-step-detail border-right">
+                        <h4>Sumitra Clinic </h4>
+                        <label class="label label-danger">Not Live</label> 
+                    </div>
+                    <div class="col-md-4 clinic-step-detail border-right">
+                       <h4>70% Profile Complete</h4>
+                       <div class="progress">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70"
+                          aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 clinic-step-detail">
+                         <h4>4 Pending Mandatory Fields</h4>
+                         <p>Complete these fields to make your profile go live</p>
+                    </div>
+                </div>               
+                
+                <div class="col-md-12 clinic-detail-tab p-0">
+                    <div class="bhoechie-tab-container">
+                            <div class="col-sm-3 p-0">                               
+                                <ul class="list-group nav nav-tabs nav-stacked text-center" role="tablist">
+                                    <li class="active"><a href="#clinic-detail" class="list-group-item text-center"  role="tab" data-toggle="tab">
+                                      Clinic Details
+                                    </a></li>
+                                    <li><a href="#clinic-timing" class="list-group-item text-center"  role="tab" data-toggle="tab">
+                                      Clinic Timing
+                                    </a></li>
+                                    <li><a href="#location-photos" class="list-group-item text-center"  role="tab" data-toggle="tab">
+                                      Location &amp; Photos
+                                    </a></li>
+                                    <li><a href="#fee-timing" class="list-group-item text-center"  role="tab" data-toggle="tab">
+                                       Doctors (fees &amp; timings)
+                                    </a></li>
+                                    <li><a href="#services" class="list-group-item text-center"  role="tab" data-toggle="tab">
+                                      Specialization &amp; Services
+                                    </a></li>
+                                  </ul>
+                            </div>
+                            <div class="col-sm-9 p-0">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="clinic-detail">
+                                        <div class="add-clinic-detail">
+                                            <div class="headings pg-head">
+                                                    <h3>Clinic Details</h3>
+                                            </div>
+                                            <div class="inner-clinic">
+                                                <div class="col-md-12 form-group">
+                                                    <label>Clinic Name *</label>
+                                                    <input type="text" class="form-control"  name="name" required placeholder="Enter Clinic Name">
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label>Email Address *</label>
+                                                    <input type="text" class="form-control"  name="email" required placeholder="Enter Email Address">
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label>Contact Number *</label>
+                                                    <input type="text" class="form-control"  name="contact" required placeholder="Enter Contact Number">
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label>About Clinic</label>
+                                                    <textarea class="form-control"  name="about" required placeholder="Write about your Clinic"></textarea> 
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label>Upload Photo</label>
+                                                    <input type="file" class="form-control"  name="photo">
+                                                </div>                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="clinic-timing">
+                                        <div class="add-clinic-detail">
+                                            <div class="headings pg-head">
+                                                    <h3>Clinic Details</h3>
+                                             </div>
+                                             <div class="inner-clinic">
+                                                <div class="col-md-12 form-group">
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Clinic Open 24 X 7</label>
+                                                    
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Monday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Tuesday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Wednesday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Thursday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Friday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Saturday</label>
+                                                    <label class="chk"><input type="checkbox" class="checkbox-cust"  name="checkbox" > Sunday</label>
+                                                </div>
+                                                <div class="col-md-6 form-group p-0">
+                                                    <label class="col-md-12">Session 1 *</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time1" >
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time2" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group p-0">
+                                                    <label class="col-md-12">Session 2</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time1" >
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time2" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 add-timing">
+                                                    <a href="#">+ Add Timing</a>
+                                                    <p>Note: Changes in fees & timings will go live immediately on your public profile.</p>
+                                                </div>                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="location-photos">
+                                       <div class="add-clinic-detail">
+                                            <div class="headings pg-head">
+                                                <h3>Location *</h3>
+                                            </div>
+                                            <div class="inner-clinic">
+                                                <div class="col-md-6 form-group">
+                                                    <label>Country *</label>
+                                                    <input type="text" class="form-control"  name="country" required placeholder="Enter Country">
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>City *</label>
+                                                    <input type="text" class="form-control"  name="city" required placeholder="Enter City">
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Area *</label>
+                                                    <input type="text" class="form-control"  name="area" required placeholder="Enter Area">
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Zip Code</label>
+                                                    <input type="text" class="form-control"  name="zipcode" required placeholder="Enter Zipcode">
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Landmark</label>
+                                                    <input type="text" class="form-control"  name="landmark" required placeholder="Enter Landmark">
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label>Street Address*</label>
+                                                    <input type="text" class="form-control"  name="address" required placeholder="Enter Address">
+                                                </div>
+                                                
+                                                                                                    
+                                            </div>
+                                            <div class="headings pg-head">
+                                                <h3>Clinic Photos</h3>
+                                            </div>
+                                            <div class="inner-clinic">
+                                                <div class="col-md-12 form-group">
+                                                    <label>Upload Photo</label>
+                                                    <input type="file" class="form-control"  name="photo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="fee-timing">
+                                        <div class="add-clinic-detail">
+                                            <div class="headings pg-head">
+                                                    <h3>Doctors</h3>
+                                             </div>
+                                             <div class="inner-clinic">
+                                                <div class="col-md-6 form-group">
+                                                    <label>Consultation Duration</label>
+                                                    <select class="form-control">
+                                                        <option value="">10 Minutes</option>
+                                                        <option value="">20 Minutes</option>
+                                                        <option value="">30 Minutes</option>
+                                                        <option value="">40 Minutes</option>
+                                                        <option value="">50 Minutes</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Consultation Fee *</label>
+                                                    <input type="text" class="form-control"  name="landmark" required placeholder="Enter Landmark">
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Available on Request</label>
+                                                    
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Monday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Tuesday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Wednesday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Thursday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Friday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Saturday</label>
+                                                    <label><input type="checkbox" class="checkbox-cust"  name="checkbox" > Sunday</label>
+                                                </div>
+                                                <div class="col-md-6 form-group p-0">
+                                                    <label class="col-md-12">Session 1 *</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time1" >
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time2" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group p-0">
+                                                    <label class="col-md-12">Session 2</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time1" >
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control timepicker"  name="time2" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 add-timing">
+                                                    <a href="#">+ Add Timing</a>
+                                                    <p>Note: Changes in fees & timings will go live immediately on your public profile.</p>
+                                                </div>                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="services">
+                                        <div class="add-clinic-detail">
+                                            <div class="headings pg-head">
+                                                    <h3>Services</h3>
+                                            </div>
+                                            <div class="inner-clinic">
+                                                <div class="col-md-12 form-group">
+                                                    <label>Add Service</label>
+                                                    <select class="form-control">
+                                                        <option value="">Service 1</option>
+                                                        <option value="">Service 2</option>
+                                                        <option value="">Service 3</option>
+                                                        <option value="">Service 4</option>
+                                                        <option value="">Service 5</option>
+                                                    </select>
+                                                </div>
+                                                                             
+                                            </div>
+                                            <div class="headings pg-head">
+                                                    <h3>Specialization</h3>
+                                            </div>
+                                             <div class="inner-clinic">
+                                                <div class="col-md-12 form-group">
+                                                    <label>Add Specialization</label>
+                                                    <select class="form-control">
+                                                        <option value="">Specialization 1</option>
+                                                        <option value="">Specialization 2</option>
+                                                        <option value="">Specialization 3</option>
+                                                        <option value="">Specialization 4</option>
+                                                        <option value="">Specialization 5</option>
+                                                    </select>
+                                                </div>
+                                                                             
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-footer m-t-30">
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                            <li><button type="button" class="btn btn-default next-step">Next</button></li>
+                                            <li><button type="button" class="btn btn-custom-info">Save</button></li>
+                                        </ul>                
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+          </div> 
+    </div>
+</div>
+
+<footer class="ng-scope">
+    <!-- new experiment -->
+    <!--  <img src=""img/doclogo.png"> -->
+    <!-- end -->
+    <div class="footer-home">
+        <div class="container">
+            <!-- start 1st row -->
+            <div class="col-md-6 footer-logo-wpr">
+                <div style="" class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="faq_no">
+                        <img src="img/doclogo.png" alt="Footer Logo">
+                        <p class="justify ng-binding" ng-bind-html="about_us | limitTo: 400">Lorem Ipsum is <em><strong>simply dummy</strong></em> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-menu">
+                <div class="col-md-12">
+                    <h3 class="footer-heading">Quick Links</h3>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-one">
+                        <li><a href="#/aboutUs">About Us</a></li>
+                        <li><a href="#/career">Career</a></li>
+                        <li><a href="#/team">Team</a></li>
+                        <li><a href="#/contactUs">Contact Us</a></li>
+                        <li><a href="#/health">Health</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-two">
+                        <li><a href="#/privacyPolicies">Privacy Policy</a></li>
+                        <li><a href="#/privacyPolicies">Doctors Network</a></li>
+                        <li><a href="#/privacyPolicies">Hospitals Network</a></li>
+                        <li><a href="#/privacyPolicies">Terms of Usage</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="social-footer-wpr">
+                    <div class="col-md-12">
+                        <h3 class="footer-heading">Social</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="social-left">
+                            <a href="https://www.facebook.com/DocPalHealthcare"><img src="img/facebook.png" alt="facebook icon"></a>
+                            <a href="https://twitter.com/DocPalGroup"><img src="img/twitter.png" alt="facebook icon"></a>
+                            <a href="#"><img src="img/b.png" alt="bit icon"></a>
+                            <a href="#"><img src="img/youtube.png" alt="youtube icon"></a>
+                            <a href="#"><img src="img/pinterest.png" alt="Pinterest icon"></a>
+                            <a href="#"><img src="img/google-plus.png" alt="Google plus icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- COPYRIGHT -->
+    <div class="ex-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ex-footer-text">
+                        <center class="copyright">&copy; Docpal 2017| All Right Reserved. </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer-home -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.nav-tabs li.active');
+        prevTab($active);
+
+    });
+    });
+    function nextTab(elem) {
+        $(elem).next().find('a[data-toggle="tab"]').click();
+    }
+    function prevTab(elem) {
+        $(elem).prev().find('a[data-toggle="tab"]').click();
+    }
+
+    $('.timepicker').datetimepicker({
+        datepicker:false,
+        format:'g:i A',
+        formatTime: 'g:i A',
+        step:5,
+        ampm: true
+    });
+</script>
+</body>
+</html>

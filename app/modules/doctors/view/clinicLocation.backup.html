@@ -1,0 +1,184 @@
+<div class="locationPanel " ng-repeat="addressElem in doctorInfoAllData.address track by $index" id="{{$index}}">
+    <div class="clinicLocation save clearfix locBoxShadow">
+        <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+            <div class="clinic-box capitalize"> {{ addressElem.clinic || "Clinic Name"}}<span class="required-elem-class required-mark">*</span></div>
+            <ul>
+                <li><span class="headingTextAddress">Locality : </span><span>{{ addressElem.locality || "Set Locality"}}</span><span class="required-elem-class required-mark">*</span></li>
+                <li><span class="headingTextAddress">Address : </span><span>{{ addressElem.city || "Set Address"}}</span><span class="required-elem-class required-mark">*</span></li>
+                <li><span>Locate on map&nbsp; &nbsp;<i class="icon-map-pointer7" ng-click="ShowMap(addressElem)"></i></li>
+			<li><i class="icon-conversation18"></i><span>Fees<span class="required-elem-class required-mark">*</span></span>
+                </li>
+                <li style="text-indent:15px"><i class="icon-rupee"></i><span>{{ addressElem.fee.amount || 0}}</span><span class="required-elem-class required-mark">*</span></li>
+            </ul>
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
+            <ul>
+                <li style="padding-top:0px"><i class="icon-calendar53"></i>
+                    <h4 style='display:inline'>Availability<span class="required-elem-class required-mark">*</span></h4>
+                    <div class="actionAdress">
+                        <i class="icon-edit5 editMe font12"></i>
+                        <i class="icon-cross72 font12" id="removeAddressBtn" data="{{ addressElem.addressId }}" data-index="{{$index}}" data-event="{{$event}}"></i>
+                    </div>
+                </li>
+                <li ng-repeat="timingD in addressElem.timing track by $index" class="day">
+                    <i class="icon-clock104 clinic-icon timeIcon"></i>
+                    <span class="no-margin no-padding" style="top:0px">{{ timingD.days[0] }} - {{ timingD.days[timingD.lastday]}}</span>
+                    <ul style="display:block">
+                        <li ng-repeat="time in timingD.time track by $index">
+                            <div class="timeMargin"> <span>{{ time.startTime }} : {{ time.startMinute== undefined || time.startMinute == 0 ? '00' : time.startMinute }} {{ time.shiftstart }} - {{ time.endTime }} : {{ time.endMinute == undefined || time.endMinute == 0 ? '00' : time.endMinute}} {{ time.shiftend }} 
+	                       </span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="radio" name="name" ng-model="value" ng-change=" doctorInfoAllData.indexId = $index" ng-checked="{{doctorInfoAllData.indexId == $index}}" value="{{ $index }}" />
+                    <span class="addPos">Set as primary Address</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clinicLocation edit clearfix hide locBoxShadow">
+        <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+            <div class="clinic-box capitalize">
+                <input class="required-filled editableInput" type="text" placeholder="Hospital Name" ng-model="addressElem.clinic" style="display: inline-block;"><span class="required-elem-class required-mark">*</span>
+            </div>
+            <ul>
+                <li><span class="headingTextAddress">Locality : </span><span><input class="required-filled editableInput" style="width:270px" type="text" placeholder="Enter locality" ng-model="addressElem.locality" style="display: inline-block;"><span class="required-elem-class required-mark">*</span></span>
+                </li>
+                <li><span class="headingTextAddress">Address : </span><span><input class="required-filled editableInput" style="width:270px" type="text" placeholder="Enter address" ng-model="addressElem.city" style="display: inline-block;">
+			<span class="required-elem-class required-mark">*</span>
+                    </span>
+                </li>
+                <li><span>Locate on map
+			</span><i class="icon-map-pointer7" ng-click="ShowMap(addressElem)"></i>
+                </li>
+                <li><i class="icon-conversation18"></i><span>Fees<span class="required-elem-class required-mark">*</span></span>
+                </li>
+                <li style="text-indent:15px"><i class="icon-rupee"></i><span>
+<input class="required-filled editableInput" style="width:120px" type="text" placeholder="Enter Fees" ng-model="addressElem.fee.amount" style="display: inline-block;"></span></li>
+            </ul>
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
+            <ul>
+                <li style="padding-top:0px">
+                    <i class="icon-calendar53"></i>
+                    <h4 style="display:inline">Availability<span class="required-elem-class required-mark">*</span></h4>
+                    <i class="icon-round69" ng-click="add(addressElem)">
+                </i>
+                    <div class="actionAdress">
+                        <i class="icon-technology editDone font12" ng-click="saveEditAddress(doctorInfoAllData._id, addressElem, $event, $index)"></i>
+                    </div>
+                </li>
+                <li class="day">
+                    <div ng-repeat="avail in addressElem.timing">
+                        <ul class="dropdown-Days-ul">
+                            <li class="width15">
+                                <p> Day</p>
+                            </li>
+                            <li>
+                                <div class="select-box-1 blk">
+                                    <select class="required-filled drpdown_avalability" name="singleSelect" ng-options="d for d in days" ng-model="avail.days[0]" id="default-day-start"></select>
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    to
+                                </p>
+                            </li>
+                            <li>
+                                <div class="select-box-2 blk">
+                                    <select class="required-filled drpdown_avalability" name="singleSelect" ng-options="d for d in days" ng-model="avail.days[1]" id="default-day-end"></select>
+                                </div>
+                            </li>
+                            <li class="padding-impt " ng-click="removeDays($index,addressElem)">
+                                <i class="icon-cross72 display top font12"></i>
+                            </li>
+                        </ul>
+                        <div ng-repeat="timeSlot in avail.time">
+                            <ul class="dropdown-times-ul">
+                                <li>
+                                    <p>Timing</p>
+                                </li>
+                                <li class="clear-both timing-block-avail">
+                                    <p>From</p>
+                                </li>
+                                <li>
+                                    <select class="drpdown_avalability" ng-model="timeSlot.startTime" ng-options="t for t in timeslotAvail"></select>
+                                </li>
+                                <li>
+                                    <input class="editableInput minutes-inpt" type="number" min="00" max="59" step="1" ng-model="timeSlot.startMinute">
+                                </li>
+                                <li>
+                                    <div class="blk">
+                                        <select class="required-filled drpdown_avalability" ng-options="shift for shift in shifts" ng-model="timeSlot.shiftstart">
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class="clear-both timing-block-avail">
+                                    <p>To</p>
+                                </li>
+                                <li>
+                                    <div class="blk">
+                                        <select class="required-filled drpdown_avalability" ng-model="timeSlot.endTime" ng-options="t for t in timeslotAvail"></select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input class="editableInput minutes-inpt" type="number" min="00" max="59" step="1" ng-model="timeSlot.endMinute">
+                                </li>
+                                <li>
+                                    <select class="required-filled drpdown_avalability" ng-model="timeSlot.shiftend">
+                                        <option value="AM">
+                                            AM
+                                        </option>
+                                        <option value="PM">
+                                            PM
+                                        </option>
+                                    </select>
+                                </li>
+                </li>
+                <li class="remv-btn-tm" ng-click="moreTime(avail,$index)">
+                    <i class="icon-round69 plus-btn display font12"></i>
+                </li>
+                <li class="remv-btn-tm" style="    margin-top: 11px;">
+                    <i class="icon-cross72 display padding0 font12" ng-click="deleteTime(avail,$index)"></i>
+                </li>
+                </ul>
+                </div>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="floatRight"><a data-toggle="tab" ng-click="clickMap(doctorInfoAllData.address)" class="add-more" href="#">Add More Address</a></div>
+    <script type="text/javascript">
+    /*$(document).on('change','#default-day-start',function(){
+    	debugger;
+    	var valStart = $('#default-day-end');
+    	if(valStart.val() == ''){
+    		valStart.val(this.val());
+    	}
+    })*/
+    $(document).on('click', '.editMe', function() {
+        // var editPanel = $(this).closest(".locationPanel");
+        // editPanel.find(".clinicLocation.save").hide();
+        // editPanel.find(".clinicLocation.edit").removeClass('hide').show();
+
+        var getid = $(this).parents(".locationPanel").attr("id");
+        $(this).hide();
+        $("#" + getid).find(".required-elem-class").show();
+        $("#" + getid).find(".clinicLocation.save").hide();
+        $("#" + getid).find(".clinicLocation .actionAdress").show();
+        $("#" + getid).find(".clinicLocation.edit").removeClass('hide').show();
+    });
+
+    $(document).on('click', '.editDone', function() {
+        // var editPanel = $(this).closest(".locationPanel");
+        // editPanel.find(".clinicLocation.save").show();
+        // editPanel.find(".clinicLocation.edit").hide();
+
+        var getid = $(this).parents(".locationPanel").attr("id");
+        $("#" + getid).find(".clinicLocation.save").show();
+        $("#" + getid).find(".clinicLocation.edit").hide();
+        $("#" + getid).find(".clinicLocation .editMe").show();
+    });
+    </script>

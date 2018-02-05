@@ -1,0 +1,38 @@
+ <div class="map-outer">
+                      <div class="map-address">
+           
+                         <div class="input-class-map">
+                         <input type="text" placeholder="Enter your address" class="form-control map-input" ng-model="location" id="location" ng-change="mapaddress(location)">
+                         <i class="icon-geolocation crosshairs-new"></i></div>
+                         <div class="address-btn-div">
+
+                            <input type="text" class="editable-class" id="longitute" placeholder="{{longitute ? longitute : 'enter your longitute'}}" ng-model="doctor.longitute" style="display:none">
+
+                          <input type="text" class="editable-class" id="latitute" placeholder="{{latitute ? latitute : 'enter your address'}}" ng-model="doctor.latitute" style="display:none">
+                       
+                        
+                          <!-- <button class="btn btn-address" value="" id="find"><i class="icon-search74 searchy1">
+                  </i></button> -->
+
+                  <!-- use this for multiple address  -->
+                         <input type="button"  class="btn btn-address"  id="savelocation" ng-click="savelocation(location)" value="save"> </input>
+                          <button class="btn btn-address "  id="savelocation" ng-click="mapaddress(location)" ><i class="icon-search74 searchy2"></i></button>
+
+                         </div>
+                       </div>
+                   
+                       <div id="map">
+                      </div>
+
+<style type="text/css">
+#map {
+  width:100%;
+  height: 350px;
+}
+.searchy2 {
+color: white;
+    font-size: 14px !important;
+    border-radius: 1px;
+  }
+</style>
+

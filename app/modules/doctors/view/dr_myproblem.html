@@ -1,0 +1,206 @@
+<section>
+<div class="main-comment-section" ng-show="showMyProblem">
+   Questions --> My Problems
+   <div class="row">
+     <div class="col-md-12 "> 
+      <div class="btn_for_load_more" ng-show="myProblemsList.length <= 0">
+        No Problem To Show
+      </div>
+      </div>
+   </div>
+</div>
+<div id="loadingPlaceholerProblemDrProfile" ng-show="showdivProblemLoading">
+   <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+   <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+   <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+   <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+   <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+</div>
+<div class="search-result-main-div2 main_problem_sec" ng-repeat="ques in myProblemsList track by $index">
+   <div class="main-comment-section">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="profile-comment-section">
+               <div class="">
+                  <div class="main-img-div"> 
+                     <div class="img-div">
+                        <img ng-src="{{ques.details.image.length > 0 && imageServer+'/'+ques.details.image+'' || 'assets/img/Dr1.png'}}" alt="" class="img-responsive">
+                        <p class="dr-name-para">
+                           {{ques.details.askedBy}}
+                        </p>
+                     </div>
+                  </div>
+                  <div class="profile-content">
+                     <h4 class="question-class">
+                        {{ques.question}}
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <div class="comment">
+               <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                     <div class="smile-icon-div1">
+                        <div class="share-icon share_alt">
+                           <a id="check" href="" class="custom-btn myover" data-container="body" data-toggle="popover" isPopover="true" data-placement="bottom" data-original-title="" title="">
+                           <i class="icon-sharing3"></i>
+                           </a>
+                           <!-- <div class="pop" style="display:none;">
+                              <button class="btn btn-medium font-bold check" id="fb">
+                              <i class="fa fa-facebook"></i>
+                              </button>
+                              <button class="btn btn-medium font-bold check" id="tw">
+                              <i class="fa fa-twitter"></i>
+                              </button>
+                               <button class="btn btn-medium font-bold check" id="go">
+                              <i class="fa fa-google-plus"></i>
+                              </button>
+                              </div> -->
+                        </div>
+                        <span style="display:none" class="socailbutton">
+                        <button class="btn btn-medium font-bold fb"
+                           socialshare
+                           socialshare-provider="facebook"
+                           socialshare-type="feed"
+                           socialshare-via="145634995501895"
+                           socialshare-description="{{ques.question}}"
+                           socialshare-caption="{{ques.question}}"
+                           socialshare-url="http://docpal.com/#/problemList"
+                           socialshare-redirect-uri="https://facebook.com"
+                           socialshare-popup-height="300"
+                           socialshare-popup-width="400"
+                           socialshare-trigger="click">
+                        <i class="fa fa-facebook"></i>
+                        </button>
+                        <button class="btn btn-medium font-bold"
+                           socialshare
+                           socialshare-provider="twitter"
+                           socialshare-text="{{ques.question}}"
+                           socialshare-hashtags="problemlist "
+                           socialshare-description="{{ques.question}}"
+                           socialshare-url="http://52.34.75.76/">
+                        <i class="fa fa-twitter"></i>
+                        </button>
+                        <button class="btn btn-medium font-bold"
+                           socialshare
+                           socialshare-provider="google+"
+                           socialshare-text="720kb"
+                           socialshare-url="http://docpal.com/#/problemList"
+                           socialshare-popup-height="300"
+                           socialshare-popup-width="400"
+                           socialshare-trigger="click">
+                        <i class="fa fa-google-plus"></i>
+                        </button> 
+                        </span>
+                    
+                     <div class="comment-btn-part">
+                        <div class="relevent-part">
+                           <i class="icon-relevent smile smile1 fontsize"></i>
+                           <button class="votenumber"  ng-click="upVote(ques._id,ques.upVoteDoctor,ques.details.askedBy,ques.details.userId,ques.question);ques.upVoteDoctor=ques.upVoteDoctor+1"  ng-disabled="checkDoctorRelevent(ques._id)" ng-class="{myclass:checkDoctorRelevent(ques._id)}">Relevent</button>
+                           <span class="number">{{ques.upVoteDoctor}}</span>
+                           <i class="fa fa-heartbeat smile smile1 fontsize"></i>
+                           <button class="votenumber" ng-click="followquestion(ques._id,ques.details.userId,ques.question,$index)" ng-mousedown="ques.upVoteUser=ques.upVoteUser+1" ng-disabled="checkloginfollow(ques._id)" ng-class="{myclass:checkloginfollow(ques._id)}">Follow</button>
+                           <i class="icon-view1 smile smile1 fontsize"></i>
+                           <button class="number custom-btn">
+                              Views</span>
+                              <span class="numbers-para">{{ques.views}}</span>
+                        </div>
+                     </div>
+                      </div>
+                  </div>
+              
+               <div class="col-md-3 col-sm-4 col-xs-12 pull-right">
+               <div class="comment-btn-div">
+               <div class="hand-icon-div">
+               <i class="icon-reply hand-lizard-icon"></i>
+               <span class="numbers-para">{{ques.answer.length == undefined ? '0' : ques.answer.length}}</span>
+               </div>
+               <div class="user-eye-div" >
+               <button class="icon-report eye-icon votenumber" ng-click="report(ques._id,ques.details.userId,ques.question)" ng-class="{myclass:checkloginReport(ques._id,ques.details.userId,ques.question)}" 
+                  ng-disabled="checkloginReport(ques._id)" data-toggle="modal" data-target="#alertmodal"></button>
+               </div>
+               <div class="user-eye-div">
+               <!--   <a class="report-btn">Reply</a> -->
+               </div> 
+               <div class="user-eye-div">
+               <a class="report-btn" ui-sref="allanswer({id:ques._id,views:ques.views})">Reply</a>
+               </div>
+               </div>
+               </div>
+ </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<style>
+.myclass {
+  color:#1ba4aa;
+}
+.socailbutton {
+ position: absolute;
+ width:150px;
+ height: 35px;
+  box-shadow: 5px 6px 5px grey;
+ top:35px;
+ background-color: #fff;
+ border-radius: 5px;
+ z-index: 9;
+ text-align: center;
+}
+.socailbutton:after {
+ 
+}
+</style>
+<script type="text/javascript">
+      $(document).on('click','.myover', function(){
+
+        $("[data-toggle = 'popover']").popover({
+         html : true,
+         content: function() {
+        return $(this).next().html();
+    }
+      });  
+ });
+      </script>
+      <script type="text/javascript">
+$("body").on('click', function (e) {
+    $('[isPopover="true"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});
+
+ $(document).on('click','.popover_docpal',function (){
+
+      var po = $(this).find("[isPopover = 'true']");
+      po.popover('show');
+
+   }); 
+     
+
+$(document).on('click','#check',function(){
+ //  var a = $(this).next("span").css("display","none");
+ console.log("hello");
+ $(".socailbutton").css("display","none");
+ var a = $(this).parent().next("span").css("display","block");
+ console.log(a);
+//   $(this).next("span").css("display","none");
+   //console.log(b);
+   //$("."+a).click();
+});
+$("body").click( function () {
+$(".socailbutton").css("display","none");
+})
+</script>

@@ -1,0 +1,259 @@
+
+</div>
+<section>
+    <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    <div class="wrapper loginCtrl" ng-controller="loginCtrl">
+        <div class="mobile-view-strip">
+            <div class="img-div1">
+                <img src="assets/img/user_img.png" class="img-responsive">
+                <p class="heading-para1">User's</p><p class="heading-para-signup1">sign up</p>
+            </div>
+        </div>
+        <div class="strip-sec">
+            <div class="full-width">
+
+                <div class="row no-margin">
+                    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 padding0 full-bdy">
+                        <div class="strip1-sec no-margin">
+                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 no-padding">
+                                <div class="custom-login-sec">
+                                    <div class="strip strip_high dr_shadow">
+                                        <div class="image-div1">      
+                                            <div class="img-div1">
+                                                <img src="assets/img/user_img.png" class="img-responsive">
+                                                <p class="heading-para1">User's</p><p class="heading-para-signup1">sign up</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strip2-sec no-margin"> 
+                            <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12 no-padding boxBackground">
+
+                                <div class="custom-login-section sign_margin">
+                                    <!--div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"!-->
+                                    <!--div class="col-md-4"!-->
+
+
+
+                                    <div class="row no-margin">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                            <div class="paragraph-section-div">
+                                                <div class="col-md-3">
+                                                </div>
+
+                                                <div class="col-md-9">
+                                                    <div class="validation-div-section">
+                                                        validation here
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- form section -->
+                                        <div class="form-section" ng-controller="UserCtrl">
+                                            <form ng-submit="myform.$valid && registorUser(user)"  name="myform" novalidate ng-app="myApp">
+                                                <div class="row no-margin">
+                                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                        <div class="header-row">
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-9"><span class="user-sign-up"><p class="heading-para-signup">sign up as a</p> <p class="heading-para-dr" ng-click=""><a ui-sref="registorDoctor">Doctor.</a></p><!-- <p class="heading-para-dr" ng-click="switchtouser()">Doctor.</p> --></span><!--p class="heading-para2" ><a ng-click="registorUser">user</a></p!--></div>
+                                                        </div>
+                                                        <div class="col-md-8 col-md-offset-2">
+                                                            <div class="register_info">
+                                                                <div class="email-row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="input1 input1--hoshi1 left-aling">
+                                                                            <input class="input__field1 input__field--hoshi1" type="text"  ng-model="user.name" id="input-4"  name="fname" capitalize-first allow-pattern="[a-z \s]" required/>
+                                                                            <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                                                                                <span class="input__label-content1 input__label-content--hoshi1">Full Name</span>
+                                                                            </label>
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input1 input1--hoshi1 left-aling">
+                                                                            <input class="input__field1 input__field--hoshi1" ng-model="user.mobile" type="text" id="input-7" name="mobile" maxlength="10" ng-blur="checkmobile(user.mobile)" required />
+                                                                            <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-7">
+                                                                                <span class="input__label-content1 input__label-content--hoshi1">Phone No</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="email-row margin0">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                                                                            <div class="col-md-6">
+                                                                                <div>
+                                                                                    <div class="input1 input1--hoshi1 left-aling">
+                                                                                        <input class="input__field1 input__field--hoshi1" type="text" id="input-5" ng-model="user.email" name="email" ng-blur="checkemail(user.email)" required />
+                                                                                        <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-5">
+                                                                                            <span class="input__label-content1 input__label-content--hoshi1">E-mail</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-md-6">
+                                                                                <div>
+                                                                                    <div class="input1 input1--hoshi1 left-aling">
+                                                                                        <input class="input__field1 input__field--hoshi1" type="password" id="input-6" ng-model="user.password" required name="password" ng-blur="checkpwdvalidation(user.password)"/>
+                                                                                        <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-6">
+                                                                                            <span class="input__label-content1 input__label-content--hoshi1">Password</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="checkbox-row">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                                                                            <!-- <div class="col-md-4">
+                                                                            
+                                                                            <div class="input-text-section">
+                                                                              <div class="check">
+                                                                            <input type="checkbox" name="otp" value="OTP"><span>Verified by mobile OTP.</span>
+                                                                            </div>
+                                                                            </div>
+                                                                            </div> -->
+
+
+                                                                            <div class="col-md-6">
+
+                                                                                <div class="input1 input1--hoshi1 left-aling">
+                                                                                    <div class="check">
+                                                                                        <input type="checkbox"  class="Echeck" id="email_check" name="email" value="email" ng-click="sendEmail(user.email, 'user')">
+                                                                                        <label for='email_check'></label>
+                                                                                        <span>Verified by e-mail address.</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="btn-row">
+                                                                    <div class="continue-btn-div">
+                                                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.mobile.$invalid">
+                                                                            <span ng-show="myform.mobile.$error.required">Phone should be 10 digits</span>
+                                                                        </span>
+                                                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.phone.$invalid">
+                                                                            <span ng-show="myform.phone.$error.required">Full Name is required.</span>
+                                                                        </span>
+                                                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.email.$invalid">
+                                                                            <span ng-show="myform.email.$error.required">Email is required.</span>
+                                                                            <span ng-show="myform.email.$error.email"> Not valid email! </span>
+                                                                        </span>
+                                                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.password.$invalid">
+                                                                            <span ng-show="myform.password.$error.required">Password is required.</span>
+                                                                        </span>
+                                                                        <span style="color:#176C6F;display:inherit;">
+                                                                            <span ng-show="verification">Welcome email is sent to your email id <br>Please Login to continue</span>
+                                                                        </span>
+                                                                        <span style="color:red;display:inherit;">
+                                                                            <span ng-show="alreadyexist">Email is already exist <br>Please try with different Email Id</span>
+                                                                        </span>
+                                                                        <span style="color:red;display:inherit;">
+                                                                            <span ng-show="alreadyexistmobile">Mobile No is already exist <br>Please try with different Mobile No</span>
+                                                                        </span>
+                                                                        <span style="color:red;display:inherit;">
+                                                                            <span ng-show="passwordvalidation">Password must be at least 8 character and  contain 1 Special symbol, 1 number, 1 upper and lower case letter</span>
+                                                                        </span>
+                                                                        <button class="btn submit-btn-custom" ng-click="submitted = true" ng-disabled="noEmail"> Register</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-4 col-md-offset-4">
+                                                            <div class="social-row">
+
+                                                                <div class="social-div">
+                                                                    <div class="register">
+                                                                        or register with
+                                                                    </div>
+                                                                    <ul>
+                                                                        <!-- <li> 
+                                                                       <img src="assets/img/twitter.png">
+                                                                       </li> -->
+                                                                        <li>
+                                                                            <img onclick="fbloginUser();" src="assets/img/facebook.png">
+                                                                        </li>
+                                                                        <li>
+                                                                            <img id="googleLoginBtn" src="assets/img/google.png">
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2"></div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- end form section -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        if (!String.prototype.trim) {
+            (function () {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function () {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+            debugger;
+            // in case the input is already filled..
+            if (inputEl.value.trim() !== '') {
+                classie.add(inputEl.parentNode, 'input--filled');
+            }
+
+            // events:
+            inputEl.addEventListener('focus', onInputFocus);
+            inputEl.addEventListener('blur', onInputBlur);
+        });
+
+        function onInputFocus(ev) {
+
+            classie.add(ev.target.parentNode, 'input--filled');
+            this.hide();
+        }
+
+        function onInputBlur(ev) {
+            if (ev.target.value.trim() === '') {
+                classie.remove(ev.target.parentNode, 'input--filled');
+            }
+        }
+    })();
+</script>
+
+
+<script>startApp();</script>

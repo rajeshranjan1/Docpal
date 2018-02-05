@@ -1,0 +1,228 @@
+<div class="form-section"  ng-controller="DoctorInfoCtrl">
+   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+   <form ng-submit="saveDoctorInfo(user)"  name="myform"  ng-app="myApp">
+      <!-- strip sec -->
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding">
+         <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 no-col-md-2 col-sm-2 col-lg-2 col-xs-12 no-padding">
+            <div class="strip strip_high dr_shadow">
+               <div class="image-div1">
+                  <div class="img-div1">
+                      <img class="img-responsive round-border-shadow" src="assets/img/Dr1.png" ng-src="{{getMyImage()}}"  ng-show="accountData.type==undefined">
+                     <p class="heading-para1">Doctor's</p>
+                     <p class="heading-para-signup1">login</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end stripsec -->
+         <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 col-center">
+               <div class="register_info margin_info">
+                  <div class="email-row">
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <div class="genderm">
+                              <span class="g1">
+                              Gender
+                              </span>
+                              <span class="m1">
+                              <input type="radio" name="gender" ng-model="user.gender" value="Male" ng-checked="true">
+                              <span class="g2">
+                              Male
+                              </span>
+                              <input type="radio" name="gender" ng-model="user.gender" value="Female">
+                              <span class="g2">
+                              Female
+                              </span>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6"><span class="required-mark">*</span>
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <select class="required-filled drpdwn margin_category" ng-model="user.speciality" name="category">
+                              <option value="" ng-selected=true>Choose a Category</option>
+                              <option value="{{x}}" ng-repeat="x in docCat track by $index">{{x}}</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="email-row margin0">
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <input class="input__field1 input__field--hoshi1" type="text" id="input-4" name="Experience" ng-model="user.experience" allow-pattern="[0-9]"/>
+                           <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                           <span class="input__label-content1 input__label-content--hoshi1">
+                           Experience
+                           </span>
+                           </label>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <input class="input__field1 input__field--hoshi1" type="text" id="input-4" name="Hospitality" ng-model="user.clinic"  allow-pattern="[a-z \s]" />
+                           <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                           <span class="input__label-content1 input__label-content--hoshi1">
+                           Hospital
+                           </span>
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="email-row margin0">
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <select class="drpdwn" ng-model="user.BloodGroup" name="BloodGroup">
+                              <option value="Bloodgroup" ng-selected=true>Bloodgroup</option>
+                              <option value="B+">B+</option>
+                              <option value="B-">B-</option>
+                              <option value="AB+">AB+</option>
+                              <option value="AB-">AB-</option>
+                              <option value="A+">A+</option>
+                              <option value="A-">A-</option>
+                              <option value="O+">O+</option>
+                              <option value="O+">O-</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <input class="input__field1 input__field--hoshi1" type="text" id="input-4" name="zipcode" ng-model="user.locality"/>
+                           <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                           <span class="input__label-content1 input__label-content--hoshi1">
+                           Locality
+                           </span>
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="email-row margin0">
+                     <div class="col-md-6">
+                        <div class="input1 input1--hoshi1 left-aling">
+                           <select class="drpdwn" ng-model="user.timezone" name="timezone">
+                              <option value="" ng-selected=true>Timezone</option>
+                              <option value="{{x}}" ng-repeat="x in timezone track by $index">{{x.text}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-6"><span class="required-mark">*</span>
+                        <div class="input1 input1--hoshi1 left-aling">
+                              <!-- <location-picker-info id="location" ng-model="user.location"  ng-required="true" class="input__field1 input__field--hoshi1" style="border:none" ng-change="changeValue(user.location)"></location-picker-info> -->
+                           <input class="required-filled input__field1 input__field--hoshi1" type="text" id="input-4" name="zipcode" ng-model="user.location" />
+                           <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                           <span class="input__label-content1 input__label-content--hoshi1">
+                           Address
+                           </span>
+                           </label>
+                           <input type="hidden" ng-model="user.location"/>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="btn-row">
+                     <div class="continue-btn-div">
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.category.$invalid">
+                        <span ng-show="myform.category.$error.required">Category is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.Experience.$invalid">
+                        <span ng-show="myform.Experience.$error.required">Experience is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.Hospitality.$invalid">
+                        <span ng-show="myform.Hospitality.$error.required">Hospitality is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.BloodGroup.$invalid">
+                        <span ng-show="myform.BloodGroup.$error.required">BloodGroup is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.dob.$invalid">
+                        <span ng-show="myform.dob.$error.required">dob is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.timezone.$invalid">
+                        <span ng-show="myform.timezone.$error.required">time zone is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.gender.$invalid">
+                        <span ng-show="myform.gender.$error.required">Gender is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.country.$invalid">
+                        <span ng-show="myform.country.$error.required">country is required.</span>
+                        </span>
+                        <span style="color:red;display:inherit;" ng-show="submitted && myform.zipcode.$invalid">
+                        <span ng-show="myform.zipcode.$error.required">zipCode is required.</span>
+                        </span>
+                        <button class="btn create-btn-continue" id="save-dr-info" ng-click="submitted"> Save</button>
+                     </div>
+                  </div>
+               </div>
+               <!--pv!-->
+               <!--end pv!-->
+            </div>
+         </div>
+      </div>
+</div>
+</form>
+<style type="text/css">
+   .email-row{
+   float: left;
+   width: 100%;
+   }
+</style>
+<script>
+   app.directive('onlyDigits', function () {
+   
+       return {
+           restrict: 'A',
+           require: '?ngModel',
+           link: function (scope, element, attrs, ngModel) {
+               if (!ngModel) return;
+               ngModel.$parsers.unshift(function (inputValue) {
+                   var digits = inputValue.split('').filter(function (s) { return (!isNaN(s) && s != ' '); }).join('');
+                   ngModel.$viewValue = digits;
+                   ngModel.$render();
+                   return digits;
+               });
+           }
+       };
+   });
+</script>
+<script>
+   $(document).ready(function() {
+     $('#save-dr-info').on('click',function(){
+         var isFormValid = true;
+          $(".required-filled").each(function(){
+              if ($.trim($(this).val()).length == 0){
+                  $(this).addClass("highlight");
+                  isFormValid = false;
+              }
+              else{
+                  $(this).removeClass("highlight");
+              }
+          });
+
+          if (!isFormValid){
+            alert("Please fill in all the required fields (indicated by *)");
+            return isFormValid;
+          } 
+     })
+     $("#datePicker").datepicker({ changeYear: true });
+       $(".footer").css('display','none');
+   });
+</script>
+<style type="text/css">
+   .input__label--hoshi1-color-1::after {
+   border-color: #1ba4aa;
+   }
+   .myClass{
+   background: red;
+   }
+   .drpdwn {
+   border-color: transparent transparent #b9c1ca;
+   border-style: none none solid;
+   border-width: medium medium 1px;
+   margin-top: 41px;
+   width: 100%;
+   color: #5a6e6f;
+   background: transparent;
+   }
+   .margin_info{
+   margin-top: 75px;
+   }
+</style>
+

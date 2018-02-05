@@ -1,0 +1,113 @@
+<style type="text/css">
+    .rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .filled {
+  color: #1ba4aa;
+}
+</style>
+<div class="clinic-wpr" ng-controller="feedbackCltr">
+    <div class="container">
+        <div class="col-md-8 zero-margin">
+            <div class="feedy-form clearfix">
+                <div class="headings pg-head form-head text-center clearfix">
+                    <h3 class="green">How was your experience with Santosh Aggarwal</h3>
+                    <div class="clinic-text ">
+                        <p>Please help us with the below information</p>
+                    </div>
+                </div>
+                <div class="inner-clinic">
+                    <form action="#" method="post" name="feedbackForm" novalidate="">
+                        <div class="col-md-12 form-group pd-lr-0 clearfix">
+                            <label class="feed-label col-md-6 pd-l-0">Which clinic did you visit?*</label>
+                            <div class="col-md-6 pd-r-0">
+                                <select  class="form-control" name="doctorClinic" ng-model="feedback.doctorClinicdoctorClinic">
+                                    <option value="1">Samadhan Gastro Clinic</option>
+                                    <option value="2">Sanrish Multispeciality Clinic</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label class="feed-label">Tell us about your experience with the doctor.*</label>
+                            <textarea class="form-control" name="feedbackText" ng-model="feedback.feedbackText">{{userFeed}}</textarea>
+                            <span class="label label-danger" ng-show="feedbackForm.feedbackText.$dirty && feedbackForm.feedbackText.$error.required">
+                                <span>message is required.</span>
+                            </span>
+                        </div>
+                        <div class="col-md-12 p-0">
+                            <div class="col-md-4 pd-l-0">
+                                <div class="col-md-5 pd-l-0">
+                                    <h5 class="mr-0" ">Helpfulness</h5>
+                                </div>
+                                <div class="col-md-7 ">
+                                    <div  ng-controller="RatingCtrl">
+                                        <div ng-init="rating = star.rating + 1" ></div>
+                                        <div  class="star-rating" star-rating rating-value="rating"
+                                        data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                        <div ng-model="rating-value" hidden="">{{rating-value}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4 pd-l-0">
+                                <div class="col-md-5 pd-l-0">
+                                    <h5 class="mr-0">Wait Time</h5>
+                                </div>
+                                <div class="col-md-7">
+                                    <div  ng-controller="RatingCtrl">
+                                        <div ng-init="rating = star.rating + 1" ></div>
+                                        <div class="star-rating" star-rating rating-value="rating"
+                                        data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pd-lr-0">
+                                <div class="col-md-6 pd-l-0">
+                                    <h5 class="mr-0">Overall Rating</h5>
+                                </div>
+                                <div class="col-md-6 pd-r-0">
+                                    <div  ng-controller="RatingCtrl">
+                                        <div ng-init="rating = star.rating + 1" ></div>
+                                        <div class="star-rating" star-rating rating-value="rating"
+                                        data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-12 form-group mr-t-20">
+                            <p class="font-12">*By submitting, you agree to <a href="#" class="green">Terms and Conditions.</a></p>
+                        </div>
+                        <div class="text-center form-group col-md-12 ">
+                            <input type="hidden" value="asadas-11e6-a3b5-a321e7f7d" id="feed-doctor-id" name="doctorId" ng-model="feedback.doctorId">
+                            <input type="hidden" value="vishesh dummy patient" id="feed-doctor-name" name="doctorName" ng-model="feedback.doctorName">
+                            <input type="hidden" value="image123" name="doctorImage" id="feed-dotor-profile-link" ng-model="feedback.doctorProfilePicLink">
+                            <input type="hidden" value="asadas-11e6-a3b5-a321e7f7d" id="feed-patient-id" name="patientId" ng-model="feedback.patientId">
+                            <input type="hidden" value="Rajesh" name="patientName" id="feed-patient-name" ng-model="feedback.patientName">
+                            <input type="hidden" value="imageten" name="patientProfilePicLink" id="feed-patient-profile" ng-model="feedback.patientProfilePicLink">
+                            <input type="hidden" value="03/03/2017" name="createdDate" id="feed-created-date" ng-model="feedback.createdDate">
+                            <input type="hidden" value="04/05/2017" name="updatedDate" id="feed-update-date" ng-model="feedback.updatedDate">
+                            <input type="button" ng-disabled="feedbackForm.feedbackText.$dirty && feedbackForm.feedbackText.$invalid" disabled="disabled"  ng-click="submitFeedbackForm(feedback);" name="" class="btn btn-custom-info" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

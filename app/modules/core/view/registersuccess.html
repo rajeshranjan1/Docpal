@@ -1,0 +1,88 @@
+
+
+<!-- Wrapper Starts here -->
+<div class="wrapper">
+<!-- strip sec -->
+<toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding">
+   <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 no-col-md-2 col-sm-2 col-lg-2 col-xs-12 no-padding">
+      <div class="strip strip_high dr_shadow">
+         <div class="image-div1">
+            <div class="img-div1">
+               <img class="img-responsive round-border-shadow" src="assets/img/Dr1.png" ng-src="{{getMyImage()}}"  ng-show="accountData.type==undefined">
+               <p class="heading-para1" ng-show="logindoctor == true">Doctor's  </p>
+               <p class="heading-para1" ng-show="loginuser == true">User's  </p>
+               <p class="heading-para-signup1">login </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end stripsec --> 
+   <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12" >
+      <div class="custom-info-section">
+         <div class="col-md-6 col-md-offset-3">
+            <div class="login_bdy">
+               <div class="heading1">
+                  <p class="heading-para-ds">Welcome! {{loginname}}</p>
+               </div>
+               <div class="heading2">
+                  <p class="heading-para2s">You are successfully registered. Please complete your profile</p>
+               </div>
+               <div class="image-div" ng-controller="loginCtrl">
+                  <div class="img1-div">
+                     <img ng-src="{{getMyImage()}}"  ng-show="accountData.type==undefined" alt="" class="img-responsive dr-profile-image image_rwidth" ng-hide="picFile">
+                     <img ngf-src="picFile" ng-show="picFile" style="height: 88px; width: 88px;" class="img-responsive dr-profile-image thumb" ng-show="myForm.file.$valid" ngf-thumbnail="picFile" >
+                  </div>
+               </div>
+               <div class="btn-row">
+                  <p class="editImage heading-para-ds"> Click here</p>
+                  <br>
+                  <p class="heading-para2sd">to browse file from your computer</p>
+                  <div class="continue-btn-div" ng-controller="RegistorCtrl">
+                     <button class="btn create-btn-continue"  ui-sref="doctorInfo" ng-show="doctorRegistration">Next </button>
+                     <button class="btn create-btn-continue" 
+                        ui-sref="userInfo" ng-show="userRegistration">Next >></button>
+                     <span class="progress" ng-show="picFile.progress >= 0">
+                        <div style="width:{{picFile.progress}}%" 
+                           ng-bind="picFile.progress + '%'"></div>
+                     </span>
+                     <span ng-show="picFile.result">Upload Successful</span>
+                     <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                  </div>
+               </div>
+               <div class="dot-section">
+                  <span class="dot-span"><i class="fa fa-circle"></i></span>
+                  <span class="dot-span"><i class="fa fa-circle"></i></span>
+               </div>
+            </div>
+            <!-- <div class="skip-section" ng-controller="RegistorCtrl">
+               <div ng-show="doctorRegistration">
+                  <a ui-sref="doctorInfo">skip</a>
+               </div>
+               <div ng-show="userRegistration">
+                  <a ui-sref="userInfo">skip</a>
+               </div>
+            </div> -->
+         </div>
+      </div>
+   </div>
+</div>
+<div class="" ng-include="'modules/core/view/uploadModal.html'"></div>
+<style type="text/css">
+   .hiddenFileType
+   {
+   position: relative;
+   top: 39px;
+   opacity: 0;
+   }
+   .editImage {
+   cursor: pointer;
+   }
+</style>
+<script>
+   $(document).ready(function() {
+     $(".footer-home").css('display','none');
+   });
+</script>
+

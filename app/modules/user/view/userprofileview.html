@@ -1,0 +1,270 @@
+  <section ng-controller="GetUserDataCtrl">
+        <div class="container-fluid"  >
+          <div class="row">
+            <div class="search-section2">
+
+                 <user></user>
+
+          </div>
+        </div>
+   
+      <!-- end search section -->
+      <!-- Central Part Starts from here -->
+      <section>
+  <div class="section1-div" >
+    <div class="container">
+      <div class="inner-section-div">
+        <!-- drop down menu -->
+        <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12 padding15">
+            <div class="left-sidebar-div">
+              <div class="left-sidebar-heading-div">
+                <h3>
+                  Recent Post
+                </h3>
+              </div>
+              <div class="left-sidebar-data-div" ng-controller="usernotification">
+                <ul ng-repeat="notify in notification track by $index">
+                   <li>
+                      <p>
+                    {{notify.repliedby.name}} <span ng-show="notify.action=='relevant'">marked as</span> 
+                    <span ng-show="notify.action=='feedback'">replied on</span>
+                    <span ng-show="notify.action=='comment'">commented on</span>
+                    <b>{{notify.question | limitTo: 20}}</b>
+                   </p>
+                    </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            
+              <div class="centerpart-top-div">
+                <div class="problems-button-div ">
+                  <h3 class="margin0 padding0" ui-sref="userProfile">
+                    Problems
+                  </h3>
+                </div>
+              <div class="web-view-navbar">
+                <ul class="nav nav-tabs custom-nav-tabs" id="myTabs">
+                  <li class="">
+                    <a data-toggle="tab" href="#home" class="custom-anchor-tag">
+                      <i class="fa fa-home custom-nav-icon">
+                      </i>
+                      <span class="mobile-hide">
+                        My Profile
+                      </span>
+                    </a>
+                  </li>
+                  <!-- <li>
+                    <a data-toggle="tab" href="#menu1" class="custom-anchor-tag">
+                      <i class="fa fa-crosshairs custom-nav-icon">
+                      </i>
+                      <span class="mobile-hide">
+                        My reviews
+                      </span>
+                    </a>
+                  </li> -->
+                  
+                </ul>
+                </div>
+               </div>
+               <div class="center-part-div">
+                 
+                 <div class="tab-content">
+                   <div id="home" class="tab-pane fade">
+                      
+              <div class="Account-info">
+                       <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12">                          
+                          <div class="">
+                          <div class="account-section">
+                            <div class="edit-btn" id="edit" >
+                             <a ng-click="changeIcon()">
+                               Edit
+                             </a>
+                            </div>
+                            <div class="save-btn" id="save" ng-click="saveUserInfo(UserInfo)">
+                            <a>
+                            Save
+                            </a>
+                           </div>
+                     <div class="user-div"></div>
+                            
+                       
+                         <div id="menu1" class="tab-pane fade">
+              <h3>Menu 1</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+                  
+                        <div class="custom-password-div" ng-show="passwordsection">
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            <!--  <p class="passwrd_change aling_name"> Change password</p> -->
+                            </div>
+                        
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+                      <input class="input__field1 input__field--hoshi1" type="password" ng-model="account.curpass" id="input-4" ng-blur="checkpassword(account.curpass)" />
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">Current password</span>
+                    </label>
+                     <span class="msg-error" ng-show="currpass">
+    Current password does not match.
+  </span>
+                </div>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+                     <input class="input__field1 input__field--hoshi1" type="password" id="pw1" ng-model="account.newpass" ng-required/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">New Password</span>
+                    </label>
+                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="user-name-div">
+                              <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="password-div">
+                             <div class="input1 input1--hoshi1 left-aling">
+                   <input class="input__field1 input__field--hoshi1" type="password" id="pw2" ng-model="account.matchpass" pw-check="account.newpass" ng-required/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">Confirm Password</span>
+                    </label>
+                    <span class="msg-error" ng-show="pwmatch">
+    Passwords does not match.
+  </span>
+                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="password-div">
+                            <div class="cutom-create-btn">
+                                           <button class="btn create-btn-custom done" ng-disabled="passcheck" ng-click="passUpdate(account.matchpass)">Done</button>
+                                          <button class="btn create-btn-custom done" ng-click="passwordsection=false">Cancel</button>
+                                        </div>
+                                      </div>
+                            </div>
+                           </div>
+                          </div>
+                          <div>
+                        </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                     
+                     
+                   </div>
+                   <div id="menu1" class="tab-pane fade">
+              <h3>Menu 1</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+            </div>
+            
+                </div>
+
+           
+            <!--pv!-->
+               
+            <!--e pv!-->
+            <!--div id="menu2" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Some content in menu 2.</p>
+            </div!-->
+                              
+            </div>    
+            </div>   
+          </div>
+  </div>
+  <div class="plus plus-effect-3 plus-effect-3a">
+          <a href="#/addProblem" class="plus" id="plus"><i class="fa fa-question"></i></span></a> 
+  </div>
+</section>
+<script>
+$(document).ready(function() {
+           
+           $("#owl-demo").owlCarousel({
+             
+             autoPlay: false, //Set AutoPlay to 3 seconds
+             
+             items :5,
+             itemsDesktop : [1199,3],
+             itemsDesktopSmall : [979,3]
+             
+           }
+                                     );
+           
+           $(".custom-anchor-tag").click(function(){
+             
+             $(".search-result-main-div2").hide();
+             
+           }
+                                        );
+           
+           
+           
+         }
+                          );
+</script>
+ 
+ 
+       <style type="text/css">
+.toggle{
+  display: none;
+}
+.toggle-2{
+  display: none;
+}
+       </style>
+       <script>
+        $(document).on('click','#save',function(){
+          $("#edit").show();
+           $("#save").hide();
+        });
+        $(document).on('click','#edit',function(){
+          $("#save").show();
+          $("#edit").hide();
+        }); 
+       $(document).on('click','#edit',function(){
+       
+     $(".wrap").hide();
+     $(this).hide();
+     $(".editable-class-newtab").show();
+      $(".drpdown").show();
+      $(".dr-profile-image").css("opacity",'0.5');
+      $(".upicon").show();
+    });
+   $(document).on('click','#save',function(){
+     $(".wrap").show();
+     $(this).hide();
+     $(".editable-class-newtab").hide();
+     $(".drpdown").hide();
+      $(".dr-profile-image").css("opacity",'1');
+    });
+   $(document).ready(function(){
+   $('#myTabs a[href="#home"]').tab('show');
+       });
+       </script>
+
+<style type="text/css">
+
+
+</style>       

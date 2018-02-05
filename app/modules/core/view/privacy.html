@@ -1,0 +1,96 @@
+<div class="container-width">
+    <div class="top-div">
+        <div class="full-color">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="whole-content">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#menu1">Privacy Policy</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Disclaimer</a></li>
+                            <li><a data-toggle="tab" href="#menu3">Terms & Conditions</a></li>
+                            <!-- <li><a data-toggle="tab" href="#menu4">Contact Us</a></li> -->
+                        </ul>
+                        <div class="tab-content">
+                            <div id="menu1" class="tab-pane fade in active">
+                                <h3 class="justify2">Privacy policy</h3>
+                                <p class="justify" ng-bind-html="policy"></p>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h3 class="justify2">Disclaimer</h3>
+                                <p class="justify" ng-bind-html="disclaimer"></p>
+                            </div>
+                            <div id="menu3" class="tab-pane fade">
+                                <h3 class="justify2">Terms and Conditions</h3>
+                                <p class="justify" ng-bind-html="terms"></p>
+                            </div>
+                            <!-- <div id="menu4" class="tab-pane fade">
+                                <h3 class="justify2">Contact</h3>
+                                <p class="justify" ng-bind-html="contact_us"></p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .top-div{
+        background-color: #eceff1;
+    }
+    .full-color{
+        margin: 0px 15px;
+    }
+    .justify2{
+        text-align: justify;
+        padding: 0px 38px;
+        color: grey;
+    }
+    .justify{
+        text-align: justify;
+        font-size: 16px;
+        padding: 11px 38px 32px 38px;
+        color: grey;
+    }
+    .whole-content .tab-pane.active{
+        background: white !important;
+    } 
+    .whole-content{
+
+        background-color: white;
+        margin-top:20px;
+    }
+    .whole-content .tab-content{
+        border-top: 1px solid #eceff1;
+        min-height : 507px;
+    }
+    .whole-content .nav-tabs{
+        border-bottom: transparent;
+    }
+    .whole-content .nav-tabs>li{
+        width: 25%;
+        text-align: center;
+        padding: 0px;
+    }
+    .whole-content .nav-tabs>li>a{
+        color: grey;
+        border: 0px;
+        font-size: 15px;
+    }
+    .whole-content .nav-tabs>li>a:hover{
+        color: #22a1a8;
+        background-color: transparent;
+
+    }
+    .whole-content .nav-tabs>li.active>a{
+        color: #22a1a8;
+        border: 0px;
+    }
+    .whole-content .nav-tabs>li.active>a:focus{
+        color: #22a1a8;
+    }
+
+</style>

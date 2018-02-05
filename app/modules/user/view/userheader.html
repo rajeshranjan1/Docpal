@@ -1,0 +1,98 @@
+<div class="profile-section-div" ng-controller="UserProblemCtrl">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3 text-center">
+            <div class="profile-image-div">
+               <img ng-src="{{getMyImage()}}" id="userImg"  class="img-responsive img-class img-circle" style="height: 88px; width: 88px;">
+               
+            </div>
+            <div class="imageEditDiv">
+               <i class="icon-edit5  editImage whiteIcon"  ng-click="" ></i>
+               <div class="" ng-include="'../modules/core/view/uploadModal.html'"></div>
+            </div>
+         </div>
+         <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+            <div class="dr-introduction">
+               <div class="name-div-2">
+                  <h3 class="capitalize">
+                     {{userAllInfo.name}}
+                  </h3>
+               </div>
+               <div class="text-div">
+                  <br>                          
+                  {{userAllInfo.address.city}}
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
+            <div class="statistics-div" >
+               <ul>
+                  <li >
+                     {{ myProblemCount || 0}}
+                     <br>
+                     <a ui-sref="userProfile()" style="color:white"> Questions</a>
+                  </li>
+                  <li ng-click="getListFollower(userAllInfo.following)">
+                     {{userAllInfo.following.length || 0}}
+                     <br>
+                     <a class="following-btn"> Following</a>
+                  </li>
+                  <!-- <li>
+                     510
+                     <br>
+                     View
+                  </li> -->
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="followingmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content" >
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="image-gallery-title"></h4>
+               </div>
+               <div>
+                  <div class="col-md-12">
+                     <div class="Title">
+                        <h3 class="centeralign">Following </h3>
+                     </div>
+                     <div class="common-row-follow scrollY myScroll" ng-show="followlist.length>0">
+                        <div class="viewport">
+                           <div class="content" >
+                              <div>
+                                 <ul>
+                                    <li ng-repeat="data in followlist track by $index">
+                                       <div class="img9ti">
+                                          <img ng-src="{{getUserImage(data.role,data.image,data.gender,data.social_image)}}">
+                                       </div>
+                                       <div class="information">
+                                          <p>{{data.name}}</p>
+                                       </div>
+                                       <div class="unfollow">
+                                          <a href="" ng-click="newFollow(data._id,$event,true)" >Unfollow</a>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="loaderWrapper" ng-show="loadingData"><div class="loaderSpiner" ></div></div>
+                     <div class="common-row-follow" ng-show="followlist.length == 0"> No Followings </div>
+                                       </div>
+               </div>
+               <div class="modal-footer">
+                  <div class="col-md-2">
+                  </div>
+                  <div class="col-md-8 text-justify" id="image-gallery-caption">  
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

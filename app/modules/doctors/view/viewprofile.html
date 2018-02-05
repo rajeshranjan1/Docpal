@@ -1,0 +1,1086 @@
+<!-- search section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 padding0">
+                <div class="map-section">
+                    <div class="span11">
+                        <div id="map" map lat="profile.address[profile.indexId].cordinate[1]" log="profile.address[profile.indexId].cordinate[0]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end search section -->
+<!-- Central Part Starts here -->
+<section>
+   <div class="center-part-section single_doc_padding margin0">
+      <div class="container">
+         <div class="center-part-section-inner">
+            <div class="row">
+               <div class="col-md-10 col-sm-10 col-xs-10 margin-zero">
+                  <div class="center-part-section-inner">
+                     <div class="search-result-main-div-map">
+                        <!-- start profile section -->
+                        <div class="profile-section-map">
+                           <div class="teeth-icon-new">
+                              <span class="follow_no">{{profile.following.length}}</span><br>
+                              <button class="nostyle" ng-click="follow(profile._id,$index)" ng-disabled="checkfollow(profile._id)" ng-class="{changefolow :checkfollow(profile._id) }"></button>
+                           </div>
+                           <div class="my-image-section">
+                              <div class="teeth-icon-new">
+                                 <button class="nostyle" ng-click="follow(profile._id,$index)" ng-disabled="checkfollow(profile._id)" ng-class="{changefolow :checkfollow(profile._id) }"></button>
+                              </div>
+                              <div class="img-div1-new">
+                                 <img ng-src="{{getUserImage('doctor',profile.image,profile.gender,profile.social_image)}}" alt="" class="img-responsive border-round">
+                              </div>
+                           </div>
+                           <div class="info-section sec_top">
+                              <div class="row">
+                                 <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
+                                    <div class="profile-intro-map">
+                                       <h3 class="name-div"><a href="">{{profile.name}}</a></h3>
+                                       <div class="profile-btn">
+                                         <span ng-repeat="x in profile.language" type="" class="btn btn-default lanbtn1"> {{x}}  </span>
+                                       </div>
+                                       <div class="text-div capitalize break-class">
+                                          <label class="label label-success" style="display:inline-block !important;">Profile is Claimed</label>
+                                          <span> {{profile.education}}</span>
+                                          <span> {{profile.experience}} years</span>
+                                          <span> {{profile.speciality}}</span>
+                                          <span>{{profile.address[profile.indexId].clinic}}</span>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                    <div class="doctor-clinic-details">
+                                       <!-- new icons -->
+                                       <!-- end new icons -->
+                                       <div class="doctor-details-search-result-1" ng-show="profile.address[profile.indexId].timing.length > 0">
+                                          <div class="search-result-icon-div">
+                                             <i class="icon-clock104 clinic-icon"></i>
+                                          </div>
+                                          <div class="search-result-text-div1">
+                                             <span>
+                                             {{profile.address[profile.indexId].timing[0].days[0]}} - {{profile.address[profile.indexId].timing[0].days[profile.address[profile.indexId].timing[0].days.length-1]}}
+                                             </span>
+                                             <br> 
+                                             {{profile.address[profile.indexId].timing[0].time[0].startTime}} : {{profile.address[profile.indexId].timing[0].time[0].startMinute == 0 || profile.address[profile.indexId].timing[0].time[0].startMinute == undefined ? '00' : profile.address[profile.indexId].timing[0].time[0].startMinute}} {{profile.address[profile.indexId].timing[0].time[0].shiftstart}} - {{profile.address[profile.indexId].timing[0].time[0].endTime}} : {{profile.address[profile.indexId].timing[0].time[0].endMinute == 0 || profile.address[profile.indexId].timing[0].time[0].endMinute == undefined ? '00' : profile.address[profile.indexId].timing[0].time[0].endMinute}} {{profile.address[profile.indexId].timing[0].time[0].shiftend}}
+                                             <div class="option-icon1 padding0">
+                                                <span class="address-dots popover_docpal">
+                                                   <span class ="glyphicon glyphicon-option-horizontal efg " title = "Schedule" data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true" data-content="{{timingX = gettime(profile.address[profile.indexId].timing)}}" data-toggle = "popoverSchedule">
+                                                   </span>
+                                                </span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="doctor-details-search-result-1" ng-show="profile.address[profile.indexId].city != ''">
+                                          <div class="search-result-icon-div">
+                                             <i class="icon-map-pointer7 map-icon-new"></i>
+                                          </div>
+                                          <div class="search-result-text-div">
+                                             <span class="font13">
+                                             {{profile.address[profile.indexId].city}}, {{profile.address[profile.indexId].country}}
+                                             </span>
+                                          </div>
+                                       </div>
+                                       <div>
+                                          <p><i class="icon-rupee rupee font13" style="padding-top:4px"></i>   
+                                            <span class="marginLeft font13">{{profile.address[profile.indexId].fee.amount}}</span> 
+                                          </p>
+                                       </div>
+                                       <div><a href="#/userFeedback" class="btn btn-info btn-xs btn-book">Give Feedback</a></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- TAB SECTION START -->
+                     <div class="search-result-main-div-map">
+                        <div class="clinic-wpr white-back">
+                           <div class="col-md-12 clinic-detail-tab p-0">
+                              <ul class="nav nav-tabs">
+                                 <li class="active">
+                                    <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">
+                                       <i class="fa fa-eye mr-right" aria-hidden="true"></i>  Know more
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#services" aria-controls="services" role="tab" data-toggle="tab">
+                                       <i class="icon-circle39 mr-right"  aria-hidden="true"></i> Services
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab">
+                                       <i class="fa fa-picture-o mr-right" aria-hidden="true"></i> Gallery
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#education" aria-controls="feedback" role="tab" data-toggle="tab">
+                                       <i class="fa fa-graduation-cap mr-right" aria-hidden="true"></i> Education &amp; Experiences
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#award" aria-controls="award" role="tab" data-toggle="tab">
+                                       <i class="fa fa-certificate mr-right" aria-hidden="true"></i> Award &amp; Membership
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#feedback" aria-controls="feedback" role="tab" data-toggle="tab">
+                                       <i class="fa fa-comments-o mr-right" aria-hidden="true"></i> Feedback
+                                    </a>
+                                 </li>
+                              </ul>
+                              <!-- START TAB CONTENT -->
+                              <div class="tab-content">
+                                 <div id="overview" class="tab-pane fade in active">
+                                    <div class="tab-details clearfix p-0">
+                                       <div class="col-md-12 clinic-detail-row dt-row">
+                                          <div class="about">
+                                             <p>{{profile.about}}</p>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-12  p-0">
+                                          <div class="about">
+                                             <ul class=" hs-listing clearfix">
+                                                <li ng-repeat="x in profile.address track by $index" class="col-md-12 hs-list">
+                                                   <div class="col-md-4 pd-lr-8">
+                                                         <h3 class="loc-heading"><i class="icon-map-pointer7 heading-icon" aria-hidden="true" ></i>  Location</h3>
+                                                         <div ng-show=" x.clinic != undefined ">
+                                                             <h4 class="hospi-name green">{{ x.clinic }}</h4>
+                                                         </div>
+                                                         <div ng-show="x.city != ''">
+                                                             <p class="cl-ads"> {{ x.city }} </p>
+                                                         </div>
+                                                         <div ng-show="x.fee.amount != undefined && x.fee.amount > 0 " style=""> <i class="icon-rupee rupee" style="padding-top:3px"></i>
+                                                             <span>  {{ x.fee.amount }}</span>
+                                                         </div>
+                                                   </div>
+                                                   <div class="col-md-4 pd-lr-8">
+                                                      <h3 class="loc-heading"><i class="fa fa-clock-o heading-icon" aria-hidden="true" ></i> Timing</h3>
+                                                      <ul class="p-0 font13">
+                                                         <li ng-repeat="y in x.timing track by $index" style="width:100%;">
+                                                            <div ng-show="y.days.length >0"> <i class="icon-clock104 clinic-icon timeIcon"></i>
+                                                               <span class="marginLeft">{{ y.days[0] }} - {{ y.days[y.lastday] }} </span>
+                                                            </div>
+                                                            <span>{{ y.time.startTime }}  {{  y.time.endTime }} </span>
+                                                            <ul class="p-0">
+                                                               <li ng-repeat="z in y.time track by $index" style="width:100%;">
+                                                                  <div> 
+                                                                     <span class="pd-lf-23"> {{ z.startTime }} : {{z.startMinute == undefined || z.startMinute == 0 ? '00' : z.startMinute}} {{ z.shiftstart }} - {{ z.endTime }} : {{z.endMinute == undefined || z.endMinute == 0 ? '00' : z.endMinute}} {{ z.shiftend }} 
+                                                                     </span>
+                                                                  </div>
+                                                               </li>
+                                                            </ul>
+                                                         </li>
+                                                      </ul>
+                                                      <div ng-show="x.fee.length  >0"> <i class="icon-rupee rupee"></i>
+                                                          <span>  {{ y.fee.amount }}</span>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-md-4 pd-lr-8">
+                                                      <div class="">
+                                                          <h3 class="loc-heading"><i class="fa fa-credit-card heading-icon" aria-hidden="true" ></i>Payment Method</h3>
+                                                          <p class="hos-para">Paytm, Cash</p>
+                                                      </div>
+                                                      <div class="clearfix">
+                                                          <a href="javascript:void(0);" class="btn btn-info btn-xs btn-book open-appoint">Book Appointment</a>
+                                                      </div>
+                                                   </div>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                       <!-- APPOINTMENT  -->
+                                       <div class="ap-sche-wpr  clearfix">
+                                          <!-- main content -->
+                                          <section class="form-box clearfix">
+                                             <div class=" col-md-12 pd-lr-0">
+                                                <!-- Form Wizard -->
+                                                <div class="form-wizard form-header-classic form-body-classic">
+                                                   <!-- Form progress -->
+                                                   <div class="form-wizard-steps form-wizard-tolal-steps-5">
+                                                      <div class="form-wizard-progress">
+                                                          <div class="form-wizard-progress-line" data-now-value="10" data-number-of-steps="5" ></div>
+                                                      </div>
+                                                      <!-- Step 2 -->
+                                                      <div class="form-wizard-step active">
+                                                          <div class="form-wizard-step-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                                                          <p>Date &amp; Time</p>
+                                                      </div>
+                                                      <!-- Step 3 -->
+                                                      <div class="form-wizard-step">
+                                                          <div class="form-wizard-step-icon"><i class="fa fa-sign-in" aria-hidden="true"></i></div>
+                                                          <p>Login / SignUp</p>
+                                                      </div>
+                                                      <!-- Step 4 -->
+                                                      <div class="form-wizard-step">
+                                                          <div class="form-wizard-step-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                                          <p>Patient Details</p>
+                                                      </div>
+                                                      <!-- Step 5 -->
+                                                      <div class="form-wizard-step">
+                                                          <div class="form-wizard-step-icon"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+                                                          <p>Mobile Verification</p>
+                                                      </div>
+                                                      <!-- Step 6 -->
+                                                      <div class="form-wizard-step">
+                                                          <div class="form-wizard-step-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+                                                          <p>Confirmation</p>
+                                                      </div>
+                                                  </div>
+                                                  <!-- Form progress -->
+                                                   <form role="form" action="" method="post" class=" form-wpr ">
+                                                      <!-- Form Step 1 -->
+                                                      <fieldset>
+                                                         <h4 class="appoint-heading">Choose Date &amp; Time  <span>Step 1 - 5</span></h4>
+                                                         <div class="booking-calender-wpr col-md-12 pd-lr-8">
+                                                            <div class="sche-calendar">
+                                                               <div class="jflatTimeline calledOnce s_screen">
+                                                                  <div class="month-year-bar">
+                                                                     <div class="month"><a class="prev"><i class="fa fa-angle-left"></i></a><span>November</span><a class="next"><i class="fa fa-angle-right"></i></a></div>
+
+                                                                     <div class="year"><a class="prev"><i class="fa fa-angle-left"></i></a><span>2017</span><a class="next"><i class="fa fa-angle-right"></i></a></div>
+                                                                     </div>
+
+                                                                     <div class="dates-bar"><a class="prev"> &lt; prev  </a><a data-date="11/6/2017"><span class="date">6</span><span class="month">November</span></a><a data-date="11/7/2017" class="selected"><span class="date">7</span><span class="month">November</span></a><a data-date="11/8/2017"><span class="date">8</span><span class="month">November</span></a><a data-date="11/9/2017"><span class="date">9</span><span class="month">November</span></a><a data-date="11/10/2017"><span class="date">10</span><span class="month">November</span></a><a data-date="11/11/2017"><span class="date">11</span><span class="month">November</span></a><a data-date="11/12/2017"><span class="date">12</span><span class="month">November</span></a><a data-date="11/13/2017"><span class="date">13</span><span class="month">November</span></a><a data-date="11/14/2017"><span class="date">14</span><span class="month">November</span></a><a data-date="11/15/2017"><span class="date">15</span><span class="month">November</span></a><a data-date="11/16/2017"><span class="date">16</span><span class="month">November</span></a><a data-date="11/17/2017"><span class="date">17</span><span class="month">November</span></a><a data-date="11/18/2017"><span class="date">18</span><span class="month">November</span></a><a data-date="11/19/2017"><span class="date">19</span><span class="month">November</span></a><a data-date="11/20/2017"><span class="date">20</span><span class="month">November</span></a><a class="noevent">No event found</a><a class="next">next &gt; </a></div>
+                                                                     <div class="timeline-wrap">
+                                                                        <div class="event " data-date="11/6/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event selected" data-date="11/7/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 pd-lr-0  clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 pd-lr-0  clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i><br> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 pd-lr-0  clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/8/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i><br> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/9/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i><br> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/10/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/11/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/12/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class=" event" data-date="11/13/2017">
+                                                                           <div class="all-time">
+                                                                               <div class="morning col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="m-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-soundcloud" aria-hidden="true"></i> Morning</h4>
+                                                                                   </div>
+                                                                                   <ul class="m-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">07:00 AM</li>
+                                                                                       <li class="s-time">07:15 AM</li>
+                                                                                       <li class="s-time">07:30 AM</li>
+                                                                                       <li class="s-time">07:45 AM</li>
+                                                                                       <li class="s-time">08:00 AM</li>
+                                                                                       <li class="s-time">08:15 AM</li>
+                                                                                       <li class="s-time">08:30 AM</li>
+                                                                                       <li class="s-time">08:45 AM</li>
+                                                                                       <li class="s-time">09:00 AM</li>
+                                                                                       <li class="s-time">09:15 AM</li>
+                                                                                       <li class="s-time">09:30 AM</li>
+                                                                                       <li class="s-time">09:45 AM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="afternoon col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="af-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-sun-o" aria-hidden="true"></i> Afternoon</h4>
+                                                                                   </div>
+                                                                                   <ul class="af-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">12:00 AM</li>
+                                                                                       <li class="s-time">12:15 PM</li>
+                                                                                       <li class="s-time">12:30 PM</li>
+                                                                                       <li class="s-time">12:45 PM</li>
+                                                                                       <li class="s-time">01:00 PM</li>
+                                                                                       <li class="s-time">01:15 PM</li>
+                                                                                       <li class="s-time">01:30 PM</li>
+                                                                                       <li class="s-time">01:45 PM</li>
+                                                                                       <li class="s-time">02:00 PM</li>
+                                                                                       <li class="s-time">02:15 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                               <div class="evening col-md-12 pd-lr-0 clearfix">
+                                                                                   <div class="ev-head col-md-2 pd-lr-8">
+                                                                                       <h4><i class="fa fa-moon-o" aria-hidden="true"></i> Evening</h4>
+                                                                                   </div>
+                                                                                   <ul class="ev-timing col-md-10 clearfix">
+                                                                                       <li class="s-time">05:00 PM</li>
+                                                                                       <li class="s-time">05:15 PM</li>
+                                                                                       <li class="s-time">05:30 PM</li>
+                                                                                       <li class="s-time">05:45 PM</li>
+                                                                                       <li class="s-time">06:00 PM</li>
+                                                                                       <li class="s-time">06:15 PM</li>
+                                                                                       <li class="s-time">06:30 PM</li>
+                                                                                       <li class="s-time">06:45 PM</li>
+                                                                                       <li class="s-time">09:00 PM</li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="event" data-date="11/14/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/15/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/16/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/17/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/18/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/19/2017">
+                                                                        </div>
+                                                                        <div class="event" data-date="11/20/2017">
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="form-wizard-buttons col-md-12">
+                                                              <button type="button" class="btn btn-previous">Previous</button>
+                                                              <button type="button" class="btn btn-next btn-info">Next</button>
+                                                          </div>
+                                                      </fieldset>
+                                                      <!-- Form Step 2 -->
+                                                      <fieldset>
+                                                          <h4 class="appoint-heading">Login / SignUp <span>Step 2 - 5</span></h4>
+                                                          <div class="col-md-12 patient-details-wpr pd-lr-0">
+                                                              <div class="patient-details clearfix">
+                                                                  <div class="cu-login text-center">
+                                                                      <h4>Have you ever used Docpal?</h4>
+                                                                      <a href="#">Login</a>
+                                                                  </div>
+                                                                  <div class="cu-signup">
+                                                                      <div class="cu-header text-center">
+                                                                          <h4>New on Docpal?</h4>
+                                                                          <p>Enter your information to continue.</p>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="signup-form-one clearfix">
+                                                                      <div class="form-group col-md-6  pd-lr-8">
+                                                                          <input type="text" class="form-control" placeholder="First Name" required="">
+                                                                      </div>
+                                                                      <div class="form-group col-md-6  pd-lr-8">
+                                                                          <input type="text" class="form-control" placeholder="Last Name" required="">
+                                                                      </div>
+                                                                      <div class="form-group  col-md-6 pd-lr-8 ">
+                                                                          <input type="text" class="form-control" placeholder="Mobile" required="">
+                                                                      </div>
+                                                                      <div class="form-group  col-md-6  pd-lr-8">
+                                                                          <input type="email" class="form-control" placeholder="Email" required="">
+                                                                      </div>
+                                                                      <div class="form-group  col-md-6  pd-lr-8">
+                                                                          <input type="password" class="form-control" placeholder="Password" required="">
+                                                                      </div>
+                                                                      <div class="col-md-6 pd-lr-8 ap-check">
+                                                                          <div class="checkbox">
+                                                                              <input type="checkbox" value="" name="Checkbox"> <span>By creating this account, you agree to our <a href="javascript:void(0);">T&amp;C</a> &amp; <a href="javascript:void(0);">Privacy Policy.</a></span>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-wizard-buttons col-md-12">
+                                                                  <button type="button" class="btn btn-previous">Previous</button>
+                                                                  <button type="button" class="btn btn-next btn-info">Next</button>
+                                                              </div>
+                                                          </div>
+                                                      </fieldset>
+                                                      <!-- Form Step 3 -->
+                                                      <fieldset>
+                                                          <h4 class="appoint-heading">Patient Details <span>Step 3 - 5</span></h4>
+                                                          <div class="col-md-12 patient-details-wpr pd-lr-0">
+                                                              <div class="patient-details clearfix">
+                                                                  <div class="cu-login clearfix">
+                                                                      <h4 class="text-center">Who do you want to make the appointment for?</h4>
+                                                                      <div class="col-md-12 pd-lr-8">
+                                                                          <div class="form-group" id="for-pat">
+                                                                              <div class="col-md-12">
+                                                                                  <label class="radio-block">
+                                                                                      <input type="radio" name="appointment_for" value="forYou" checked=""> For you</label>
+                                                                              </div>
+                                                                              <div class="col-md-12">
+                                                                                  <label class="radio-block">
+                                                                                      <input type="radio" name="appointment_for" value="Ranjan Sahoo"> Ranjan Sahoo</label>
+                                                                              </div>
+                                                                              <div class="col-md-12">
+                                                                                  <label class="radio-block">
+                                                                                      <input type="radio" id="loved_one" value="forLoved" name="appointment_for"> For loved one</label>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="for-appointment clearfix">
+                                                                      <div class="col-md-4 pd-lr-8">
+                                                                          <div class="form-group">
+                                                                              <label for="Patient">Patient / Visiter Name</label>
+                                                                              <input type="text" class="form-control" placeholder="Name*" required="">
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-4 pd-lr-8">
+                                                                          <div class="form-group">
+                                                                              <label for="Mobile">Mobile</label>
+                                                                              <input type="text" class="form-control" placeholder="Mobile" required="">
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-4 pd-lr-8">
+                                                                          <div class="form-group">
+                                                                              <label for="Gender">Gender</label>
+                                                                              <br>
+                                                                              <div class="col-md-6">
+                                                                                  <label class="radio-inline">
+                                                                                      <input type="radio" name="gender">Male</label>
+                                                                              </div>
+                                                                              <div class="col-md-6">
+                                                                                  <label class="radio-inline">
+                                                                                      <input type="radio" name="gender">Female</label>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-12 pd-lr-8 ">
+                                                                          <p class="receive-message">*You will receive an SMS with a verification code on this number</p>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-wizard-buttons col-md-12">
+                                                                  <button type="button" class="btn btn-previous">Previous</button>
+                                                                  <button type="button" class="btn btn-next btn-info">Next</button>
+                                                              </div>
+                                                          </div>
+                                                      </fieldset>
+                                                      <!-- Form Step 4 -->
+                                                      <fieldset>
+                                                          <h4 class="appoint-heading">Appointment Date/Time <span>Step 4 - 5</span></h4>
+                                                          <div class="appoint-det-wpr">
+                                                              <div class="col-md-12 pd-lr-0">
+                                                                  <div class="appoint-details clearfix">
+                                                                      <div class="appoint-date-time text-center">
+                                                                          <h3>Thursday <strong>2</strong> Nov 2017 ,  <strong>10:00 AM  </strong></h3>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-12 pd-lr-0">
+                                                                  <div class="patient-details clearfix">
+                                                                      <div class="appoint-heading">
+                                                                          <h3>Mobile Verification</h3>
+                                                                      </div>
+                                                                      <div class="mobile-verification text-center">
+                                                                          <p>A verification code has been sent to your mobile <strong class="">9998885554</strong> by SMS. Please enter the verification code.</p>
+                                                                          <div class="verification-form">
+                                                                              <div class=" clearfix">
+                                                                                  <input type="text" pattern="[0-9]{6}" class=" col-md-4 col-xs-12 col-md-offset-4 verify-input text-center" placeholder="Enter Verification Code" required="">
+                                                                              </div>
+                                                                              <div class="col-md-12 pd-lr-0 text-center">
+                                                                                  <a href="#" class="resend">RESEND OTP</a>
+                                                                              </div>
+                                                                              <div class="col-md-12 pd-lr-0 text-center">
+                                                                                  <p class="terms">*By booking the appointment, you agree to Docpal's
+                                                                                      <a href="#">Terms &amp; Conditions.</a></p>
+                                                                              </div>
+                                                                              <div class="col-md-12 pd-lr-0">
+                                                                                  <button type="submit" id="submit-otp" class="btn margin-zero btn-info">Submit</button>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-wizard-buttons col-md-12">
+                                                                  <button type="button" class="btn btn-previous">Previous</button>
+                                                                  <button type="button" class="btn btn-next btn-info">Next</button>
+                                                              </div>
+                                                          </div>
+                                                      </fieldset>
+                                                      <!-- Form Step 5 -->
+                                                      <fieldset>
+                                                          <h4 class="appoint-heading ">Confirmation  <span>Step 5 - 5</span></h4>
+                                                          <div class="confirm-appoint clearfix">
+                                                              <div class="col-md-12 pd-lr-8">
+                                                                  <div class="appoint-details clearfix">
+                                                                      <div class="appoint-date-time ">
+                                                                          <h3>Your appointment has been confirmed !</h3>
+                                                                          <div class="ap-id">
+                                                                              <p>Your appointment ID is 00000152. We have sent you an email and SMS with your appointment details.</p>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-md-12 pd-lr-8 clearfix">
+                                                              <div class="doctor-details-wpr clearfix">
+                                                                  <div class="col-md-2">
+                                                                      <div class="doctor-image">
+                                                                          <img src="img/dr2.jpg" alt="Doctor Image">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="col-md-10">
+                                                                      <div class="doctor-details">
+                                                                          <h4> Dr. Rajesh Sharma</h4>
+                                                                          <p>MBBS, MD</p>
+                                                                          <span>General Physician</span>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-md-12 pd-lr-8 clearfix">
+                                                              <div class="g-map">
+                                                                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.7430799742824!2d77.32941431446496!3d28.5774766933228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce452a52f7c53%3A0xc0e884cc70cae8f1!2sKailash+Healthcare+Limited!5e0!3m2!1sen!2sin!4v1509538223736" width="100%" height="100" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                                                              </div>
+                                                          </div>
+                                                          <div class="form-wizard-buttons col-md-12">
+                                                              <button type="button" class="btn btn-previous">Previous</button>
+                                                              <a href="my_appointments.html" target="_blank" class="btn  btn-info">My Appointments</a>
+                                                              <button type="submit" id="done" class="btn btn-submit btn-info">Done</button>
+                                                          </div>
+                                                      </fieldset>
+                                                   </form>
+                                                </div>
+                                                <!-- Form Wizard -->
+                                             </div>
+                                          </section>
+                                          <!-- main content -->
+                                       </div>
+                                       <div class="col-md-12 clinic-detail-row dt-row">
+                                          <div class="about">
+                                             <h3><i class="icon-medical96 heading-icon " ></i> Specilization</h3>
+                                             <ul class="services-list clearfix">
+                                                <li ng-repeat="x in profile.Specializationfrom">
+                                                   {{x}}
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                        <div class="col-md-12 clinic-detail-row dt-row">
+                                            <div class="about">
+                                                <h3><i class="icon-certficats heading-icon" ></i> Registration</h3>
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.registration track by $index">
+                                                        {{x}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div id="services" class="tab-pane fade">
+                                    <div class="tab-details clearfix">
+                                        <div class="col-md-12 clinic-detail-row dt-row">
+                                            <div class="about">
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.services track by $index">
+                                                        {{x}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div id="gallery" class="tab-pane fade">
+                                    <div class="tab-details clearfix">
+                                        <div class="col-md-12 clinic-detail-row dt-row" ng-repeat="x in profile.address track by $index">
+                                            <div class="about">
+                                                <h3>{{x.clinic}}</h3>
+                                                <div class="col-md-12 pd-lr-0 clearfix">
+                                                    <div class="gallery-img-wpr">
+                                                        <div class=" col-md-3 pd-lr-8 item gallery-img" style="margin-bottom: 16px;" ng-repeat="x in profile.gallery track by $index" on-finish-render="hospitalgallery">
+                                                            <img class="img-100" ng-src="{{imageServer+'/'+x.image+''}}" ng-click="setImageModel(imageServer+'/'+x.image+'',x.caption)" alt="Lazy Owl Image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div id="education" class="tab-pane fade">
+                                    <div class="tab-details clearfix">
+                                        <div class="col-md-12 clinic-detail-row dt-row">
+                                            <div class="about">
+                                                <h3><i class="icon-college1 heading-icon " ></i> Education</h3>
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.educationfrom track by $index ">
+                                                        {{ x }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 clinic-detail-row dt-row">
+                                            <div class="about">
+                                                <h3><i class="icon-medical88 heading-icon " ></i> Experience</h3>
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.experiencefrom track by $index">
+                                                        {{x}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div id="award" class="tab-pane fade">
+                                    <div class="tab-details clearfix">
+                                        <div class="col-md-12 clinic-detail-row dt-row" >
+                                            <div class="about">
+                                                <h3><i class="icon-cup2  heading-icon" ></i> Award</h3>
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.awards track by $index">
+                                                        {{x}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 clinic-detail-row dt-row">
+                                            <div class="about">
+                                                <h3><i class="icon-identification10 heading-icon " ></i> Membership</h3>
+                                                <ul class="services-list clearfix">
+                                                    <li ng-repeat="x in profile.membershipFrom track by $index">
+                                                        {{x}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div id="feedback" class="tab-pane fade">
+                                    <div class="tab-details clearfix">
+                                      <!--  <p>{{profile}}</p> -->
+                                        <div class="col-md-12 clinic-detail-row dt-row" ng-repeat="x in profile.feedback track by $index" >
+                                            <!-- <div class="about">
+                                                <h5>Verified User</h5>
+                                                <span> 11 oct, 2017</span>
+                                                <p>Very good, polite and understanding doctor. very knowledgable. I was suffering from fungal infection and itching was very troublesome but i have great relief after taking the treatment. She explained me in detail about keeping the infection in control and treated me completely.</p>
+                                            </div> -->
+
+                                        </div>
+                                     
+                                        <div class="col-md-12 pd-lr-0 text-center clearfix">
+                                            <a href="#" class="btn btn-info ">View all</a>
+                                        </div>
+                                    </div>
+                                 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Central Part Ends here -->
+<style type="text/css">
+#map {
+    height: 200px;
+    width: 100%;
+}
+
+.nostyle {
+    border: none;
+    background: none;
+    outline: none;
+    color: #bababa;
+}
+
+.changefolow {
+    color: #1ba4aa;
+}
+</style>
+<style type="text/css">
+#owl-demo .item {
+    margin: 3px;
+}
+
+#owl-demo .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+</style>
+<script>
+$(document).ready(function() {
+    $("#report_btn").click(function() {
+        $('#ReportModal').modal('show');
+    });
+
+    $('.open-appoint').click(function(){
+      alert('Clicked');
+    });
+});
+</script>

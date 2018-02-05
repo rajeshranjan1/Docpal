@@ -1,0 +1,404 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding0">
+   <div id="map" map lat="hosProDetail.location.lat" log="hosProDetail.location.lng" >
+  </div>
+  </div>
+  </div>
+
+</section>
+<section>
+<div class="center-part-section single_doc_padding">
+<div class="container">
+  <div class="search-result-main-div2">
+  <div class="Hospital-data">
+              <div class="profile-section">
+                
+                  <div class="my-image-section">
+                  <div class="teeth-icon">
+                  <button class="nostyle" ng-click="follow(x._id,$index)" ng-disabled="checkfollow(x._id)" ng-class="{changefolow :checkfollow(x._id) }">
+                    <i class="fa fa-heartbeat"></i>
+                  </button>
+                  </div>
+                  <div class="img-div1-hospital">
+                  <img ng-src=" {{hosProDetail.image!=undefined ? imageServer+'/'+hosProDetail.image+'' : 'assets/img/hospital.png'}}" alt="" class="img-responsive border-round">
+                  </div>
+                  </div>
+                  <div class="info-section section_padding">
+                  <div class="hospital-section">
+                  <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">
+                <div class="hospital-profile-intro">
+                        <h3 class="name-div cap capitalize">
+                          <a>
+                            
+                      {{hosProDetail.name}}
+                          </a>
+                        </h3>
+                        <div class="text-div capitalize break-class">
+                          <span ng-repeat="x in hosProDetail.speciality track by $index">
+                         {{x}}
+                          </span>  
+                          <span>
+                       
+                          </span>
+                       
+                        </div>               
+      </div>    
+</div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
+                      <div class="doctor-clinic-details">
+                       <!-- new icons -->
+                        <div class="doctor-details-search-result-1">
+                        </div>
+                        <div class="doctor-details-search-result-1">
+                        </div>
+                        <!-- end new icons -->
+                       <div class="doctor-details-search-result-1">
+                          
+                          <div class="search-result-icon-div">
+                            
+                            <i class="icon-clock104 clinic-icon">
+                            </i>
+                          </div>
+                          
+                          <div class="search-result-text-div1">
+                            <span>{{hosProDetail.timing[0].days[0]}}-{{hosProDetail.timing[0].days[hosProDetail.timing[0].days.length-1]}}<br></span>
+                            {{hosProDetail.timing[0].time[0].startTime}} : {{hosProDetail.timing[0].time[0].startMinute == undefined || hosProDetail.timing[0].time[0].startMinute == 0  ? '00' : hosProDetail.timing[0].time[0].startMinute}} {{hosProDetail.timing[0].time[0].shiftstart}}-{{hosProDetail.timing[0].time[0].endTime}} : {{ hosProDetail.timing[0].time[0].endMinute == undefined || hosProDetail.timing[0].time[0].endMinute == 0 ? '00' : hosProDetail.timing[0].time[0].endMinute}} {{hosProDetail.timing[0].time[0].shiftend}}
+                           
+
+                           <div class="option-icon1">
+
+                     <span class="address-dots popover_docpal">
+               <span class ="glyphicon glyphicon-option-horizontal" title = "OPD Timing"  
+      data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true" data-content="{{timingX = gettime(hosProDetail.timing)}}" data-toggle = "popoverSchedule">
+       </span> 
+               </span>
+
+                        </div>
+                         <div class="option-icon1-box-div"></div>
+                          
+                          </div>
+                          </div>
+                        </div>
+                        <div class="doctor-clinic-details">
+                        <div class="doctor-details-search-result-1">
+                          <div class="search-result-icon-div">
+                            <i class="icon-map-pointer7 map-icon-new">
+                            </i>
+                          </div>
+                            <div class="search-result-text-div">
+                             <span class="address-fix-div">   {{hosProDetail.location.completeaddres}}</span>
+                            <div class="option-icon1">
+               <span class="address-dots popover_docpal">
+               <span class ="glyphicon glyphicon-option-horizontal" title = "Address"  
+      data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true" data-content="{{hosProDetail.location.completeaddres}}" data-toggle = "popoverSchedule">
+       </span> 
+               </span>
+               </div>        
+                    
+                         </div>
+                         </div>
+                         </div>
+                         <div class="doctor-clinic-details">
+                          <div class="doctor-details-search-result-1">
+                          <div class="search-result-icon-div"><i class="fa fa-rupee rupee"></i></div>
+                          <div class="search-result-text-div">
+                            <span class="address-fix-div"><span class="money-fee fee_pad">   {{hosProDetail.fee}}</span></span>
+                            </div>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                       </div> 
+                       </div>
+                       </div>
+                       </div>
+                       
+              <!-- start inner services -->
+         
+        <div class="services-div border-class-new" ng-show="hosProDetail.about != ''">
+          <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+         About
+          </h4>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <p>{{hosProDetail.about}}</p>
+          </div>
+        </div>
+
+
+        
+
+         <div class="services-div ">
+          <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+         Facility
+          </h4>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="inner-li" >
+              <li ng-repeat="x in hosProDetail.services track by $index">
+               {{x}}
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+
+
+
+         <div class="services-div ">
+          <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+      Awards
+          </h4>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="inner-li" >
+              <li ng-repeat="x in hosProDetail.awards track by $index">
+               {{x}}
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="inner-sec">
+          <div class="col-md-6 col-sm-6 col-xs-12 spec-section">
+            <div class="spec">
+              <i class="icon-medical96 services-icon-new">
+              </i>
+              <h4>
+                Specialization
+              </h4>
+              <ul class="inner-li specialization-ul" ng-repeat="x in hosProDetail.speciality track by $index">
+              <li class="padding14">
+                  {{x }}
+              </li>
+              </ul>
+            </div>
+           
+            <span> 
+            
+            
+            
+          </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00">
+         
+          <span>
+          <i class="icon-identification10 services-icon-new">
+          </i>
+          <h4>
+            Memberships
+          </h4>
+          <ul class="inner-li members-ul">
+            <li ng-repeat="mem in hosProDetail.membership track by $index" class="padding14">
+      {{mem}}
+            </li>
+          </ul>
+        </span>
+        </div>
+      </div>
+              <!-- end services -->
+                     <!-- start gallery section -->
+              <div class="upload-data-div">
+                       <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div class="">
+      <div id="owl-demo" class="owl-carousel" > 
+    <div class="item" ng-repeat="x in hosProDetail.gallery track by $index"  on-finish-render="gallaryLoaded" ng-click="setImageModel(imageServer+'/'+x.image+'',x.caption)"><img class="lazyOwl"  ng-src="{{imageServer+'/'+x.image+''}}" alt="Lazy Owl Image">
+    </div>
+   </div>                          
+ </div>
+</div>
+</div>
+</div>
+                       <div class="row">
+<div id="myModal321" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{caption}}</h4>
+      </div>
+      <div class="modal-body">
+        <img class="lazyOwl" ng-src="{{imageServer3}}" alt="Lazy Owl Image">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ </div>
+              <!-- end gallery section -->
+              <!-- doctors section -->
+<div class="Hospital_Center_Part" ng-repeat="det in doctordetails track by $index">
+             <div class="col-md-12">
+  <div class="col-md-4">
+    <div class="hospital-card-detail">
+    <div class="profile-section">
+      <div class="hospital-image-section">
+        <div class="img-div1">
+    <img src="assets/img/hospital.png" alt="" class="img-responsive border-round-hospital-img"></div>
+      </div>
+      <div class="info-section">
+        <div class="hospital-section">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="hospital-profile-intro">
+                <h3 class="name-div cap capitalize" >
+                  <a href="#">
+                    {{det.name}}
+                  </a>
+                </h3>
+                
+                <div class="text-div capitalize break-class">
+                  <span>
+                  {{det.speciality}}
+                  </span>
+                  
+                  <span>
+                    {{det.location.completeaddres}}
+                  </span>
+                  <span>
+                    delhi
+                  </span>
+                  <span>
+                    254022
+                  </span>
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- 2nd  -->
+   
+              <!-- end doctor section -->
+ </div>
+ </div>
+</div>
+</section>
+ <script type="text/javascript">
+$(document).ready(function(){
+/*    $('#media').carousel({
+    pause: true,
+    interval: false,
+  });
+
+    loadGallery(true, 'a.thumbnail');
+
+    //This function disables buttons when needed
+    function disableButtons(counter_max, counter_current){
+        $('#show-previous-image, #show-next-image').show();
+        if(counter_max == counter_current){
+            $('#show-next-image').hide();
+        } else if (counter_current == 1){
+            $('#show-previous-image').hide();
+        }
+    }
+    function loadGallery(setIDs, setClickAttr){
+        var current_image,
+            selector,
+            counter = 0;
+
+        $('#show-next-image, #show-previous-image').click(function(){
+            if($(this).attr('id') == 'show-previous-image'){
+                current_image--;
+            } else {
+                current_image++;
+            }
+
+            selector = $('[data-image-id="' + current_image + '"]');
+            updateGallery(selector);
+        });
+
+        function updateGallery(selector) {
+            var $sel = selector;
+            current_image = $sel.data('image-id');
+            $('#image-gallery-caption').text($sel.data('caption'));
+            $('#image-gallery-title').text($sel.data('title'));
+            $('#image-gallery-image').attr('src', $sel.data('image'));
+            disableButtons(counter, $sel.data('image-id'));
+        }
+
+        if(setIDs == true){
+            $('[data-image-id]').each(function(){
+                counter++;
+                $(this).attr('data-image-id',counter);
+            });
+        }
+        $(setClickAttr).on('click',function(){
+            updateGallery($(this));
+        });
+    }*/
+});
+                     </script>
+                    <style type="text/css">
+#map
+{
+height: 200px;
+width:100%;
+}
+                    </style>
+<style type="text/css">
+    #owl-demo .item{
+      margin: 3px;
+    }
+    #owl-demo .item img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .nostyle
+{
+  border: none;
+  background: none;
+  outline: none;
+}
+.changefolow {
+  color: #1ba4aa;
+}
+</style>
+<script type="text/javascript">
+ 
+       $(document).on('click','.popover_docpal',function (){
+
+      var po = $(this).find("[isPopover = 'true']");
+      po.popover('show');
+
+   }); 
+     $(document).on('click','.read-dots',function (){
+    
+     
+      $("[data-toggle = 'popoverlanguage']").popover({
+         html : true,
+         content: function() {
+        return $(this).next().html();
+    }
+      });
+
+   }); 
+</script>
+<script type="text/javascript">
+$("body").on('click', function (e) {
+ 
+    $('[isPopover="true"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+
+});
+</script>

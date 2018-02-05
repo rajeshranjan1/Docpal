@@ -1,0 +1,126 @@
+<section class="loginCtrl" ng-controller="loginCtrl">
+    <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    <div class="wrapper ">
+        <div class="mobile-view-strip">
+            <div class="img-div1">
+                <img src="assets/img/user_img.png" class="img-responsive">
+                <p class="heading-para1">User's</p>
+                <p class="heading-para-signup1">login</p>
+            </div>
+        </div>
+        <div class="custom_container_class full-width ">
+            <div class="strip-sec">
+                <div class="">
+                    <div class="row no-margin">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding0 full-bdy">
+                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 no-padding">
+                                <div class="strip strip_high dr_shadow">
+                                    <div class="image-div1">
+                                        <div class="img-div1">
+                                            <img src="assets/img/user_img.png" class="img-responsive round-border-shadow">
+                                            <p class="heading-para1">User's</p>
+                                            <p class="heading-para-signup1">login</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12 boxBackground">
+                                <div class="custom-login-section">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                            <div class="header">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-9 pull-right"><span class="user-sign-up"><p class="heading-para-signup">login as a</p> <p class="heading-para-dr"><a ui-sref="loginInfo">Doctor.</a></p></span>
+                                                    <!--p class="heading-para2" ><a ng-click="registorUser">user</a></p!--></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="login-section">
+                                                <div class="login_box_bg">
+                                                    <div class="col-md-5 col-center">
+                                                        <div class="login_bdy">
+                                                            <div class="header-row">
+                                                                <div class="doc_welcme">
+                                                                    <p class="heading-para">welcome</p>
+                                                                    <p class="heading-para-dr">User</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-section">
+                                                                <form ng-submit="userLogin(logindata)" name="loginform">
+                                                                    <div>
+                                                                        <input type="text" class="input-text-class input_width" placeholder="Username" name="loginemail" ng-model="logindata.email">
+                                                                    </div>
+                                                                    <input type="password" class="input-text-class input_width" name="loginpassword" placeholder="Password" ng-model="logindata.password">
+                                                                    <div class="cutom-submit-btn">
+                                                                        <button type="submit" class="btn submit-btn-custom input_width" value="Log In" ng-click="submitted=true" ng-disabled="login2">{{logintext}}</button>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="col-md-3"></div>
+                                                                <div class="">
+                                                                    <div class="forgot-div">
+                                                                        <ul class="fogot-ul">
+                                                                            <li class="forgot-li">
+                                                                                <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginemail.$invalid"></span>
+                                                                                <span ng-show="loginform.loginemail.$error.required">Email is required.</span>
+                                                                                <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginpassword.$invalid">
+                                                        <span ng-show="loginform.loginpassword.$error.required">Password is required.</span></span>
+                                                                                <span style="color:#176C6F;display:inherit;" ng-show="usernotfound">No User Found</span>
+                                                                                <span style="color:#176C6F;display:inherit;" ng-show="servernotfound">No Server Found</span>
+                                                                                <span style="color:red;display:inherit;" ng-show="accountdeactive">Your account is not active. Please contact to administrator</span>
+                                                                            </li>
+                                                                            <li class="forgot-li2">
+                                                                                <a ui-sref="forgotpassword" class="forgtpass">Forgot Password ?</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--pv!-->
+                                                <div class="row">
+                                                    <div class="col-md-4 col-md-offset-4">
+                                                        <div class="social-row">
+                                                            <div class="social-div">
+                                                                <div class="register">
+                                                                    or
+                                                                </div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <img onclick="fbloginUser();" src="assets/img/facebook.png">
+                                                                    </li>
+                                                                    <li>
+                                                                        <img id="googleLoginBtn" src="assets/img/google.png">
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2"></div>
+                                                </div>
+                                                <!--pv!-->
+                                                <div class="purchase-div">
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <p class="member">Not a member yet ? Register Now </p>
+                                                    </div>
+                                                </div>
+                                                <div class="cutom-create-btn">
+                                                    <button ui-sref="registorUser" class="btn submit-btn-custom">Create an Account</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+startApp();
+</script>

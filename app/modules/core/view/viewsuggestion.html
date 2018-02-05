@@ -1,0 +1,11 @@
+<span class="suggestionbox width04">
+<ul>
+<li ng-repeat="n in names | limitTo: 3 track by $index" ng-click="setValueInBox(n)">{{n}}</li>
+</ul>
+</span>
+
+<style type="text/css">
+.suggestionbox {
+	position: absolute;
+}
+</style>

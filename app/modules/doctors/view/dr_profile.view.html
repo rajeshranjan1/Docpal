@@ -1,0 +1,922 @@
+<div class="tab-content">
+<!-- <form id="doctorForm" ng-submit="editdoctor(doctor)" novalidate> -->
+  <div id="dr_profile" class="tab-pane fade in active">
+      <div class="tab-details clearfix">
+        <!-- DOCTOR INFORMATION -->
+          <div class="col-md-12 p-0">
+              <div class="col-md-12 pd-lr-8 clinic-detail-row1 hos-section">
+                  <div class="about">
+                      <div class="dr-profile-wpr col-md-12 p-0">
+                          <div class="col-md-2 p-0">
+                              <img ng-src="{{getMyImage()}}" alt="Doctor image" class="dr-image-view">
+                          </div>
+                          <div class="col-md-10 pd-lr-0">
+                            <h2 class="wpr-heading" ng-model="doctorInfoAllData.name">{{doctorInfoAllData.name}} <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-modal" class="pull-right ed-btn">Edit</a></h2>
+                            <span class="exp-text" ng-model="doctorInfoAllData.experience">{{doctorInfoAllData.experience}} years</span><br>
+                            <span class="exp-text" ng-model="doctorInfoAllData.speciality">{{doctorInfoAllData.speciality}}</span><br>
+                            <span class="exp-text" ng-model="doctorInfoAllData.gender">{{doctorInfoAllData.gender}}</span><br>
+                            <p class="exp-text"><span ng-repeat="lang in languages track by $index" >{{lang}},</span></p>
+                          </div>
+                      </div>
+                      <h2 class="wpr-heading">About <a href="javascript:void(0);" data-toggle="modal" data-target="#about-modal" class="pull-right ed-btn">Edit</a></h2>
+                      <p class="exp-text" ng-model="doctorInfoAllData.about">{{doctorInfoAllData.about}}</p>
+                  </div>
+              </div>
+          </div>
+          <!-- SERVICES -->
+          <div class="col-md-12 clinic-detail-row-two hos-section">
+              <h2 class="wpr-heading"> Services  <a href="javascript:void(0);" class="pull-right ed-btn" data-toggle="modal" data-target="#services-modal">Edit</a></h2>
+              <div class="about">
+                  <ul class="dr-services-list clearfix">
+                      <li ng-repeat="ser in doctorInfoAllData.services track by $index" capitalize>
+                        <p class="wrap">{{ser}}</p>
+                        <input type="text" class="editable-class-new" ng-model="ser" ng-blur='setservices(ser,doctorInfoAllData.services[$index])' readonly>
+                        <span class="remove-span" ng-click="deleteservices(ser,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                        <span class="undo-span" ng-click="deleteservices(ser,0)"><i class="fa fa-reply rep"></i></i></span>
+                        <span class="edit-span"><i class="icon-edit5"></i></span>
+                    </li>
+                     
+                  </ul>
+              </div>
+          </div>
+          <!-- SPECIALIZATION -->
+          <div class="col-md-12 pd-r-0 clinic-detail-row-two hos-section">
+              <div class="col-md-6 pd-lr-0">
+                <h2 class="wpr-heading">Specialization <a href="javascript:void(0);" class="pull-right ed-btn" style="margin-right:15px;" data-toggle="modal" data-target="#specialization-modal">Edit</a></h2>
+                  <div class="about">
+                      <ul class="dr-services-list-one clearfix">
+                          <li ng-repeat="spec in doctorInfoAllData.Specializationfrom track by $index">{{spec}}</li>
+                          
+                      </ul>
+                  </div>
+              </div>
+              <!-- AWARD -->
+              <div class="col-md-6  pd-r-0">
+                <h2 class="wpr-heading">Award <a href="javascript:void(0);" class="pull-right ed-btn" data-toggle="modal" data-target="#award-modal">Edit</a></h2>
+                  <div class="about ">
+                      <ul class="dr-services-list-one clearfix">
+                          <li ng-repeat="awd in doctorInfoAllData.awards track by $index">
+                              <span class="wrap">{{awd}}</span>
+                              <input type="text" class="editable-class-new" ng-model="awd" ng-blur='setawards(awd,doctorInfoAllData.awards[$index])' readonly>
+                              <span class="remove-span" ng-click="deleteawards(awd,1)"><i class="icon-cross72"></i></span>
+                              <span class="undo-span" ng-click="deleteawards(awd,0)"><i class="fa fa-reply rep"></i></span>
+                              <span class="edit-span"><i class="icon-edit5"></i></span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <!-- EDUCATION -->
+          <div class="col-md-12 p-0">
+              <div class="col-md-6 p-0 clinic-detail-row-two hos-section">
+                  <div class="about">
+                      <h2 class="wpr-heading">Education<a href="javascript:void(0);" class="pull-right ed-btn" data-toggle="modal" data-target="#education-modal">Edit</a> </h2>
+                      <ul class="dr-services-list-one clearfix">
+                          <li ng-repeat="edu in doctorInfoAllData.educationfrom track by $index">
+                            <p class="wrap">{{edu}}</p>
+                            <input type="text" class="editable-class-new" placeholder="{{doctorInfoAllData.educationfrom[$index]}}" ng-model="edu" ng-blur='seteducationfrom(edu,doctorInfoAllData.educationfrom[$index])' readonly>
+                            <span class="remove-span" ng-click="deleteeducationfrom(edu,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                            <span class="undo-span" ng-click="deleteeducationfrom(edu,0)"><i class="fa fa-reply rep"></i></span>
+                            <span class="edit-span"><i class="icon-edit5"></i></span>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+              <!-- EXPERIENCE -->
+              <div class="col-md-6 p-0 clinic-detail-row-two hos-section">
+                  <div class="about">
+                    <h2 class="wpr-heading">Experience <a href="javascript:void(0);" class="pull-right ed-btn" data-toggle="modal" data-target="#experience-modal">Edit</a></h2>
+                      <ul class="dr-services-list-one clearfix">
+                          <li ng-repeat="exp in doctorInfoAllData.experiencefrom track by $index">
+                            <p class="wrap">{{exp}}</p>
+                            <input type="text" class="editable-class-new" placeholder="{{doctorInfoAllData.experiencefrom[$index]}}" ng-model="exp" ng-blur='setexperiancefrom(exp,doctorInfoAllData.experiencefrom[$index])' readonly>
+                            <span class="remove-span" ng-click="deleteexperiancefrom(exp,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                            <span class="undo-span" ng-click="deleteexperiancefrom(exp,0)"><i class="fa fa-reply rep"></i></span>
+                            <span class="edit-span"><i class="icon-edit5"></i></span>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- REGISTRATION DETAILS -->
+  <div id="registerDocument" class="tab-pane fade ">
+      <div class="tab-details clearfix">
+          <div class="col-md-12 pd-lr-8 clinic-detail-row1 hos-section">
+            <div class="form-group">
+              <h2 class="wpr-heading">Registration Details</h2>
+            </div>
+              <form class="" method="post" action="#">
+                  <div class="col-md-12 p-0">
+                      <div class="col-md-3 pd-lr-8">
+                          <div class="form-group">
+                              <label for="First name">Council Registration Number</label>
+                              <input type="text" name="" class="form-control modal-input" placeholder="Registration Number">
+                          </div>
+                      </div>
+                      <div class="col-md-5 pd-lr-8">
+                          <div class="form-group">
+                              <label for="First name">Council Name</label>
+                              <input type="text" name="" class="form-control modal-input" placeholder="Council Name">
+                          </div>
+                      </div>
+                      <div class="col-md-3 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="First name">Year</label>
+                                  <select class="form-control modal-input">
+                                      <option value="0">2011</option>
+                                      <option value="1">2012</option>
+                                      <option value="2">2013</option>
+                                      <option value="4">2014</option>
+                                      <option value="5">2015</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-1 pd-lr-8">
+                          <div class="form-group">
+                              <button type="button" class="btn btn-danger" style="margin-top: 20px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <a href="javascript:void(0);" class="btn btn-info">Add Registration</a>
+                  </div>
+              </form>
+          </div>
+          <div class="col-md-12 clinic-detail-row-two hos-section">
+              <div class="form-group">
+                   <h2 class="wpr-heading">Documents / Certificates *</h2>
+              </div>
+              <div class="col-md-12 p-0">
+                  <div class="col-md-3">
+                      <div class="upload-certificate">
+                          <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                          <label for="file-1"><i class="fa fa-upload" aria-hidden="true"></i> <span>upload a document...</span></label>
+                      </div>
+                      <div class="id-details-wpr">
+                          <strong class="id-txt">Identity Proof / 
+                          Acceptable Proof</strong>
+                          <ul class="proof-list">
+                              <li>Aadhar card</li>
+                              <li>Driving License</li>
+                              <li>Voter Card</li>
+                              <li>Any Other Govt. ID</li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="upload-certificate">
+                          <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                          <label for="file-1"><i class="fa fa-upload" aria-hidden="true"></i> <span>upload a document...</span></label>
+                      </div>
+                      <div class="id-details-wpr">
+                          <strong class="id-txt">Medical Registration Certification</strong>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="upload-certificate">
+                          <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                          <label for="file-1"><i class="fa fa-upload" aria-hidden="true"></i> <span>upload a document...</span></label>
+                      </div>
+                      <div class="id-details-wpr">
+                          <strong class="id-txt">Qualification Proof</strong>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- CLINIC -->
+  <div id="dr_clinic" class="tab-pane fade">
+      <div class="tab-details clearfix">
+          <div class="hos-section clearfix">
+              <div class="col-md-12">
+                <div class="clearfix ulborderBottom" ng-include="'modules/doctors/view/clinicLocation.html'"></div>
+              </div>
+              <div class="hos-location col-md-12 pd-lr-0 ">
+                  <div class="col-md-2 pd-l-0">
+                      <div class="hosp-image">
+                          <img src="assets/img/Dr1.png" alt="image">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <!-- <p>{{doctorInfoAllData.address[doctorInfoAllData.indexId].clinic}}</p> -->
+
+                      <h3 class="clinic-heading">Max Hospitality</h3>
+                      <div class="hos-add-det">
+                          <span>Obstetrics &amp; Gynaecology</span>
+                          <span>flat number - 25, </span>
+                          <span>Netaji Subash Appartment, </span>
+                          <span>phase-II, Dwarka, Delhi, 110075, India</span>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="hos-add-det">
+                          <p><i class="icon-clock104 clinic-icon wtc-icon"></i> <span>Monday - Friday</span>
+                              <br> <span>02:00 PM to 05:00 PM</span> </p>
+                          <p><i class="icon-clock104 clinic-icon wtc-icon"></i> Saturday - Sunday
+                              <br> <span>10:00 AM to 01:00 PM</span> </p>
+                          <!-- <span class="ng-binding">30 Minutes Slots</span> -->
+                          <span><i class="fa fa-rupee clinic-icon wtc-icon" style="padding-top:3px; margin-right:9px; margin-left:4px"></i> 500 consultation fees </span>
+                      </div>
+                  </div>
+                  <div class="col-md-2 clic-buttons ">
+                      <a href="#" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#edit-clinic-time">Edit</a>
+                      <a href="#" class="btn btn-danger btn-sm btn-block">Delete</a>
+                  </div>
+              </div>
+              <div class="col-md-12 p-0 clearfix mr-tp-15" id="clinic-view-more">
+                  <div class="clinic-gallery clearfix">
+                      <div class="form-group">
+                        <h2 class="wpr-heading">Clinic Photo<a href="javascript:void(0);" data-toggle="modal" data-target="#Add-photos-edit" class="pull-right ed-btn">Add Photos</a></h2>
+                      </div>
+                      <div class="col-md-12 p-0 clearfix">
+                          <div class="gallery-img-wpr clearfix">
+                              <div class="col-md-3">
+                                  <div class="gallery-img">
+                                      <img src="assets/img/Dr1.png" alt="gallery image" class="img-100">
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="gallery-img">
+                                      <img src="assets/img/Dr1.png" alt="gallery image" class="img-100">
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="gallery-img">
+                                      <img src="assets/img/Dr1.png" alt="gallery image" class="img-100">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class=" clinic-detail-row-two clearfix">
+                      <div class="col-md-12 p-0 ">
+                          <div class="col-md-6 p-0">
+                            <div class="form-group">
+                              <h2 class="wpr-heading">Clinic Location</h2>
+                            </div>
+                            <div class="g-map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7008.002921442574!2d77.31833172297068!3d28.56971885224419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce44f2ca1470f%3A0x8cff905b6cbfb433!2sSector+18%2C+Noida%2C+Uttar+Pradesh+201301!5e0!3m2!1sen!2sin!4v1512381093729" width="100%" height="140" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                            </div>
+                          </div>
+                          <div class="col-md-6 pd-r-0">
+                            <div class="form-group">
+                              <h2 class="wpr-heading">About <a href="javascript:void(0);" data-toggle="modal" data-target="#about-edit-modal" class="pull-right ed-btn">Edit</a></h2>
+                            </div>
+                            <p class="exp-text">Dr. Rajesh Ranjan is a Dermatologist, Cosmetologist and Senior Hair Transplant Surgeon in West Delhi having centres in Delhi cantt and uttam nagar.He did his MD from one of the most prestigious hospitals (King Edward Memorial hospital. mumbai) MD from one of the most prestigious hospitals Cosmetologist and Senior Hair Transplant Surgeon in West Delhi having centres in Delhi ...</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class=" clinic-detail-row-two clearfix">
+                  <div class="col-md-12 p-0">
+                    <div class="col-md-6 pd-l-0">
+                        <h2 class="wpr-heading">Payment Mehtod</h2>
+                    </div>
+                    <div class="col-md-6 pd-r-0" ng-model="doctorInfoAllData.paymentMode">
+                      {{doctorInfoAllData.paymentMode}} <a href="javascript:void(0);" data-toggle="modal" data-target="#payment-modal" class="pull-right ed-btn">Edit</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 p-0 clearfix">
+                  <a href="javascript:void(0);" class="view-more-det text-left" id="view-more-det">View more details..</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- PERSONAL DETAILS -->
+  <div id="dr_account" class="tab-pane fade">
+      <div class="tab-details clearfix">
+          <div class="col-md-12 pd-lr-0">
+              <div class="col-md-6 pd-lr-8">
+                  <div class="panel panel-info acc-head">
+                      <div class="panel-heading"> <strong>Personal Details:</strong></div>
+                  </div>
+                  <div class="per-details">
+                      <p><strong>Username : </strong> <span ng-bind="doctorInfoAllData.username">{{doctorInfoAllData.username}}</span> <a href="javascript:void(0);" class="pull-right"  data-toggle="modal"  class="edit-btn" id="editbtn" data-target="#personal-modal">Edit</a></p>
+                      <p><strong>Category : </strong> <span ng-bind="doctorInfoAllData.speciality">{{doctorInfoAllData.speciality}}</span></p>
+                      <p><strong>Gender : </strong> <span ng-bind="doctorInfoAllData.gender">{{doctorInfoAllData.gender}}</span></p>
+                      <p><strong>Blood Group : </strong> <span ng-bind="doctorInfoAllData.BloodGroup"> {{doctorInfoAllData.BloodGroup}}</span></p>
+                  </div>
+              </div>
+              <div class="col-md-6 pd-lr-8">
+                  <div class="panel panel-info acc-head">
+                      <div class="panel-heading"> <strong>Contact Details:</strong></div>
+                  </div>
+                  <div class="per-details">
+                      <p><strong>Phone Number : </strong> <span ng-bind="doctorInfoAllData.mobile">{{doctorInfoAllData.mobile}}</span> <a href="javascript:void(0);" class="pull-right"  data-toggle="modal" data-target="#contact-modal">Edit</a></p>
+                      <p><strong>Email : </strong> <span ng-bind="doctorInfoAllData.email">{{doctorInfoAllData.email}}</span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- SUBSCRIPTION STATUS -->
+  <div id="dr_subscription" class="tab-pane fade">
+      <div class="tab-details clearfix">
+          <div class="col-md-12 pd-lr-0">
+              <div class="col-md-8 pd-lr-8 margin-zero">
+                  <div class="panel panel-info acc-head">
+                      <div class="panel-heading"> <strong>Subscrition Status:</strong></div>
+                  </div>
+                  <div class="per-details">
+                      <p><strong>Current plans:</strong> </p>
+                      <p><strong>Plan Name : </strong> <span>Silver</span></p>
+                      <p><strong>Plan Expiry Date : </strong> <span>Unlimited</span></p>
+                      <p><small>You're currently on Silver Plan that doesn't offer any reminder SMS, and access to mobile apps, and phone support. Choose your plan to enjoy the best Docpal experience.</small></p>
+                  </div>
+                  <div class="col-md-12 text-center" style="margin-top: 20px;">
+                      <a href="plans.html" class="btn  btn-sm btn-info">Manage your subscription</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- </form> -->
+
+
+<!-- PROFILE MODAL -->
+<div class="modal fade in" id="profile-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Personal Details</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form class="" method="post" action="#">
+                  <div class="file-upload">
+                      <div class="upload-certificate">
+                          <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                          <label for="file-1"><i class="fa fa-upload" aria-hidden="true"></i> <span>Drag &amp; Drop or Upload Photo</span></label>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12 p-0">
+                      <div class="col-md-2 pd-lr-8">
+                          <div class="form-group">
+                              <label for="Title">Title</label>
+                              <select class="form-control modal-input">
+                                  <option value="0">Dr.</option>
+                                  <option value="1">Dt.</option>
+                                  <option value="2">Mr.</option>
+                                  <option value="4">Ms.</option>
+                                  <option value="5">Mrs.</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-5 pd-lr-8">
+                          <div class="form-group">
+                              <label for="First name">First Name</label>
+                              <input type="text" name="" ng-model="doctorInfoAllData.name" class="form-control modal-input" placeholder="First name">
+                          </div>
+                      </div>
+                      <div class="col-md-5 pd-lr-8">
+                          <div class="form-group">
+                              <label for="Last name">Last Name</label>
+                              <input type="text" name="" class="form-control modal-input" placeholder="Last name">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6 pd-lr-8">
+                      <div class="form-group">
+                          <label for="name">Experience</label>
+                          <select class="form-control modal-input" ng-model="doctorInfoAllData.experience">
+                              <option value="0">22</option>
+                              <option value="1">23</option>
+                              <option value="2">24</option>
+                              <option value="4">25</option>
+                              <option value="5">26</option>
+                              <option value="6">27</option>
+                              <option value="7">28</option>
+                              <option value="8">29</option>
+                              <option value="8">30</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-6 pd-lr-8">
+                      <div class="form-group">
+                          <label for="name">Specialization</label>
+                          <input type="text" name="" class="form-control modal-input" ng-model="doctorInfoAllData.speciality" placeholder="Specialization">
+                      </div>
+                  </div>
+                  <div class="col-md-12 pd-lr-8">
+                      <label for="name">Gender</label>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <input type="radio" name="gender" class="radio-inline  mr-tp-5" placeholder="Name"> <span>Male</span>
+                          </div>
+                          <div class="col-md-6">
+                              <input type="radio" name="gender" class="radio-inline mr-tp-5" placeholder="Name"> <span>Female</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12 pd-lr-8" style="margin-top: 12px;">
+                      <div class="form-group">
+                          <label for="name">Language</label>
+                          <input type="text" name="" class="form-control modal-input" placeholder="Language">
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!--ABOUT MODAL  -->
+
+<div class="modal fade in" id="about-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header profile-modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title white">About Me</h4>
+        </div>
+        <div class="modal-body">
+            <form class="" method="post" action="#">
+                <div class="form-group">
+                    <label for="name">About </label>
+                    <textarea name="" class="form-control modal-input" placeholder="Write Something here......"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer profile-modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+            <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SERVICES MODAL -->
+<div class="modal fade in" id="services-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Services</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form class="" method="post" action="#">
+                  <div class="col-md-12 p-0">
+                      <div class="col-md-8 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="First name">Services</label>
+                                  <input type="text" name="" class="form-control modal-input" placeholder="Services">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 pd-lr-8">
+                          <div class="form-group">
+                              <label for="First name">Price</label>
+                              <input type="text" name="" class="form-control modal-input" placeholder="Price">
+                          </div>
+                      </div>
+                      <div class="col-md-1 pd-lr-8">
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-danger" style="margin-top: 20px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- SPECIALIZATION -->
+ <div class="modal fade in" id="specialization-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header profile-modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title white">Specialization</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="" method="post" action="#">
+                    <div class="col-md-12 p-0">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="First name">Specialization</label>
+                                <input type="text" name="" class="form-control modal-input" placeholder="Type to add more Specialization">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer profile-modal-footer">
+                <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+                <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDUCATION -->
+ <div class="modal fade in" id="education-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header profile-modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title white">Education</h4>
+        </div>
+        <div class="modal-body clearfix">
+            <form class="" method="post" action="#">
+                <div class="col-md-12 p-0">
+                    <div class="col-md-3 pd-lr-8">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="First name">Qualification</label>
+                                <input type="text" name="" class="form-control modal-input" placeholder="Qualification">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 pd-lr-8">
+                        <div class="form-group">
+                            <label for="First name">College</label>
+                            <input type="text" name="" class="form-control modal-input" placeholder="College">
+                        </div>
+                    </div>
+                    <div class="col-md-3 pd-lr-8">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="First name">Year</label>
+                                <select class="form-control modal-input">
+                                    <option value="0">2011</option>
+                                    <option value="1">2012</option>
+                                    <option value="2">2013</option>
+                                    <option value="4">2014</option>
+                                    <option value="5">2015</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 pd-lr-8">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger" style="margin-top: 20px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:void(0);" class="btn btn-info">Add Education</a>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer profile-modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+            <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- AWARD -->
+<div class="modal fade in" id="award-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Award</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form class="" method="post" action="#">
+                  <div class="col-md-12 p-0">
+                      <div class="col-md-9 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="First name">Award</label>
+                                  <input type="text" name="" class="form-control modal-input" placeholder="Type to add more Specialization">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="First name">Year</label>
+                                  <select class="form-control modal-input">
+                                      <option value="0">2011</option>
+                                      <option value="1">2012</option>
+                                      <option value="2">2013</option>
+                                      <option value="4">2014</option>
+                                      <option value="5">2015</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <a href="javascript:void(0);" class="btn btn-info">Add Award</a>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- EXPERINECE -->
+<div class="modal fade in" id="experience-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Experience</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form class="" method="post" action="#">
+                  <div class="col-md-12 p-0">
+                      <div class="col-md-12 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="Clinic">Clinic/Hospital Name</label>
+                                  <input type="text" name="" class="form-control modal-input" placeholder="Clinic/Hospital Name">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-12 p-0">
+                          <div class="col-md-2 pd-lr-8">
+                              <div class="form-group">
+                                  <label for="First name">From</label>
+                                  <select class="form-control modal-input">
+                                      <option value="0">2011</option>
+                                      <option value="1">2012</option>
+                                      <option value="2">2013</option>
+                                      <option value="4">2014</option>
+                                      <option value="5">2015</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-2 pd-lr-8">
+                              <div class="form-group">
+                                  <label for="First name">To</label>
+                                  <select class="form-control modal-input">
+                                      <option value="0">2011</option>
+                                      <option value="1">2012</option>
+                                      <option value="2">2013</option>
+                                      <option value="4">2014</option>
+                                      <option value="5">2015</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-5 pd-lr-8">
+                              <div class="form-group">
+                                  <label for="Clinic">Role</label>
+                                  <input type="text" name="" class="form-control modal-input" placeholder="Role">
+                              </div>
+                          </div>
+                          <div class="col-md-3 pd-lr-8">
+                              <div class="form-group">
+                                  <div class="form-group">
+                                      <label for="Clinic">City</label>
+                                      <input type="text" name="" class="form-control modal-input" placeholder="City">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <a href="javascript:void(0);" class="btn btn-info">Add Experience</a>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- PERSONAL INFORMATION -->
+<div class="modal fade in" id="personal-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Personal Details</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form id="doctorForm" ng-submit="editdoctor(doctor)" novalidate>
+                  <div class="col-md-12 p-0">
+                     
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Username</label>
+                                  <input type="text" name="" ng-model="doctorInfoAllData.username" class="form-control modal-input" value="{{doctorInfoAllData.username}}"  placeholder="Username">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Category</label>
+                                  <input type="text" name="" ng-model="doctorInfoAllData.speciality" class="form-control modal-input" value="{{doctorInfoAllData.speciality}}"  placeholder="Speciality">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Gender</label>
+                                  <!-- <select ng-model="doctorInfoAllData.gender"  ng-options="x for x in gender"> </select> -->
+                                  <!-- <input type="text" name="" ng-model="doctorInfoAllData.gender" class="form-control modal-input" value="{{doctorInfoAllData.gender}}"  placeholder="Gender"> -->
+                                  <select class="form-control modal-input" ng-model="doctor.gender" name="gender">
+                                    <option value="Gender" ng-selected="true" selected="selected">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Blood Group</label>
+                                  <!-- <input type="text" name="" ng-model="doctorInfoAllData.BloodGroup" class="form-control modal-input" value="{{doctorInfoAllData.BloodGroup}}"  placeholder="Blood Group"> -->
+                                  <select class="form-control modal-input" ng-model="doctor.BloodGroup" name="Bloodgroup">
+                                    <option value="Bloodgroup" ng-selected="true" selected="selected">Bloodgroup</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O+">O-</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" data-dismiss="modal" class="btn btn-sm theme-btn"   id="savebtn" ng-click="saveAccountData(doctorInfoAllData)">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- CONTACT INFORMATION -->
+<div class="modal fade in" id="contact-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header profile-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title white">Contact Details</h4>
+          </div>
+          <div class="modal-body clearfix">
+              <form class="" method="post" action="#">
+                  <div class="col-md-12 p-0">
+                     
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Phone Number</label>
+                                  <input type="text" name="" ng-bind="doctorInfoAllData.mobile" class="form-control modal-input" value="{{doctorInfoAllData.mobile}}"  placeholder="Phone Number">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 pd-lr-8">
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="name">Email</label>
+                                  <input type="text" name="" ng-bind="doctorInfoAllData.email" class="form-control modal-input" value="{{doctorInfoAllData.email}}"  placeholder="Email">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer profile-modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+              <button type="button" id="" data-dismiss="modal" class="btn btn-sm theme-btn">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade in" id="edit-clinic-time" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header profile-modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Clinic fee &amp; timing</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="tab-details clearfix">
+                    <div class="col-md-12 p-0">
+                        <div class="add-clinic-detail">
+                            <div class="inner-clinic">
+                                <div class="col-md-12 p-0">
+                                    <div class="col-md-6 pd-l-0">
+                                        <label for="Consultation Duration">Consultation Duration</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="Consultaion Duration" placeholder="Consultaion Duration">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pd-r-0">
+                                        <label for="Consultation Fee">Consultation Fee</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="Consultaion Fee" placeholder="Consultaion Fee">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label> <input type="checkbox" class="checkbox-cust" name="checkbox"> Clinic Open 24 X 7</label>
+                                </div>
+                                <div class="col-md-12 form-group clearfix">
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Monday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Tuesday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Wednesday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Thursday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Friday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Saturday</label>
+                                    <label class="chk">
+                                        <input type="checkbox" class="checkbox-cust" name="checkbox"> Sunday</label>
+                                </div>
+                                <div class="col-md-12 pd-lr-0 form-group clearfix">
+                                    <div class="more-time clearfix">
+                                        <label class="col-md-12 pd-l-0">Timing *</label>
+                                        <div class="form-group p-0">
+                                            <div class="col-md-6 pd-l-0">
+                                                <label>From</label>
+                                                <select class="form-control" name="from_time">
+                                                    <option value="">09:00 AM</option>
+                                                    <option value="">09:15 AM</option>
+                                                    <option value="">09:30 AM</option>
+                                                    <option value="">09:45 AM</option>
+                                                    <option value="">10:00 AM</option>
+                                                    <option value="">10:15 AM</option>
+                                                    <option value="">10:30 AM</option>
+                                                    <option value="">10:45 AM</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 pd-r-0">
+                                                <label>To</label>
+                                                <select class="form-control" name="to_time">
+                                                    <option value="">09:15 AM</option>
+                                                    <option value="">09:30 AM</option>
+                                                    <option value="">09:45 AM</option>
+                                                    <option value="">10:00 AM</option>
+                                                    <option value="">10:15 AM</option>
+                                                    <option value="">10:30 AM</option>
+                                                    <option value="">10:45 AM</option>
+                                                    <option value="">11:00 AM</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pd-l-0 clearfix">
+                                    <a href="javascript:void(0);" class="btn btn-info"> + Add More </a>
+                                </div>
+                                <div class="col-md-12 add-timing">
+                                    <p>Note: Changes in fees &amp; timings will go live immediately on your public profile.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="modal-footer profile-modal-footer">
+                <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
+                <a href="add-clinic.html" class="btn btn-sm theme-btn">Next</a>
+            </div>
+        </div>
+    </div>
+</div>

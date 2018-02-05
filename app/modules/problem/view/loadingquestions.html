@@ -1,0 +1,110 @@
+<style type="text/css">
+    
+  @-webkit-keyframes placeHolderShimmer {
+    0% {
+      background-position: -468px 0
+    }
+    100% {
+      background-position: 468px 0
+    }
+  }
+  
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -468px 0
+    }
+    100% {
+      background-position: 468px 0
+    }
+  }
+  
+  .timeline-wrapper {
+    background-color: #e9eaed;
+    color: #141823;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .timeline-item {
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+   
+  }
+  
+  .animated-background {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: #eeeeee;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(236, 239, 241, 0.51)), color-stop(18%, rgba(236, 239, 241, 0.98)), color-stop(33%, rgba(236, 239, 241, 0.51)));
+    background: -webkit-linear-gradient(left, rgba(236, 239, 241, 0.51) 8%, rgba(236, 239, 241, 0.98) 18%, rgba(236, 239, 241, 0.51) 33%);
+    background: linear-gradient(to right, rgba(236, 239, 241, 0.51) 8%, rgba(236, 239, 241, 0.98) 18%, rgba(236, 239, 241, 0.51) 33%);
+    -webkit-background-size: 800px 104px;
+    background-size: 800px 104px;
+    position: relative;
+  }
+.name_placeholder {
+    height: 25px;
+    width: calc(100% - 108px);
+}
+ .lang_placeholder {
+    height: 20px;
+    width: calc(100% - 40px);
+}
+.loading div{
+  width:20px;
+  height:20px;
+  margin:3px;
+}
+.loader-problems-comment{
+border-top: medium none;
+    height: 20px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    width: 100%;
+}
+  </style>
+
+<div class="search-result-main-div2">
+                 <!-- start profile section -->    
+                 <div class="main-comment-section">
+                 <div class="row">
+                 <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div class="question-list-div">
+                  <div class="main-img-div">
+                  <div class="img-div m-img">
+                  <!-- <img ng-src="{{x.details.image.length > 0 && imageServer+'/'+x.details.image+'' || 'assets/img/user_img.png'}}" alt="" class="img-responsive"></a> -->
+                  <div class="animated-background" style="border-radius: 50%;
+    width: 30px;
+    height: 30px;border:2px solid #EEEEEE"></div>
+                  <div class="animated-background dr-name-para" style="width: 30px; height: 10px;"></div>
+                  </div>   
+                  </div>
+                  <div class="">
+                  <div class="question-haed-list">
+                  <h4 class="question-class">
+                    <div class="animated-background" style="width: calc(100%-30px); height: 40px;"></div>
+                  </h4>
+                  </div>
+                  </div>
+                </div>
+               <!-- <div class="comment">
+                  <div class="row" style="padding:2px;">
+                        <div class="animated-background comment" style="width: 100%; height: 20px;"></div>
+                    </div>
+                  </div> -->
+                  <div class="animated-background comment loader-problems-comment" style="width: 100%; height: 20px;"></div>
+                 </div>
+                </div>
+                </div>
+              </div>
+            </div>

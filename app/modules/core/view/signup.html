@@ -1,0 +1,277 @@
+
+<style>
+.container-fluid{
+  padding-left: 0;
+}
+.strip {
+    width: 178px;
+    height: 500px;
+    float:left;
+    background-color: #ebebeb;
+    position: relative;
+    
+    left:0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;    
+  }
+.heading-para1 {
+    color: rgb(27, 164, 170);
+    font-size: 20px;
+
+} 
+.heading-para-signup1 {
+    color: #5a6e6f;
+    
+}
+.image-div1 {
+    margin-top: 150px;
+    text-align: center;
+    width: 100%;
+}
+.img-div1{
+  display: inline-block;
+  width: 80px;
+}
+.user-sign-up {
+    float: right;
+}
+</style>
+    </div>
+<section>
+  <div class="wrapper">
+  <div class="strip-sec">
+    <div class="container-fluid">
+    <div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <div class="strip1-sec">
+    <div class="col-md-2"style="padding:0;">
+      <div class="custom-login-sec">
+      
+    
+  <div class="strip">
+       <div class="image-div1">      
+       <div class="img-div1" ng-show="doctorsignup">
+<img src="assets/img/doctor_img.png" class="img-responsive">
+<p class="heading-para1">Doctor's</p><p class="heading-para-signup1">sign up</p>
+</div>
+ <div class="img-div1" ng-show="usersignup">
+<img src="assets/img/doctor_img.png" class="img-responsive" >
+<p class="heading-para1">User's</p><p class="heading-para-signup1">sign up</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="strip2-sec"> 
+<div class="col-md-10">
+
+<div class="custom-login-section">
+  <!--div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"!-->
+    <!--div class="col-md-4"!-->
+      
+      
+    
+<div class="row">
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+<div class="paragraph-section-div">
+<div class="col-md-3">
+</div>
+  
+<div class="col-md-9">
+<div class="validation-div-section">
+validation here
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- form section -->
+<div class="form-section">
+  <form ng-submit="myform.$valid && registorUser(user)"  name="myform" novalidate ng-app="myApp">
+<div class="row">
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <div class="header-row">
+  <div class="col-md-2"></div>
+ <div class="col-md-9"><span class="user-sign-up"><p class="heading-para-signup">sign up as a</p> <p class="heading-para-dr" ng-click="goToRegisteruser()">User.</p><!-- <p class="heading-para-dr" ng-click="switchtouser()">Doctor.</p> --></span><!--p class="heading-para2" ><a ng-click="registorUser">user</a></p!--></div>
+</div>
+
+<div class="email-row">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+<div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" type="text"  ng-model="user.name" id="input-4"  name="fname"  required/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+                        <span class="input__label-content1 input__label-content--hoshi1">Full Name</span>
+                    </label>
+                </div>
+</div>
+<div class="col-md-4">
+<div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" ng-model="user.mobile" type="text" id="input-7" name="mobile" required />
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-7">
+                        <span class="input__label-content1 input__label-content--hoshi1">Phone No</span>
+                    </label>
+                </div>
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<div class="email-row">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+  <div>
+<div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" type="text" id="input-5" ng-model="user.email" name="email" ng-blur="checkemail(user.email)" required />
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-5">
+                        <span class="input__label-content1 input__label-content--hoshi1">E-mail</span>
+                    </label>
+                </div>
+</div>
+</div>
+
+
+<div class="col-md-4">
+  <div>
+<div class="input1 input1--hoshi1 left-aling">
+                    <input class="input__field1 input__field--hoshi1" type="password" id="input-6" ng-model="user.password" required name="password"/>
+                    <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-6">
+                        <span class="input__label-content1 input__label-content--hoshi1">Password</span>
+                    </label>
+                </div>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+</div>
+</div>
+<div class="checkbox-row">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+
+<div class="input-text-section">
+  <div class="check">
+<input type="checkbox" name="otp" value="OTP"><span>Verified by mobile OTP.</span>
+</div>
+</div>
+</div>
+
+
+<div class="col-md-4">
+
+<div class="input-text-section">
+  <div class="check">
+<input type="checkbox" name="email" value="email"><span>Verified by e-mail address.</span>
+</div>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<div class="btn-row">
+
+<!-- <div class="col-md-4">
+<p class="continue-paragraph"><a href="">By clicking ‘Continue’ you agree to HiOscar.com’s Website</a> Terms of Service and Privacy Policy.</p>
+</div> -->
+
+
+
+  <div class="continue-btn-div">
+    <span style="color:red;display:inherit;" ng-show="submitted && myform.fname.$invalid">
+<span ng-show="myform.fname.$error.required">Full Name is required.</span>
+</span>
+  
+<span style="color:red;display:inherit;" ng-show="submitted && myform.email.$invalid">
+<span ng-show="myform.email.$error.required">Email is required.</span>
+<span ng-show="myform.email.$error.email"> Not valid email! </span>
+</span>
+
+<span style="color:red;display:inherit;" ng-show="submitted && myform.password.$invalid">
+<span ng-show="myform.password.$error.required">Password is required.</span>
+</span>
+  <button class="btn create-btn-continue" ng-click="submitted=true" ng-disabled="noEmail"> Register</button>
+  
+</div>
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-4 col-md-offset-2">
+<div class="social-row">
+
+  <div class="social-div">
+    <div class="register">
+    or register with
+    </div>
+   <ul>
+   <li>
+  <img src="assets/img/facebook.png">
+ </li>
+ <li>
+  <img src="assets/img/google.png">
+</li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+</div>
+</form>
+</div>
+</div>
+
+<!-- end form section -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+   
+     <script>
+     (function() {
+    if (!String.prototype.trim) {
+                    (function() {
+                        // Make sure we trim BOM and NBSP
+                        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                        String.prototype.trim = function() {
+                            return this.replace(rtrim, '');
+                        };
+                    })();
+                }
+
+                [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+                     debugger;
+                    // in case the input is already filled..
+                    if( inputEl.value.trim() !== '' ) {
+                        classie.add( inputEl.parentNode, 'input--filled' );
+                    }
+
+                    // events:
+                    inputEl.addEventListener( 'focus', onInputFocus );
+                    inputEl.addEventListener( 'blur', onInputBlur );
+                } );
+
+                function onInputFocus( ev ) {
+
+                    classie.add( ev.target.parentNode, 'input--filled' );
+                    this.hide();
+                }
+
+                function onInputBlur( ev ) {
+                    if( ev.target.value.trim() === '' ) {
+                        classie.remove( ev.target.parentNode, 'input--filled' );
+                    }
+                }
+            })();
+    </script>
+   

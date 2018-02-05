@@ -1,0 +1,26 @@
+<div ng-controller="doctorProfileCtrl">
+    <section id="main-header-section" ng-include="'modules/doctors/view/dr_header.view.html'"></section>
+    <!-- end search section -->
+    <!-- Central Part Starts from here -->
+    <section id="dr_notificatio">
+        <div class="section1-div">
+            <div class="container">
+                <div class="inner-section-div">
+                    <!--  notification -->
+                    <!-- <div class="col-md-3 col-sm-3 col-xs-12 padding15"  ng-include="'modules/doctors/view/dr_notification.view.html'"></div> -->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <doctormenu></doctormenu>
+                        <div class="center-part-div">
+                            <div class="tab-content">
+                                <div id="menu3" class="tab-pane fade in active">
+                                    <accountview></accountview>
+                                </div>
+                                <!-- end setting -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

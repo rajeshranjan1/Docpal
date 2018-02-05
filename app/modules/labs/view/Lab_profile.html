@@ -1,0 +1,343 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding0">
+   <div id="map" map lat="labProDetail.location.lat" log="labProDetail.location.lng" >
+  </div>
+  </div>
+  </div>
+
+</section>
+<section>
+<div class="center-part-section">
+<div class="container">
+  <div class="search-result-main-div2">
+  <div class="Hospital-data">
+              <div class="profile-section">
+                  <div class="my-image-section">
+                  <div class="teeth-icon">
+                  <i class="fa fa-heartbeat"></i>
+                  </div>
+                  <div class="img-div1">
+                  <img ng-src=" {{labProDetail.image!=undefined ? imageServer+'/'+labProDetail.image+'' : 'assets/img/lab.png'}}" alt="" class="img-responsive border-round">
+                  </div>
+                  </div>
+                  <div class="info-section">
+                  <div class="hospital-section">
+                  <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">
+                <div class="hospital-profile-intro">
+                        <h3 class="name-div cap capitalize">
+                       
+                      {{labProDetail.name}}
+                       
+                        </h3>
+                        <div class="text-div capitalize break-class"><br>
+                          <span ng-repeat="x in labProDetail.speciality track by $index">
+                         {{x}}
+                          </span>  
+                          <div class="text-div">
+
+                       <span>
+                        <i class="fa fa-home lab_icn"></i>
+                      {{labProDetail.facility[0]}}
+                        </span><br>
+                        <span>
+                          <i class="icon-chat57 lab_icn"></i>
+                        {{labProDetail.facility[1]}}
+                        </span></br>
+                        <span>
+                        <i class="icon-clock104 lab_icn"></i>
+                         {{labProDetail.certificate[0]}}
+                        </span></br>
+                       
+                      
+                      </div>
+                        </div>               
+      </div>    
+</div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
+                      <div class="doctor-clinic-details">
+                       <!-- new icons -->
+                        
+                       
+                        <!-- end new icons -->
+                       <div class="doctor-details-search-result-1">
+                          
+                          <div class="search-result-icon-div">
+                            
+                            <i class="icon-clock104 clinic-icon">
+                            </i>
+                          </div>
+                          
+                          <div class="search-result-text-div1">
+                            <span>{{labProDetail.timing[0].days[0]}}-{{labProDetail.timing[0].days[labProDetail.timing[0].days.length-1]}}<br></span>
+                             {{labProDetail.timing[0].time[0].startTime}} : {{labProDetail.timing[0].time[0].startMinute == undefined || labProDetail.timing[0].time[0].startMinute == 0  ? '00' : labProDetail.timing[0].time[0].startMinute}} {{labProDetail.timing[0].time[0].shiftstart}}-{{labProDetail.timing[0].time[0].endTime}} : {{ labProDetail.timing[0].time[0].endMinute == undefined || labProDetail.timing[0].time[0].endMinute == 0 ? '00' : labProDetail.timing[0].time[0].endMinute}} {{hosProDetail.timing[0].time[0].shiftend}}
+
+                           <div class="option-icon1">
+
+                    
+               <span class ="glyphicon glyphicon-option-horizontal efg " title = "Schedule"  
+      data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true"data-content="{{timingX = gettime(labProDetail.timing)}}" data-toggle = "popoverSchedule">
+                        </div>
+                         <div class="option-icon1-box-div"></div>
+                          
+                          </div>
+                          </div>
+                        </div>
+                         <div class="doctor-clinic-details">
+                        <div class="doctor-details-search-result-1">
+                          <div class="search-result-icon-div">
+                            <i class="icon-map-pointer7 map-icon-new">
+                            </i>
+                            <div class="option-icon1">
+               <div id="address-div" class="hide">
+                {{labProDetail.location.completeaddres}}
+               </div>
+               </div>
+                          </div>
+                          <div class="search-result-text-div">
+                            <span class="address-fix-div">   {{labProDetail.location.completeaddres}}</span>
+                          </div>
+                         </div>
+                         </div>
+                          
+                        </div>
+                       </div> 
+                       </div>
+                       </div>
+                       </div>
+              </div>
+              <!-- start inner services -->
+
+        <div class="services-div border-class-new">
+          <div class="abouth" ng-show="labProDetail.about.length > 0">
+          <h4>About</h4>
+          <p>
+           {{labProDetail.about}}
+          </p>
+        </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labProDetail.facility.length > 0">
+            <span>
+              <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+         Facilities
+          </h4>
+            <!--ul class="inner-li" ng-repeat="x in labProDetail.services track by $index"!-->
+            <ul>
+              <li ng-repeat="x in labProDetail.facility track by $index">
+               {{x}}
+              </li>
+            </ul>
+          </span>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labProDetail.doctor.length > 0">
+            <span>
+              <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+         Doctors
+          </h4>
+            <!--ul class="inner-li" ng-repeat="x in labProDetail.services track by $index"!-->
+            <ul>
+              <li ng-repeat="x in labProDetail.doctor track by $index">
+               {{x}}
+              </li>
+            </ul>
+          </span>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labProDetail.awards.length > 0">
+            <span>
+              <i class="icon-circle39 services-icon-new">
+          </i>
+          <h4 class="padding-margin">
+         Awards
+          </h4>
+            <!--ul class="inner-li" ng-repeat="x in labProDetail.services track by $index"!-->
+            <ul>
+              <li ng-repeat="x in labProDetail.awards track by $index">
+               {{x}}
+              </li>
+            </ul>
+          </span>
+          </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00" ng-show="labProDetail.certificate.length > 0">
+          <span>
+          <i class="icon-check66 services-icon-new">
+          </i>
+          <h4>
+            Certificates
+          </h4>
+          <ul>
+            <!-- ngRepeat: mem in labProDetail.membership track by $index -->
+            <li ng-repeat="x in labProDetail.certificate track by $index">
+              {{x}}
+            </li>
+          </ul>
+        </span>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00" ng-show="labProDetail.membership.length > 0">
+          <span>
+          <i class="icon-identification10  services-icon-new">
+          </i>
+          <h4>
+            Memberships
+          </h4>
+          <ul>
+            <!-- ngRepeat: mem in labProDetail.membership track by $index -->
+            <li ng-repeat="x in labProDetail.membership track by $index">
+              {{x}}
+            </li>
+          </ul>
+        </span>
+        </div>
+        </div>
+        <div class="inner-sec">
+          <div class="col-md-12 col-sm-12 col-xs-12 spec-section" ng-show="labProDetail.test.length > 0">
+            <div class="spec">
+              <i class="icon-medical96 services-icon-new">
+              </i>
+              <h4>
+                Tests(INR)
+              </h4>
+              <ul >
+              <li class="padding14">
+                  {{x}}
+              </li>
+              <li class="padding14 test_info">
+                  <span class="test_detail"><b>Tests/Packages</b></span>
+                  <span class="test_prize"><b>Price(INR)</b></span>  
+              </li>
+              <li class="padding14 test_info" ng-repeat="x in labProDetail.test  | limitTo:quantity track by $index">
+                  <span class="test_detail">{{x.testName}}</span>
+                  <span class="test_prize">{{x.testPrice}}</span>  
+              </li>
+                <div class="div1" data-slide-toggle="box1" data-slide-toggle-duration="400" >
+             <li class="padding14 test_info" ng-repeat="x in labProDetail.test | slice:2 track by $index">
+                  <span class="test_detail">{{x.testName}}</span>
+                  <span class="test_prize">{{x.testPrice}}</span>  
+              </li>
+        </div>
+              <li class="">
+                  <span class="test_detail">Disclaimer: Prices are subject to change. Please call the diagnostic centre for latest prices</span>
+                  <span class="test_prize">
+                  
+                      <input type="button" value="Veiw All" ng-click="box1=!box1" ng-init="box1=false">
+               
+     
+                  
+                </span>  
+              </li>
+
+              </ul>
+            </div>
+           
+            <span> 
+            
+            
+            
+          </div>
+       
+      </div>
+              <!-- end services -->
+                     <!-- start gallery section -->
+              <div class="upload-data-div">
+                       <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div class="">
+      <div id="owl-demo" class="owl-carousel" > 
+    <div class="item" ng-repeat="x in labProDetail.gallery track by $index"  on-finish-render="gallaryLoaded" ng-click="setImageModel(imageServer+'/'+x.image+'',x.caption)"><img class="lazyOwl"  ng-src="{{imageServer+'/'+x.image+''}}" alt="Lazy Owl Image">
+    </div>
+   </div>                          
+ </div>
+</div>
+</div>
+</div>
+                       <div class="row">
+<div id="myModal321" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{caption}}</h4>
+      </div>
+      <div class="modal-body">
+        <img class="lazyOwl" ng-src="{{imageServer3}}" alt="Lazy Owl Image">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ </div>
+              <!-- end gallery section -->
+              <!-- doctors section -->
+<div class="Hospital_Center_Part" ng-repeat="det in doctordetails track by $index">
+             <div class="col-md-12">
+  <div class="col-md-4">
+    <div class="hospital-card-detail">
+    <div class="profile-section">
+      <div class="hospital-image-section">
+        <div class="img-div1">
+    <img src="assets/img/Dr1.png" alt="" class="img-responsive border-round-hospital-img"></div>
+      </div>
+      <div class="info-section">
+        <div class="hospital-section">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="hospital-profile-intro">
+                <h3 class="name-div cap capitalize" >
+                  <a href="#">
+                    {{det.name}}
+                  </a>
+                </h3>
+                
+                <div class="text-div capitalize break-class">
+                  <span>
+                  {{det.speciality}}
+                  </span>
+                  
+                  <span>
+                    {{det.location.completeaddres}}
+                  </span>
+                  <span>
+                    delhi
+                  </span>
+                  <span>
+                    254022
+                  </span>
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- 2nd  -->
+   
+              <!-- end doctor section -->
+ </div>
+ </div>
+</div>
+</section>
+
+                    <style type="text/css">
+#map
+{
+height: 200px;
+width:100%;
+}
+.div1 {
+  display: none;
+}
+
+                    </style>

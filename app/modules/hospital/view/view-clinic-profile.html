@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docpal</title>
+		<link href="font-awesome-4.4.0/css/font-awesome.css" rel="stylesheet">
+	 	<link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/docpalp.css" rel="stylesheet">
+        <link href="css/docpal.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Starts Here -->
+    <header>
+        <div class="custom-header">
+            <nav class="navbar navbar-default">
+                <!-- pv icon bar -->
+                <div id="sidebar_dr" ng-hide="headerShowHide()" class="ng-hide">
+                    <div class="menu-tab">
+                        <div id="one"></div>
+                        <div id="two"></div>
+                        <div id="three"></div>
+                    </div>
+                    <div class="menu-hide">
+                        <nav class="nav_bars">
+                            <ul>
+                                <li ui-sref="homepage" href="#/"><a><i class="icon-hospitals custom-nav-icon">
+                                        </i>Home</a>
+                                </li>
+                               
+                                <li ng-click="logout1()"><a><i class="icon-signout1 custom-nav-icon">
+                                        </i>Sign Out</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pv icon bar -->
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header  col-md-10 ">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">
+                                Toggle navigation
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                        </button>
+                        <div class="col-md-3">
+                            <a href="" class="logo">
+                                <div class="title-icon" ui-sref="homepage" href="#/">
+                                    <img src="img/docpallogo1.svg">
+                                </div>
+                                <span style="position: relative; left: 40px; top: -11px;">Your Health Partner</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-4 pd-lr-0  text-right ">
+                            <a class="list-btn" id="user-reg-btn">List your practice on <strong>Docpal</strong></a>
+                        </div>
+                        <div class="col-md-4 col-xs-4   text-right">
+                            <a href="#" data-toggle="modal" class="list-btn" data-target="#hospitalLogin">For Clinic / Hospitals &amp; Test Labs</a> 
+                        </div>
+                        <div class="col-md-2 col-xs-4 text-right pd-lr-0 ">
+                            <div class="mr-tb-24">
+                                <div class="nav-section dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <img src="img/indianflag.png"> English
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu country-submenu">
+                                        <li><a href="#"><img src="img/indianflag.png"> ENGLISH</a></li>
+                                        <li><a href="#"><img src="img/french.png"> FRENCH</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pd-lr-0">
+                        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right custom-navbar">
+                              
+                                <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-login" data-target="#loginSignUpModal" ng-show="login"><span class="login_effect">Login</span></a> 
+                                </li>
+                                 <li class="login-box">
+                                    <a href="#" data-toggle="modal" class="login top-regsiter" data-target="#loginSignUpModal" ng-show="register"><span class="login_effect">Register</span></a> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+<div class="clinic-wpr">
+    <div class="container">        
+        <div class="col-md-10 zero-margin">
+            <div class="inner-clinic-detail">
+            	<div class="col-md-12 clinic-detail-row">
+                    <div class="col-md-3 clinic-profie-pic">
+                        <img src="img/doc3.png" alt="">
+                    </div>
+                    <div class="col-md-7 clinic-profile-details">
+                        <h4>Sumitra Clinic </h4>
+                        <label class="label label-success">Profile is Claimed</label>
+                        <p>Dermatology Clinic</p>                        
+                        <p><i class="fa fa-map-marker"></i> Sector 24 , Karkardooma, Delhi</p>
+                        <a href="#">Get Direction</a>
+                        <p>Dr. Vinita S. Sharma,Dr. Lalima Chudhary (PT),Dr. V K Gupta</p>
+                    </div>
+                    <div class="col-md-2 clinic-claim">
+                        <a href="clinic-claimed.html" class="btn btn-info btn-sm btn-block">Claim Now</a>
+                        <a href="#" class="btn btn-success btn-sm btn-block">Call Now</a>
+                    </div>
+                </div>               
+                <div class="col-md-12 clinic-detail-tab p-0">
+                    <ul class="nav nav-tabs">
+                        <li class="active" >
+                            <a href="#overview"  aria-controls="overview" role="tab" data-toggle="tab">
+                                <p>Overview</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#services" aria-controls="services" role="tab" data-toggle="tab">
+                                <p>Services</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#doctors" aria-controls="doctors" role="tab" data-toggle="tab">
+                                <p>Doctors</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#feedback" aria-controls="feedback" role="tab" data-toggle="tab">
+                                <p>Feedback</p>
+                            </a>
+                        </li>
+                        
+                    </ul> 
+                    <div class="tab-content">
+                        <div id="overview" class="tab-pane fade in active">
+                            <div class="tab-details clearfix">
+                            <div class="col-md-12 clinic-detail-row">
+                                <div class="about">
+                                    <h3>About Skinomic</h3>
+                                    <p>Skinomic skin clinic is visited and owned by Dr. (sqn.Ldr) V.K. Upadhyaya who is a very famous and good doctor of this area doctor has over 30 years of experience in the field of dermatology. Has served as president, vice president and secretary of indian association of dermatology, venereology and more..</p>
+                                </div>
+                                <div class="col-md-3 clinic-gallery">
+                                    <h5>Gallery</h5>
+                                    <ul>
+                                        <li><img src="img/doc1.png" alt=""></li>
+                                        <li><img src="img/doc2.png" alt=""></li>
+                                        <li><img src="img/doc3.png" alt=""></li>
+                                        <li><img src="img/doc4.png" alt=""></li>
+                                        <li><img src="img/doc8.png" alt=""></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 clinic-timing">
+                                    <h5>Timings</h5>
+                                    <h6>MON, FRI</h6>
+                                    <p>10:30 AM - 5:00 PM</p>
+
+                                    <h6>WED, SAT</h6>
+                                    <p>10:00 AM - 5:00 PM</p>
+                                </div>
+                                <div class="col-md-6 clinic-services">
+                                    <h5>Services</h5>
+                                    <ul>
+                                        <li>Acne / Pimples Treatment</li>
+                                        <li>Hyper Pigmentation Treatment</li>
+                                        <li>Hair Loss Treatment</li>
+                                        <li>Dermabrasion</li>
+                                        <li>Laser Resurfacing</li>
+                                        <li>Scar Treatment</li>
+                                        <li>Wart Removal</li>
+                                        <li>Laser Hair Removal - Face</li>
+                                        <li>Photofacial</li>
+                                        <li>Tattoo Removal</li>                                        
+                                    </ul>
+                                    <a href="#">View all (43)</a>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-12 clinic-detail-row">
+                                <h3>Doctors in Skinomic</h3>
+                                <div class="doctors-row clearfix">
+                                    <div class="col-md-2 doctor-profie-pic">
+                                        <img src="img/dr2.jpg" alt="">
+                                    </div>
+                                    <div class="col-md-7 doctor-profile-details">
+                                        <h4>Dr. (Sqn.Ldr) V.K. Upadhyaya</h4>
+                                        <h6>MBBS, PhD</h6>                                    
+                                        <p>20 yrs of experience</p>
+                                        <p>Dermatologist</p>
+                                    </div>
+                                    <div class="col-md-3 doctor-claim">
+                                        <ul>
+                                            <li><i class="fa fa-thumbs-up"></i><span>89% (37 votes)</span></li>
+                                            <li><i class="fa fa-credit-card"></i><span>&#8377; 1,000</span></li>
+                                            <li><i class="fa fa-clock-o"></i>
+                                                <span><h6>MON, FRI</h6>
+                                                <p>10:30 AM - 5:00 PM</p></span></li>
+                                        </ul>                                    
+                                        <a href="#" class="btn btn-success btn-sm btn-block">Call Now</a>
+                                    </div>
+                                </div>
+
+                                <div class="doctors-row clearfix">
+                                    <div class="col-md-2 doctor-profie-pic">
+                                        <img src="img/dr3.jpeg" alt="">
+                                    </div>
+                                    <div class="col-md-7 doctor-profile-details">
+                                        <h4>Dr. jhon hyder</h4>
+                                        <h6>MBBS, Venereology & Leprosy</h6>                                    
+                                        <p>15 yrs of experience</p>
+                                        <p>Dermatologist, Hair Transplant Surgeon, Aesthetic Dermatologist</p>
+                                    </div>
+                                    <div class="col-md-3 doctor-claim">
+                                        <ul>
+                                            <li><i class="fa fa-thumbs-up"></i><span>89% (37 votes)</span></li>
+                                            <li><i class="fa fa-credit-card"></i><span>&#8377; 1,000</span></li>
+                                            <li><i class="fa fa-clock-o"></i>
+                                                <span><h6>MON, WED ,FRI</h6>
+                                                <p>10:30 AM - 5:00 PM</p></span></li>
+                                        </ul>                                    
+                                        <a href="#" class="btn btn-success btn-sm btn-block">Book Appoinment</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 clinic-detail-row">
+                                <h3>Feedback for Skinomic</h3>
+                                    <div class="feedback-row clearfix">
+                                        <div class="col-md-2 clinic-feedback-user">
+                                            <img src="img/person.png" alt="" width="80px">
+                                            <h5>Mr. Jhon</h5>
+                                        </div>
+                                        <div class="col-md-10 clinic-feedback-details">
+                                            <h6>6 months ago</h6>
+                                            <p>I had to run a lot for appointment. The telephone attendent at Karkardooma, Delhi Centre was rude and not helpful to depart detailed information. His behaviour was not only dry but arrogant. Somewhat similar to Government dispensery's clerks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="services" class="tab-pane fade">
+                            <div class="tab-details clearfix">
+                                <div class="col-md-12 clinic-detail-row">
+                                    <ul class="clinic-services">
+                                        <li>Acne / Pimples Treatment</li>
+                                        <li>Hyper Pigmentation Treatment</li>
+                                        <li>Hair Loss Treatment</li>
+                                        <li>Dermabrasion</li>
+                                        <li>Laser Resurfacing</li>
+                                        <li>Scar Treatment</li>
+                                        <li>Wart Removal</li>
+                                        <li>Laser Hair Removal - Face</li>
+                                        <li>Photofacial</li>
+                                        <li>Tattoo Removal</li>                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="doctors" class="tab-pane fade">
+                            <div class="tab-details clearfix">
+                                <div class="col-md-12 clinic-detail-row">
+                                <div class="doctors-row clearfix">
+                                    <div class="col-md-2 doctor-profie-pic">
+                                        <img src="img/dr2.jpg" alt="">
+                                    </div>
+                                    <div class="col-md-7 doctor-profile-details">
+                                        <h4>Dr. (Sqn.Ldr) V.K. Upadhyaya</h4>
+                                        <h6>MBBS, PhD</h6>                                    
+                                        <p>20 yrs of experience</p>
+                                        <p>Dermatologist</p>
+                                    </div>
+                                    <div class="col-md-3 doctor-claim">
+                                        <ul>
+                                            <li><i class="fa fa-thumbs-up"></i><span>89% (37 votes)</span></li>
+                                            <li><i class="fa fa-credit-card"></i><span>&#8377; 1,000</span></li>
+                                            <li><i class="fa fa-clock-o"></i>
+                                                <span><h6>MON, FRI</h6>
+                                                <p>10:30 AM - 5:00 PM</p></span></li>
+                                        </ul>                                    
+                                        <a href="#" class="btn btn-success btn-sm btn-block">Call Now</a>
+                                    </div>
+                                </div>
+
+                                <div class="doctors-row clearfix">
+                                    <div class="col-md-2 doctor-profie-pic">
+                                        <img src="img/dr3.jpeg" alt="">
+                                    </div>
+                                    <div class="col-md-7 doctor-profile-details">
+                                        <h4>Dr. jhon hyder</h4>
+                                        <h6>MBBS, Venereology & Leprosy</h6>                                    
+                                        <p>15 yrs of experience</p>
+                                        <p>Dermatologist, Hair Transplant Surgeon, Aesthetic Dermatologist</p>
+                                    </div>
+                                    <div class="col-md-3 doctor-claim">
+                                        <ul>
+                                            <li><i class="fa fa-thumbs-up"></i><span>89% (37 votes)</span></li>
+                                            <li><i class="fa fa-credit-card"></i><span>&#8377; 1,000</span></li>
+                                            <li><i class="fa fa-clock-o"></i>
+                                                <span><h6>MON, WED ,FRI</h6>
+                                                <p>10:30 AM - 5:00 PM</p></span></li>
+                                        </ul>                                    
+                                        <a href="#" class="btn btn-success btn-sm btn-block">Book Appoinment</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                               
+                            </div>
+                        </div>
+                        <div id="feedback" class="tab-pane fade">
+                            <div class="tab-details clearfix">
+                                <div class="col-md-12 clinic-detail-row">
+                                    <div class="feedback-row clearfix">
+                                        <div class="col-md-2 clinic-feedback-user">
+                                            <img src="img/person.png" alt="" width="80px">
+                                            <h5>Mr. Jhon</h5>
+                                        </div>
+                                        <div class="col-md-10 clinic-feedback-details">
+                                            <h6>6 months ago</h6>
+                                            <p>I had to run a lot for appointment. The telephone attendent at Karkardooma, Delhi Centre was rude and not helpful to depart detailed information. His behaviour was not only dry but arrogant. Somewhat similar to Government dispensery's clerks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+          </div> 
+    </div>
+</div>
+
+<footer class="ng-scope">
+    <!-- new experiment -->
+    <!--  <img src=""img/doclogo.png"> -->
+    <!-- end -->
+    <div class="footer-home">
+        <div class="container">
+            <!-- start 1st row -->
+            <div class="col-md-6 footer-logo-wpr">
+                <div style="" class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="faq_no">
+                        <img src="img/doclogo.png" alt="Footer Logo">
+                        <p class="justify ng-binding" ng-bind-html="about_us | limitTo: 400">Lorem Ipsum is <em><strong>simply dummy</strong></em> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 footer-menu">
+                <div class="col-md-12">
+                    <h3 class="footer-heading">Quick Links</h3>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-one">
+                        <li><a href="#/aboutUs">About Us</a></li>
+                        <li><a href="#/career">Career</a></li>
+                        <li><a href="#/team">Team</a></li>
+                        <li><a href="#/contactUs">Contact Us</a></li>
+                        <li><a href="#/health">Health</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-two">
+                        <li><a href="#/privacyPolicies">Privacy Policy</a></li>
+                        <li><a href="#/privacyPolicies">Doctors Network</a></li>
+                        <li><a href="#/privacyPolicies">Hospitals Network</a></li>
+                        <li><a href="#/privacyPolicies">Terms of Usage</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="social-footer-wpr">
+                    <div class="col-md-12">
+                        <h3 class="footer-heading">Social</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="social-left">
+                            <a href="https://www.facebook.com/DocPalHealthcare"><img src="img/facebook.png" alt="facebook icon"></a>
+                            <a href="https://twitter.com/DocPalGroup"><img src="img/twitter.png" alt="facebook icon"></a>
+                            <a href="#"><img src="img/b.png" alt="bit icon"></a>
+                            <a href="#"><img src="img/youtube.png" alt="youtube icon"></a>
+                            <a href="#"><img src="img/pinterest.png" alt="Pinterest icon"></a>
+                            <a href="#"><img src="img/google-plus.png" alt="Google plus icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- COPYRIGHT -->
+    <div class="ex-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ex-footer-text">
+                        <center class="copyright">&copy; Docpal 2017| All Right Reserved. </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer-home -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

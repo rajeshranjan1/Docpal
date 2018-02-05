@@ -1,0 +1,311 @@
+
+
+<section ng-controller="GetUserDataCtrl">
+<div class="container-fluid"  >
+   <div class="row">
+      <div class="search-section2">
+         <user></user>
+      </div>
+   </div>
+   <!-- end search section -->
+   <!-- Central Part Starts from here -->
+   <section>
+      <div class="section1-div" >
+         <div class="container">
+            <div class="inner-section-div">
+               <!-- drop down menu -->
+               <div class="row">
+                  <div class="col-md-3 col-sm-3 col-xs-12 padding15">
+                     <div class="left-sidebar-div">
+                        <div class="left-sidebar-heading-div">
+                           <h3>
+                              Recent Post
+                           </h3>
+                        </div>
+                        <div class="left-sidebar-data-div" ng-controller="usernotification">
+                           <ul ng-repeat="notify in notification.user track by $index">
+                              <li>
+                                 <p> 
+                                    {{notify.repliedBy.name}} <span ng-show="notify.action=='relevant'">marked as</span>
+                                    <span ng-show="notify.action=='follow'">followed </span>
+                                    <span ng-show="notify.action=='feedback'">commented on</span>
+                                    <span ng-show="notify.action=='comment'">replied on</span>
+                                    <b>{{notify.question | limitTo: 20}}</b>
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                     <div class="centerpart-top-div">
+                        <div class="problems-button-div ">
+                           <h3 class="margin0 padding0" ui-sref="userProfile">
+                              Problems
+                           </h3>
+                        </div>
+                        <div class="web-view-navbar">
+                           <ul class="nav nav-tabs custom-nav-tabs">
+                              <li ui-sref="userProfileProblem">
+                                 <a data-toggle="tab" href="#" class="custom-anchor-tag" >
+                                 <i class="fa fa-home custom-nav-icon">
+                                 </i>
+                                 <span class="mobile-hide">
+                                 My Profile
+                                 </span>
+                                 </a>
+                              </li>
+                              <!-- <li ui-sref="userProfileview">
+                                 <a data-toggle="tab" href="#menu1" class="custom-anchor-tag">
+                                 <i class="fa fa-crosshairs custom-nav-icon">
+                                 </i>
+                                 <span class="mobile-hide">
+                                 My reviews
+                                 </span>
+                                 </a>
+                              </li> -->
+                           </ul>
+                        </div>
+                     </div>
+                     <!--pv!-->
+                     <div  ng-controller="UserProblemCtrl">
+                        <div class="main-comment-section" ng-show="UserInfoProblem.length == '0'">
+                           <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12" >
+                                 <h1>No Problem to show </h1>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="loadingPlaceholerProblemUserProfile">
+                           <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                           <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                           <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                           <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                           <div ng-include="'modules/problem/view/loadingquestions.html'"></div>
+                        </div>
+                        <div class="search-result-main-div2" ng-repeat="x in UserInfoProblem track by $index">
+                           <!-- star profile section -->    
+                           <div class="main-comment-section"  >
+                              <div class="row">
+                                 <div class="col-md-12 col-sm-12 col-xs-12" >
+                                    <div class="profile-comment-section" >
+                                       <div class="main-img-div" >
+                                          <div class="img-div m-img">
+                                             <a href="{{ x.details.role == 'doctor' ? '/#/singledoctorInfo/'+ x.details.userId : '/#/userProfile' }}">
+                                             <img ng-src="{{getUserImage(x.isPrivate == 'true' ? 'user' : x.details.role,x.isPrivate == 'true' ? '' : x.details.image,x.isPrivate == 'true' ? 'Male' : x.details.gender, x.isPrivate == 'true' ? '' : x.details.social_image)}}" alt="" class="img-responsive"></a>
+                                             <p class="dr-name-para">{{ x.isPrivate == "true" ? 'Anonymous' : x.details.name}}</p>
+                                          </div>
+                                       </div>
+                                       <div class="">
+                                          <div class="question-haed-list">
+                                             <h4 class="question-class lessQ">
+                                                {{x.question | limitTo: 300}} <span class="clickMore" style="cursor: pointer;">{{x.question.length > 300 ? '...' : ''}}</span>
+                                             </h4>
+                                             <h4 class='moreQ question-class' style=" display: none">{{x.question}}</h4>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="profile-comment-section" ng-show="x.answer[0].comment">
+                                       <div class="">
+                                          <div class="main-img-div">
+                                             <div class="img-div">
+                                                <a href="#" ui-sref="singledoctorInfo({id:x.answer[0].repliedBy.userId,val:0})">
+                                                <img ng-src="{{getUserImage(x.answer[0].repliedBy.role,x.answer[0].repliedBy.image,x.answer[0].repliedBy.gender,x.answer[0].repliedBy.social_image)}}" alt="" class="img-responsive"></a>
+                                                <p class="dr-name-para">{{x.answer[0].repliedBy.name}}</p>
+                                             </div>
+                                          </div>
+                                          <div class="profile-content">
+                                             <p> {{x.answer[0].comment | limitTo: 250}} {{x.answer[0].comment.length > 250 ? '...' : ''}} </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="comment">
+                                       <div class="row">
+                                          <div class="col-md-8 col-sm-8 col-xs-12">
+                                             <div class="smile-icon-div1">
+                                                <div class="share-icon">
+                                                   <a href="" class="custom-btn myover" data-container="body" data-toggle="popover" isPopover="true" data-placement="bottom" data-original-title="" title="">
+                                                   <i class="icon-sharing3 share_alt"></i>
+                                                   </a>
+                                                   <div class="pop" style="display:none;">
+                                                      <button class="btn btn-medium font-bold check" id="fb">
+                                                      <i class="fa fa-facebook"></i>
+                                                      </button>
+                                                      <button class="btn btn-medium font-bold check" id="tw">
+                                                      <i class="fa fa-twitter"></i>
+                                                      </button>
+                                                      <button class="btn btn-medium font-bold check" id="go">
+                                                      <i class="fa fa-google-plus"></i>
+                                                      </button>
+                                                   </div>
+                                                   <button class="btn btn-medium font-bold fb"
+                                                      socialshare
+                                                      socialshare-provider="facebook"
+                                                      socialshare-type="feed"
+                                                      socialshare-via="145634995501895"
+                                                      socialshare-description="{{x.question}}"
+                                                      socialshare-caption="{{x.question}}"
+                                                      socialshare-url="http://docpal.com/#/problemList"
+                                                      socialshare-redirect-uri="https://facebook.com"
+                                                      socialshare-popup-height="300"
+                                                      socialshare-popup-width="400"
+                                                      socialshare-trigger="click" id="fb"  style="display:none">
+                                                   <i class="fa fa-facebook"></i>
+                                                   </button>
+                                                   <button class="btn btn-medium font-bold tw" style="display:none"
+                                                      socialshare
+                                                      socialshare-provider="twitter"
+                                                      socialshare-text="{{x.question}}"
+                                                      socialshare-hashtags="problemlist "
+                                                      socialshare-url="http://52.34.75.76/"
+                                                      style="display:none">
+                                                   <i class="fa fa-twitter"></i>
+                                                   </button>
+                                                   <button class="btn btn-medium font-bold go" style="display:none"
+                                                      socialshare
+                                                      socialshare-provider="google+"
+                                                      socialshare-text="720kb"
+                                                      socialshare-url="http://docpal.com/#/problemList"
+                                                      socialshare-popup-height="300"
+                                                      socialshare-popup-width="400"
+                                                      socialshare-trigger="click">
+                                                   <i class="fa fa-google-plus"></i>
+                                                   </button>  
+                                                </div>
+                                                <div class="comment-btn-part">
+                                                   <div class="relevent-part">
+                                                      <i class="icon-revelant smile smile1 fontsize"></i>
+                                                      <button class="votenumber" ng-click="x=relevantProblem(x)" ng-class="{myclass:checkRelevant(x)}">Relevent</button>
+                                                      <span class="number">{{x.upVoteDoctor || 0}}</span>
+                                                      <i class="icon-follow smile smile1 fontsize"></i>
+                                                      <button class="votenumber" ng-class="{myclass:checkFollow(x)}" ng-click="x=followProblem(x)">Follow</button>
+                                                      <span class="number">{{x.followNumber}}</span>
+                                                      <i class="icon-view1 smile smile1 fontsize"></i>
+                                                      <button class="number custom-btn">
+                                                         Views</span>
+                                                         <span class="numbers-para">{{x.views || 0}}</span>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-3 col-sm-4 col-xs-12 pull-right">
+                                          <div class="comment-btn-div">
+                                          <div class="hand-icon-div">
+                                          <i class="icon-reply hand-lizard-icon"></i>
+                                          <span class="numbers-para">{{x.answer.length == undefined ? '0' : x.answer.length}}</span>
+                                          </div>
+                                          <div class="user-eye-div" >
+                                          <button class="icon-report eye-icon votenumber" ng-click="report(x._id)" ng-disabled="checkloginReport(x._id)" ng-class="{myclass:checkloginReport(x._id)}" data-toggle="modal" data-target="#alertmodal"></button>
+                                          </div>
+                                          <div class="user-eye-div">
+                                             <a href="{{ imageServer+'/'+x.image }}" target="_blank" ng-show="x.image && x.image != ''"><i class="fa fa-paperclip"></i></a>
+                                          </div>
+                                          <div class="user-eye-div">
+                                          <a class="report-btn" ui-sref="allanswer({id:x._id,views:x.views})">Reply</a>
+                                          </div>
+                                          <div class="user-eye-div" ng-show="ifOwnerProblem(x)">
+                                              <a ng-click="delProblem(x._id); UserInfoProblem.splice($index,1)"><i class="fa fa-trash"></i></a>
+                                          </div>
+                                          </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- end page 1 -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--e pv!-->
+      <!--div id="menu2" class="tab-pane fade">
+         <h3>Menu 2</h3>
+         <p>Some content in menu 2.</p>
+         </div!-->
+</div>
+</div>   
+</div>
+</div>
+<div class="plus plus-effect-3 plus-effect-3a">
+<a href="#/addProblem" class="plus" id="plus"><i class="fa fa-question"></i></span></a> 
+</div>
+</div>
+</div>
+</section>
+<script>
+   $(document).ready(function() {
+              
+              $("#owl-demo").owlCarousel({
+                
+                autoPlay: false, //Set AutoPlay to 3 seconds
+                
+                items :5,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
+                
+              }
+                                        );
+              
+              $(".custom-anchor-tag").click(function(){
+                
+                $(".search-result-main-div2").hide();
+                
+              }
+                                           );
+              
+              
+              
+            }
+                             );
+</script>
+<style type="text/css">
+   .toggle{
+   display: none;
+   }
+   .toggle-2{
+   display: none;
+   }
+</style>
+<script>
+   $(document).on('click','#save',function(){
+     $("#edit").show();
+      $("#save").hide();
+   });
+   $(document).on('click','#edit',function(){
+     $("#save").show();
+     $("#edit").hide();
+   
+   }); 
+   $(document).on('click','#edit',function(){
+   $(".wrap").hide();
+   $(".editable-class-newtab").show();
+   $(".drpdown").show();
+   });
+   $(document).on('click','#save',function(){
+   $(".wrap").show();
+   $(".editable-class-newtab").hide();
+   $(".drpdown").hide();
+   $(".uploadImg").hide();
+   });
+   $(document).on('click','.passwrd_change',function(){
+   $(".password-div").show();
+   
+   });
+   $(document).on('click', '.clickMore', function() {
+
+        $(this).closest(".question-haed-list").find('.lessQ').hide();
+       $(this).closest(".question-haed-list").find('.moreQ').show();
+       
+
+    });
+</script>
+<style type="text/css">
+   .myclass{
+   color:#1ba4aa;
+   }
+</style>
+

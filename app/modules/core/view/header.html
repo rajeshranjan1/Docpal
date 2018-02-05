@@ -1,0 +1,861 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+
+    });
+
+    navigator.geolocation.getCurrentPosition(exportPosition, errorPosition, { enableHighAccuracy: false, maximumAge: Infinity, timeout: 60000 });
+
+    function exportPosition(position) {
+        // Get the geolocation properties and set them as variables
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+
+        //Make a call to the Google maps api to get the name of the location
+        jQuery.ajax({
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true',
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+                getCountyName(data);
+                getCityName(data);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                errorPosition();
+            }
+        });
+    }
+
+    function errorPosition() {
+        //alert('Sorry couldn\'t find your location');
+    }
+});
+
+function getCountyName(data) {
+    var loc1 = data.results[0];
+    var k2 = '';
+    var county;
+    $.each(loc1, function(k1, v1) {
+        if (k1 === "address_components") {
+            for (var i = 0; i < v1.length; i++) {
+                for (k2 in v1[i]) {
+                    if (k2 === "types") {
+                        var types = v1[i][k2];
+                        if (types[0] === "country") {
+                            county = v1[i].long_name;
+                            //alert(county);
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function getCityName(data) {
+    var loc1 = data.results[0];
+    var k2 = '';
+    var city;
+    $.each(loc1, function(k1, v1) {
+        if (k1 === "address_components") {
+            for (var i = 0; i < v1.length; i++) {
+                for (k2 in v1[i]) {
+                    if (k2 === "types") {
+                        var types = v1[i][k2];
+                        if (types[0] === "locality") {
+                            city = v1[i].long_name;
+                            //alert(city);
+                            var appElement = document.querySelector('[ng-controller="CoreCtrl"]');
+                            var $scope = angular.element(appElement).scope();
+                            $scope.$apply(function() {
+                                $scope.currentCity = city;
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+</script>
+<div class="wrapper">
+    <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    <!-- Header Starts Here -->
+    <header>
+        <div class="custom-header">
+            <nav class="navbar navbar-default">
+                <!-- pv icon bar -->
+                <div id="sidebar_dr" ng-hide="headerShowHide()">
+                    <div class="menu-tab">
+                        <div id="one"></div>
+                        <div id="two"></div>
+                        <div id="three"></div>
+                    </div>
+                    <div class="menu-hide">
+                        <nav class="nav_bars">
+                            <ul>
+                                <li ui-sref="homepage"><a><i class="icon-hospitals custom-nav-icon">
+                                    </i>Home</a>
+                                </li>
+                                <li ng-if="users.type == 'doctor'" ui-sref="doctorprofileproblem"><a><i class="icon-speech3 custom-nav-icon">
+                                    </i>My Problems</a>
+                                </li>
+                                <li ng-if="users.type == 'user'" ui-sref="userProfile"><a><i class="icon-speech3 custom-nav-icon">
+                                        </i>My Problems</a>
+                                </li>
+                                <li ng-if="users.type == 'doctor'" ui-sref="doctorprofile"><a><i class="icon-medical94 custom-nav-icon">
+                                        </i>Profile</a>
+                                </li>
+                                <li ng-if="users.type == 'user'" ui-sref="userProfileProblem"><a><i class="icon-medical94 custom-nav-icon">
+                                        </i>Profile</a>
+                                </li>
+                               <!--  <li ng-if="users.type == 'doctor'" ui-sref="doctorprofileMap"><a><i class="icon-map-pointer2 custom-nav-icon">
+                                        </i>Map Location</a>
+                                </li>
+                                <li ng-if="users.type == 'doctor'" ui-sref="doctorprofilegallery"><a><i class="icon-photos9 custom-nav-icon">
+                                        </i>Gallery</a>
+                                </li> -->
+                                <li ng-if="users.type == 'doctor'" ui-sref="doctorAppointment"><a><i class="icon-settings62 custom-nav-icon">
+                                        </i>My Appointment</a>
+                                </li>
+                                
+                                <li ng-click="logout1()"><a><i class="icon-signout1 custom-nav-icon">
+                                        </i>Sign Out</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- pv icon bar -->
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header  col-md-10 ">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">
+                                Toggle navigation
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                        </button>
+                        <div class="col-md-3">
+                            <a href="" class="logo">
+                                <div class="title-icon" ui-sref="homepage">
+                                    <img src="assets/img/docpallogo1.svg">
+                                </div>
+                                <span style="position: relative; left: 40px; top: -11px;">Your Health Partner</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-4 pd-lr-0  text-right ">
+                            <a class="list-btn" id="user-reg-btn">List your practice on <strong>Docpal</strong></a>
+                        </div>
+                        <div class="col-md-4 col-xs-4   text-right">
+                            <!-- <a id="modal-7674" ui-sref="loginInfo" class="list-btn">For Clinics &amp; Hospitals</strong></a> -->
+                            <a href="#"  data-toggle="modal" class="list-btn"  data-target="#hospitalLogin">For Clinic / Hospitals &amp; Test Labs</a> 
+                        </div>
+                        <div class="col-md-2 col-xs-4 text-right pd-lr-0 ">
+                            <div class="mr-tb-24">
+                                <div class="nav-section dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <img src="assets/img/indianflag.png"> English
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu country-submenu">
+                                        <li><a href="#"><img src="assets/img/indianflag.png"> ENGLISH</a></li>
+                                        <li><a href="#"><img src="assets/img/french.png"> FRENCH</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pd-lr-0">
+                        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right custom-navbar">
+                                <li>
+                                    <div class="login-image" data-toggle="popover" data-placement="bottom" data-container="body" ng-show="checklogin()">
+                                        <img ng-src="{{getMyImage()}}" ng-show="accountData.type == undefined" class="img-responsive img-class img-circle" style="cursor:pointer">
+                                        <!-- <div id="login-data" style="display:none;" class="hidedata">
+                                            <div class="row">
+                                                <div class="col-md-12 padding0">
+                                                    <div class="section-header">
+                                                        <ul>
+                                                            <li ui-sref="doctorprofile"><a>Profile</a></li>
+                                                            <li ui-sref="doctorprofileMap"><a>Map Location</a></li>
+                                                            <li ui-sref="doctorprofilegallery"><a>Gallery</a></li>
+                                                            <li ui-sref="doctorprofileAccount"><a>Account Settings</a></li>
+                                                            <li ui-sref="problemInfo"><a>My Problems</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </li>
+                                <li class="login-box">
+                                    <a href="#"  data-toggle="modal" class="login top-login" data-target="#loginSignUpModal" ng-show="login" ><span class="login_effect">Login</span></a> 
+                                </li>
+                                 <li class="login-box">
+                                    <a href="#"  data-toggle="modal" class="login top-regsiter" data-target="#loginSignUpModal" ng-show="register" ><span class="login_effect">Register</span></a> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+
+<!-- LOGIN SIGNUP MODAL -->
+<div id="loginSignUpModal" class="modal fade loginCtrl" ng-controller="loginCtrl" role="dialog">
+    <div class="modal-dialog modal-lg-login">
+        <div class="modal-content">
+            <div class="modal-body user-modal-wpr pd-0 clearfix">
+                <div class="col-md-5  pd-lr-0">
+                    <div class="login-left">
+                        <div class="login-top-img text-center">
+                            <!-- <img src="assets/img/st.png" alt="Stethoscope"> -->
+                            <i class="fa fa-users hosp-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="login-left-details">
+                            <h3 class="left-heading"><strong>Docpal</strong> Your Health Partner</h3>
+                            <ul class="login-left-list">
+                                <li>
+                                    <p>Consult With Your Doctor</p>
+                                    <span>Get answers to your medical questions from 
+                                    the comfort of your own home.</span>
+                                </li>
+                                <li>
+                                    <p>Manage Your Appointments</p>
+                                    <span>Schedule your next appointment, or view details of your past and upcoming appointments</span>
+                                </li>
+                                <li>
+                                    <p>Access Your Test Report</p>
+                                    <span>No more waiting for a phone call or letter-view 
+                                          your results and your doctor's comments within 
+                                          days</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pd-lr-0">
+                    <div class="login-right ">
+                        <div class="login-signup-form">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a data-toggle="pill" href="#login">Login</a></li>
+                                <li><a data-toggle="pill" href="#signUp">Sign Up</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="login" class="tab-pane fade in active">
+                                    <h3 class="login-heading text-right">Login as a <strong>User</strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="userLogin(logindata)" name="loginform">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Username" name="loginemail" ng-model="logindata.email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password"  class="form-control" placeholder="Password" name="loginpassword"  ng-model="logindata.password">
+                                        </div>
+                                        <div class="checkbox col-md-6 text-left clearfix">
+                                            <input type="checkbox" value="" name="Checkbox"> <span>Remember me</span>
+                                        </div>
+                                        <div class="checkbox col-md-6 text-right clearfix">
+                                            <a href="#" id="pass-forgot-user">Forgot Password?</a>
+                                        </div>
+                                        <button type="submit" ng-click="submitted = true" ng-disabled="login2" class="btn btn-block create-account">Login</button>
+                                    </form>
+                                    <div class="">
+                                        <div class="forgot-div">
+                                            <ul class="fogot-ul">
+                                                <li class="forgot-li">
+                                                    <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginemail.$invalid"></span>
+                                                    <span ng-show="loginform.loginemail.$error.required">Email is required.</span>
+                                                    <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginpassword.$invalid">
+                                                    <span ng-show="loginform.loginpassword.$error.required">Password is required.</span></span>
+                                                    <span style="color:#176C6F;display:inherit;" ng-show="usernotfound">No User Found or Email id, password is incorrect !</span>
+                                                    <span style="color:#176C6F;display:inherit;" ng-show="servernotfound">No Server Found</span>
+                                                    <span style="color:red;display:inherit;" ng-show="accountdeactive">Your account is not active. Please contact to administrator</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>                                                                       
+                                </div>
+                                <div id="signUp" class="tab-pane fade">
+                                    <h3 class="login-heading text-right">Are you a doctor? <strong><a href="#" class="reg-here" id="user-reg-btn">Register here</a></strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="myform.$valid && registorUser(user)"  name="myform" novalidate ng-app="myApp">
+                                        <div class="form-group pd-l-0 col-md-6 ">
+                                            <input type="text" class="form-control" ng-model="user.firstname" id="input-14" name="firstname" capitalize-first allow-pattern="[a-z \s]" required placeholder="First Name">
+                                        </div>
+                                        <div class="form-group pd-r-0 col-md-6">
+                                            <input type="text" class="form-control" ng-model="user.lastname" id="input-18" name="lastname" capitalize-first allow-pattern="[a-z \s]" required placeholder="Last Name">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="text" class="form-control" ng-model="user.mobile" id="input-17" name="mobile" maxlength="10" ng-blur="checkmobile(user.mobile)" required placeholder="Mobile"/>
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="email" class="form-control" ng-model="user.email" id="input-15"  name="email" ng-blur="checkemail(user.email)" required placeholder="Email"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" ng-model="user.password" id="input-16" name="password" ng-blur="checkpwdvalidation(user.password)" required placeholder="Password"/>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-model="user.termscond" name="termscond" id="input-19" required>
+                                            <span>By creating this account, you agree to our 
+                                                <a href="#/privacyPolicies" target="_blank">T&amp;C</a> &amp; 
+                                                <a href="#/privacyPolicies" target="_blank">Privacy Policy.</a>
+                                            </span>
+                                        </div>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.mobile.$invalid">
+                                            <span ng-show="myform.mobile.$error.required">Phone should be 10 digits</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.phone.$invalid">
+                                            <span ng-show="myform.phone.$error.required">Full Name is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.email.$invalid">
+                                            <span ng-show="myform.email.$error.required">Email is required.</span>
+                                            <span ng-show="myform.email.$error.email"> Not valid email! </span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.password.$invalid">
+                                            <span ng-show="myform.password.$error.required">Password is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.termscond.$invalid">
+                                            <span ng-show="myform.termscond.$error.required">Accept Terms and condition.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;">
+                                            <span ng-show="verification">Welcome email is sent to your email id <br>Please <a href="javascript:void(0)" onclick="openLogintabuser()">Login</a> to continue</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexist">Email is already exist <br>Please try with different Email Id</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexistmobile">Mobile No is already exist <br>Please try with different Mobile No</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="passwordvalidation">Password must be at least 8 character and  contain 1 Special symbol, 1 number, 1 upper and lower case letter</span>
+                                        </span>
+                                        <button type="submit" ng-click="submitted = true" ng-disabled="noEmail" class="btn btn-block create-account">Create Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-footer">
+                                <div class="or-text"><h3>OR</h3></div> 
+                                <a href="#" onclick="fbloginUser();" class="btn btn-block facebook-btn"><i class="fa pull-left fa-facebook-square" aria-hidden="true"></i> Connect with Facebook</a>
+                                <a href="#" id="googleLoginBtn" class="btn btn-block google-btn"><i class="fa pull-left  fa-google-plus-square" aria-hidden="true"></i> Connect with Google+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Doctor Login Modal -->
+<div id="doctorReg" class="modal fade loginCtrl" ng-controller="loginCtrl" role="dialog">    
+    <div class="modal-dialog modal-lg-login">
+        <div class="modal-content">
+            <div class="modal-body doctor-modal-wpr pd-0 clearfix">
+                <div class="col-md-5  pd-lr-0">
+                    <div class="login-left">
+                        <div class="login-top-img text-center">
+                            <!-- <img src="assets/img/st.png" alt="Stethoscope"> -->
+                            <i class="fa fa-user-md hosp-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="login-left-details">
+                            <h3 class="left-heading"><strong>Docpal</strong> Your Health Partner</h3>
+                            <ul class="login-left-list">
+                                <li>
+                                    <p>Consult With Your Doctor</p>
+                                    <span>Get answers to your medical questions from 
+                                    the comfort of your own home.</span>
+                                </li>
+                                <li>
+                                    <p>Manage Your Appointments</p>
+                                    <span>Schedule your next appointment, or view details of your past and upcoming appointments</span>
+                                </li>
+                                <li>
+                                    <p>Access Your Test Report</p>
+                                    <span>No more waiting for a phone call or letter-view 
+                                          your results and your doctor's comments within 
+                                          days</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pd-lr-0">
+                    <div class="login-right ">
+                        <div class="login-signup-form">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a data-toggle="pill" href="#docLogin">Login</a></li>
+                                <li><a data-toggle="pill" href="#docSignUp">Sign Up</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="docLogin" class="tab-pane fade in active">
+                                    <h3 class="login-heading text-right">Login as a <strong>Doctor</strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="loginform.$valid && login(logindata)"  name="loginform" novalidate>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Username" name="loginemail" ng-model="logindata.email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="loginpassword" placeholder="Password" ng-model="logindata.password">
+                                        </div>
+                                        <div class="checkbox col-md-6 text-left clearfix">
+                                            <input type="checkbox" value="" name="Checkbox"> <span>Remember me</span>
+                                        </div>
+                                        <div class="checkbox col-md-6 text-right clearfix">
+                                            <a href="#" id="pass-forgot-doctor">Forgot Password?</a>
+                                        </div>
+                                        <button type="submit" class="btn btn-block create-account" ng-click="submitted=true" ng-disabled="login2">Login</button>
+                                    </form>
+                                    <div class="">
+                                        <div class="forgot-div">
+                                           <ul class="fogot-ul">
+                                              <li class="forgot-li">
+                                                 <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginemail.$invalid">
+                                                 <span ng-show="loginform.loginemail.$error.required">User Name is required.</span>
+                                                 </span>
+                                                 <span style="color:#176C6F;display: inherit;" ng-show="submitted && loginform.loginpassword.$invalid">
+                                                 <span ng-show="loginform.loginpassword.$error.required">Password is required.</span>
+                                                 </span>
+                                                 <span style="color:#176C6F;display:inherit;"
+                                                    ng-show="usernotfound">wrong username or password</span>
+                                                 <span style="color:red;display:inherit;"
+                                                    ng-show="servernotfound">Network Unavailable</span>
+                                                 <span style="color:red;display:inherit;"
+                                                    ng-show="accountdeactive">Your account is not active. Please contact to administrator</span>
+                                              </li>
+                                           </ul>
+                                        </div>
+                                        </div>
+                                </div>
+                                <div id="docSignUp" class="tab-pane fade">
+                                    <h3 class="login-heading text-right">Register for User  <strong><a href="#" class="reg-here" id="userOne-reg-btn">Click Here</a></strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="myform.$valid && registorDoctor(user)" name="myform" novalidate ng-app="myApp">
+                                        <div class="form-group pd-l-0 col-md-6 ">
+                                            <input type="text" class="form-control" ng-model="user.name" id="input-4" show="user.name" name="fname" allow-pattern="[a-z \s]" capitalized required placeholder="First Name">
+                                        </div>
+                                        <div class="form-group pd-r-0 col-md-6">
+                                            <input type="text" class="form-control" ng-model="user.lname" id="input-8" show="user.lname" name="lname" allow-pattern="[a-z \s]" capitalized required placeholder="last Name">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="text" class="form-control" ng-model="user.mobile" id="input-7" name="mobile" ng-blur="checkmobile(user.mobile)" required maxlength="10" allow-pattern="[0-9]"  placeholder="Mobile">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="email" class="form-control" ng-model="user.email" id="input-5" name="email" ng-blur="checkemail(user.email)" required  placeholder="Email"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" ng-model="user.password" id="input-6" ng-blur="checkpwdvalidation(user.password)" required name="password"  placeholder="Password"/>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-model="user.termscond" name="termscond" id="input-9" required>
+                                            <span>By creating this account, you agree to our 
+                                                <a href="#/privacyPolicies" target="_blank">T&amp;C</a> &amp; 
+                                                <a href="#/privacyPolicies" target="_blank">Privacy Policy.</a>
+                                            </span>
+                                        </div>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.fname.$invalid">
+                                            <span ng-show="myform.fname.$error.required">Full Name is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.email.$invalid">
+                                            <span ng-show="myform.email.$error.required">Email is required.</span>
+                                            <span ng-show="myform.email.$error.email"> Not valid email! </span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.mobile.$invalid">
+                                            <span ng-show="myform.mobile.$error.required">Phone number is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.password.$invalid">
+                                            <span ng-show="myform.password.$error.required">Password is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.termscond.$invalid">
+                                            <span ng-show="myform.termscond.$error.required">Accept Terms and condition.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;">
+                                            <span ng-show="verification">Welcome email is sent to your email id  <br>Please <a href="javascript:void(0)" onclick="openLogintab()">Login</a> to continue
+                                            </span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexist">Email is already exist <br>Please try with different Email Id</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexistmobile">Mobile No is already exist <br>Please try with different Mobile No</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="passwordvalidation">Password must be at least 8 character and  contain 1 Special symbol, 1 number, 1 upper and lower case letter</span>
+                                        </span>
+                                        <button type="submit" class="btn btn-block create-account" ng-click="submitted = true" ng-disabled="noEmail">Create Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-footer">
+                                <div class="or-text"><h3>OR</h3></div>
+                                <a href="#" onclick="fblogin();" class="btn btn-block facebook-btn"><i class="fa pull-left fa-facebook-square" aria-hidden="true"></i> Connect with Facebook</a>
+                                <a href="#" id="googleLoginBtn2" class="btn btn-block google-btn"><i class="fa pull-left  fa-google-plus-square" aria-hidden="true"></i> Connect with Google+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hospital Login  Modal -->
+<div id="hospitalLogin" class="modal fade loginCtrl" ng-controller="loginCtrl"role="dialog">
+    <div class="modal-dialog modal-lg-login">
+        <div class="modal-content">
+            <div class="modal-body hospital-modal-wpr pd-0 clearfix">
+                <div class="col-md-5  pd-lr-0">
+                    <div class="login-left">
+                        <div class="login-top-img text-center">
+                            <!-- <img src="assets/img/st.png" alt="Stethoscope"> -->
+                            <i class="fa fa-hospital-o hosp-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="login-left-details">
+                            <h3 class="left-heading"><strong>Docpal</strong> Your Health Partner</h3>
+                            <ul class="login-left-list">
+                                <li>
+                                    <p>Consult With Your Doctor</p>
+                                    <span>Get answers to your medical questions from 
+                                    the comfort of your own home.</span>
+                                </li>
+                                <li>
+                                    <p>Manage Your Appointments</p>
+                                    <span>Schedule your next appointment, or view details of your past and upcoming appointments</span>
+                                </li>
+                                <li>
+                                    <p>Access Your Test Report</p>
+                                    <span>No more waiting for a phone call or letter-view 
+                                          your results and your doctor's comments within 
+                                          days</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pd-lr-0">
+                    <div class="login-right ">
+                        <div class="login-signup-form">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a data-toggle="pill" href="#hosLogin">Login</a></li>
+                                <li><a data-toggle="pill" href="#hosSignUp">Sign Up</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="hosLogin" class="tab-pane fade in active">
+                                    <h3 class="login-heading text-right">Login as a <strong>Hospital</strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="hospitalLogin(logindata)"  name="myform" novalidate ng-app="myApp">
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control" placeholder="Username" name="loginemail" ng-model="logindata.email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password" name="loginpassword" ng-model="logindata.password">
+                                        </div>
+                                        <div class="checkbox col-md-6 text-left clearfix">
+                                            <input type="checkbox" value="" name="Checkbox"> <span>Remember me</span>
+                                        </div>
+                                        <div class="checkbox col-md-6 text-right clearfix">
+                                            <a href="#" class="pass-forgot">Forgot Password?</a>
+                                        </div>
+                                        <button type="submit" ng-click="submitted = true" ng-disabled="login2" class="btn btn-block create-account">Login as a hospital</button>
+                                    </form>
+                                </div>
+                                <div id="hosSignUp" class="tab-pane fade ">
+                                    <h3 class="login-heading text-right">Register for Test lab  <strong><a href="#" class="reg-here" id="testLab-reg-btn">Click Here</a></strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form ng-submit="myform.$valid && registorHospital(hospital)"  name="myform" novalidate ng-app="myApp">
+                                        <div class="form-group ">
+                                            <input type="text" class="form-control" ng-model="hospital.name" name="name" capitalize-first allow-pattern="[a-z \s]" required placeholder="Hospital Name">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="text" class="form-control" ng-model="hospital.mobile" name="mobile" maxlength="10" ng-blur="checkmobile(hospital.mobile)" required placeholder="Mobile"/>
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="email" class="form-control" ng-model="hospital.email" name="email" ng-blur="checkemail(hospital.email)" required placeholder="Email"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" ng-model="hospital.password" name="password" ng-blur="checkpwdvalidation(hospital.password)" required placeholder="Password"/>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-model="hospital.termscond" name="termscond" required>
+                                            <span>By creating this account, you agree to our 
+                                                <a href="#/privacyPolicies" target="_blank">T&amp;C</a> &amp; 
+                                                <a href="#/privacyPolicies" target="_blank">Privacy Policy.</a>
+                                            </span>
+                                        </div>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.mobile.$invalid">
+                                            <span ng-show="myform.mobile.$error.required">Phone should be 10 digits</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.name.$invalid">
+                                            <span ng-show="myform.name.$error.required">Hospital Name is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.email.$invalid">
+                                            <span ng-show="myform.email.$error.required">Email is required.</span>
+                                            <span ng-show="myform.email.$error.email"> Not valid email! </span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.password.$invalid">
+                                            <span ng-show="myform.password.$error.required">Password is required.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;" ng-show="submitted && myform.termscond.$invalid">
+                                            <span ng-show="myform.termscond.$error.required">Accept Terms and condition.</span>
+                                        </span>
+                                        <span style="color:#176C6F;display:inherit;">
+                                            <span ng-show="verification">Welcome email is sent to your email id <br>Please <a href="javascript:void(0)" onclick="openLogintabuser()">Login</a> to continue</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexist">Email is already exist <br>Please try with different Email Id</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="alreadyexistmobile">Mobile No is already exist <br>Please try with different Mobile No</span>
+                                        </span>
+                                        <span style="color:red;display:inherit;">
+                                            <span ng-show="passwordvalidation">Password must be at least 8 character and  contain 1 Special symbol, 1 number, 1 upper and lower case letter</span>
+                                        </span>
+                                        <button type="submit" ng-click="submitted = true" ng-disabled="noEmail" class="btn btn-block create-account">Create Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-footer">
+                                <div class="or-text"><h3>OR</h3></div>
+                                <a href="#" onclick="fblogin();" class="btn btn-block facebook-btn"><i class="fa pull-left fa-facebook-square" aria-hidden="true"></i> Connect with Facebook</a>
+                                <a href="#" id="googleLoginBtn" class="btn btn-block google-btn"><i class="fa pull-left  fa-google-plus-square" aria-hidden="true"></i> Connect with Google+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Test Lab Modal -->
+<div id="testLabReg" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg-login">
+        <div class="modal-content">
+            <div class="modal-body test-lab-wpr pd-0 clearfix">
+                <div class="col-md-5  pd-lr-0">
+                    <div class="login-left">
+                        <div class="login-top-img text-center">
+                            <i class="fa fa-flask hosp-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="login-left-details">
+                            <h3 class="left-heading"><strong>Docpal</strong> Your Health Partner</h3>
+                            <ul class="login-left-list">
+                                <li>
+                                    <p>Consult With Your Doctor</p>
+                                    <span>Get answers to your medical questions from 
+                                    the comfort of your own home.</span>
+                                </li>
+                                <li>
+                                    <p>Manage Your Appointments</p>
+                                    <span>Schedule your next appointment, or view details of your past and upcoming appointments</span>
+                                </li>
+                                <li>
+                                    <p>Access Your Test Report</p>
+                                    <span>No more waiting for a phone call or letter-view 
+                                          your results and your doctor's comments within 
+                                          days</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pd-lr-0">
+                    <div class="login-right ">
+                        <div class="login-signup-form">
+                            <ul class="nav nav-pills">
+                                <li ><a data-toggle="pill" href="#labLogin">Login</a></li>
+                                <li class="active" ><a data-toggle="pill" href="#labSignUp">Sign Up</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="labLogin" class="tab-pane fade ">
+                                    <h3 class="login-heading text-right">Login as a <strong>Test Lab</strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form action="#" method="post" name="loginForm">
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control" placeholder="Username" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                                        </div>
+                                        <div class="checkbox col-md-6 text-left clearfix">
+                                            <input type="checkbox" value="" name="Checkbox"> <span>Remember me</span>
+                                        </div>
+                                        <div class="checkbox col-md-6 text-right clearfix">
+                                            <a href="#" class="pass-forgot">Forgot Password?</a>
+                                        </div>
+                                        <button type="submit" name="" class="btn btn-block create-account">Login as a Test lab</button>
+                                    </form>
+                                </div>
+                                <div id="labSignUp" class="tab-pane fade in active ">
+                                    <h3 class="login-heading text-right">Register for Hospital  <strong><a href="#" class="reg-here" id="hosp-reg-btn">Click Here</a></strong> <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+                                    <form action="#" method="post" name="loginForm">
+                                        <div class="form-group pd-l-0 col-md-6 ">
+                                            <input type="text" name="First Name" class="form-control" placeholder="First Name" required="">
+                                        </div>
+                                        <div class="form-group pd-r-0 col-md-6">
+                                            <input type="text" name="Last Name" class="form-control" placeholder="Last Name" required="">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="text" name="Mobile" class="form-control" placeholder="Mobile" required="">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="email" name="Email" class="form-control" placeholder="Email" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                                        </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="" name="Checkbox"> <span>By creating this account, you agree to our <a href="javascript:void(0);">T&amp;C</a> &amp; <a href="javascript:void(0);">Privacy Policy.</a></span>
+                                        </div>
+                                        <button type="submit" name="" class="btn btn-block create-account">Create Account</button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-footer">
+                                <div class="or-text"><h3>OR</h3></div>
+                                <a href="#" onclick="fblogin();" class="btn btn-block facebook-btn"><i class="fa pull-left fa-facebook-square" aria-hidden="true"></i> Connect with Facebook</a>
+                                <a href="#" id="googleLoginBtn" class="btn btn-block google-btn"><i class="fa pull-left  fa-google-plus-square" aria-hidden="true"></i> Connect with Google+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="forgot-pass-wpr-doctor" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="forgot-wpr">
+                    <h2 class="text-center">Reset Password</h2>
+                    <form  name="loginform" novalidate>
+                        <div class="form-group">
+                            <input type="email" name="loginemail" id="email" ng-model="email" required="" class="form-control" placeholder="Enter your email address">
+                        </div>
+                        <button type="button" id="go" ng-click="sendMail(email)" ng-disabled="loginform.$invalid" value="submit" class="btn btn-block create-account">Reset Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="forgot-pass-wpr-user" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="forgot-wpr">
+                    <h2 class="text-center">Reset Password</h2>
+                    <form  name="loginform" novalidate>
+                        <div class="form-group">
+                            <input type="email" name="loginemail" ng-model="email" required="" class="form-control" placeholder="Enter your email address">
+                        </div>
+                        <button type="button" ng-click="sendMail(email, 'user')" ng-disabled="loginform.$invalid" value="submit" class="btn btn-block create-account">Reset Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+startApp();
+
+function openLogintab(){
+    $(".login-signup-form > ul > li:nth-child(1)").addClass("active");
+    $(".login-signup-form > ul > li:nth-child(2)").removeClass("active");
+    $("#docLogin").addClass("in active");
+    $("#docSignUp").removeClass("in active");
+}
+
+function openLogintabuser(){
+    $(".login-signup-form > ul > li:nth-child(1)").addClass("active");
+    $(".login-signup-form > ul > li:nth-child(2)").removeClass("active");
+    $("#login").addClass("in active");
+    $("#signUp").removeClass("in active");
+}
+
+$(document).ready(function() {
+    $(document).on('click', '.login-image', function() {
+        $("[data-toggle = 'popover']").popover({
+            html: true,
+            content: function() {
+                return $('#login-data').html();
+            }
+        });
+    });
+    $('.dropdown-toggle').dropdown();
+});
+
+$(document).click(function(e) {
+    if ($(e.target).closest(".showdata").length > 0) {
+        return false;
+    } else {
+
+        if ($(e.target).closest(".showdata").length > 0) {
+            alert(123);
+        } else {
+            $(".hidedata").hide();
+        }
+    }
+});
+
+$(document).ready(function() {
+    $('.menu-tab').click(function(e) {
+        $('.menu-hide').toggleClass('show');
+        $('.menu-tab').toggleClass('active');
+        $(".popover").hide();
+        return false;
+    });
+
+    $("#user-reg-btn, #user-reg-btn-one").click(function(){
+        $("#loginSignUpModal").modal('hide');
+        $("#doctorReg").modal('show');
+    });
+
+    $("#userOne-reg-btn").click(function(){
+        $("#doctorReg").modal('hide');
+        $("#loginSignUpModal").modal('show');
+    });
+
+    $("#hosp-reg-btn").click(function(){
+        $("#testLabReg").modal('hide');
+        $("#hospitalLogin").modal('show');
+    });
+
+    $("#testLab-reg-btn").click(function(){
+        $("#hospitalLogin").modal('hide');
+        $("#testLabReg").modal('show');
+    });
+
+    $("#pass-forgot-doctor").click(function(){
+        $("#doctorReg").modal('hide');
+        $("#forgot-pass-wpr-doctor").modal('show');
+    });
+    
+    $("#pass-forgot-user").click(function(){
+        $("#loginSignUpModal").modal('hide');
+        $("#forgot-pass-wpr-user").modal('show');
+    });
+
+    $(".top-regsiter").click(function(){
+    	$(".login-signup-form > ul > li:nth-child(1)").removeClass("active");
+    	$(".login-signup-form > ul > li:nth-child(2)").addClass("active");
+    	$("#login").removeClass("in active");
+    	$("#signUp").addClass("in active");
+    });
+
+    $(".top-login").click(function(){
+    	$(".login-signup-form > ul > li:nth-child(1)").addClass("active");
+    	$(".login-signup-form > ul > li:nth-child(2)").removeClass("active");
+    	$("#login").addClass("in active");
+    	$("#signUp").removeClass("in active");
+    });
+});
+</script>
+

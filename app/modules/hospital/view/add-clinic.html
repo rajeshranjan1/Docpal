@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docpal</title>
+</head>
+<body>
+
+<div class="clinic-wpr" ng-controller="hospitalviewCtrl">
+    <div class="container">
+        <div class="headings pg-head text-center">
+            <h3>Enter Your Clinic Details</h3>            
+            <div class="clinic-text text-center">
+                <p>Please help us with the below information</p>
+            </div>
+            
+        </div>
+        <div class="col-md-4 zero-margin">
+            <div class="inner-clinic">
+            <form ng-submit="findClinic(clinicdata)" name="clinicform">
+                <div class="col-md-12 form-group">
+            		<label>City*</label>
+                    <input type="text" class="form-control"  name="city" required placeholder="Enter City" ng-model="clinicdata.city">
+                </div>
+                <div class="col-md-12 form-group">
+            		<label>Locality*</label>
+                    <input type="text" class="form-control"  name="locality" required placeholder="Enter Locality" ng-model="clinicdata.locality">
+                </div>
+                <div class="text-center form-group col-md-12 m-t-30">
+                    <button type="submit" class="btn btn-custom-info" value="Find Clinic" ng-click="submitted=true" ng-disabled="">Find Clinic</button>
+                </div>
+             </form>
+            </div>
+          </div> 
+    </div>
+</div>
+
+</body>
+</html>

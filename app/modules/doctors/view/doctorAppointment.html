@@ -1,0 +1,1003 @@
+<div>
+	<section id="main-header-section" ng-include="'modules/doctors/view/dr_header.view.html'"></section>
+	<section id="dr_notificatio">
+        <div class="section1-div">
+            <div class="container">
+                <div class="inner-section-div">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <doctormenu></doctormenu>
+                        <div class="center-part-div">
+                            <div class="tab-content">
+                                 <div id="account" class="tab-pane fade in active">
+	                                <div class="tab-details clearfix">
+	                                    <div class="col-md-12 clinic-detail-tab p-0">
+	                                        <div class=" clearfix">
+	                                            <div class="pull-right">
+	                                                <ul class="nav nav-tabs ap-tab">
+	                                                    <li class="active">
+	                                                        <a href="#p_calendar" aria-controls="calendar" role="tab" data-toggle="tab" aria-expanded="false">
+	                                                           <i class="fa fa-calendar-check-o mr-right" aria-hidden="true"></i> Calendar
+	                                                        </a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="#patients" aria-controls="patients" role="tab" data-toggle="tab" aria-expanded="false">
+	                                                           <i class="fa fa-user mr-right" aria-hidden="true"></i>  Patients
+	                                                        </a>
+	                                                    </li>
+	                                                    <li class="">
+	                                                        <a href="#message" aria-controls="message" role="tab" data-toggle="tab" aria-expanded="false">
+	                                                           <i class="fa fa-envelope mr-right" aria-hidden="true"></i> Message
+	                                                        </a>
+	                                                    </li>
+	                                                    <li class="">
+	                                                        <a href="#setting" aria-controls="setting" role="tab" data-toggle="tab" aria-expanded="true">
+	                                                           <i class="fa fa-gear mr-right" aria-hidden="true"></i> Setting
+	                                                        </a>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-md-12 p-0">
+	                                            <div class="tab-content">
+	                                            	<div id="p_calendar" class="tab-pane fade active in">
+	                                                    <div class="tab-details clearfix">
+	                                                        <div class="col-md-12 p-0 clearfix">
+	                                                            <div class="col-md-3 p-0">
+	                                                                <div class="left-calendar">
+	                                                                    <div id="leftDateTime"></div>
+	                                                                </div>
+	                                                                <div class="color-wpr">
+	                                                                   <p style="margin-bottom: 10px;" class="text-center"> <strong>Appointment color scheme</strong> </p> 
+	                                                                    <p><span class="label label-info">Created</span> Created by you and not confirmed by the patient yet.</p>
+	                                                                    <p><span class="label label-success">Confirm  </span> Recently confirmed by the patient.</p>
+	                                                                    <p><span class="label label-warning">Requested</span> Created by the patient and awaiting confirmation by you.</p>
+	                                                                    <p><span class="label label-default">Accepted</span> Requested by the patient and accepted by you.</p>
+	                                                                    <p><span class="label label-primary">Checked In</span> Patient has checked in for this appointment.</p>
+	                                                                    <p><span class="label label-danger">Checked Out</span> Patient has checked out for this appointment.</p>
+	                                                                    <p><span class="label label-danger label-note">Note</span> Time blocked off for activities not related to an appointment.</p>
+	                                                                </div>
+	                                                            </div>
+	                                                            <div class="col-md-9 pd-r-0">
+	                                                                <div ng-app="calApp" ng-controller="KitchenSinkCtrl as vm">
+															            <div class="col-md-12 " >
+															                <div class="col-md-6 text-center">
+															                    <div class="btn-group">
+															                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" decrement="vm.calendarView" ng-click="vm.cellIsOpen = false">
+															                            Previous
+															                        </button>
+															                        <button class="btn btn-default" mwl-date-modifier date="vm.viewDate" set-to-today ng-click="vm.cellIsOpen = false">
+															                            Today
+															                        </button>
+															                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" increment="vm.calendarView" ng-click="vm.cellIsOpen = false">
+															                            Next
+															                        </button>
+															                    </div>
+															                </div>
+															                <br class="visible-xs visible-sm">
+															                <div class="col-md-6 text-center">
+															                    <div class="btn-group">
+															                        <!-- <button  ng-model="vm.getWeekNumber"> {{vm.getWeekNumber}}</button> -->
+															                        <!-- <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label> -->
+															                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
+															                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
+															                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
+															                    </div>
+															                </div>
+															            </div>
+															            <br>
+															            <mwl-calendar events="vm.events" view="vm.calendarView" view-title="vm.calendarTitle" view-date="vm.viewDate" on-event-click="vm.eventClicked(calendarEvent)"
+															                on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+															                cell-is-open="vm.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)"
+															                cell-auto-open-disabled="true" on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+															            </mwl-calendar>
+															            <br>
+															            <br>
+															            <h3 id="event-editor">
+															                Edit events
+															                <button class="btn btn-primary pull-right" ng-click="vm.addEvent()">
+															                    Add new
+															                </button>
+															                <div class="clearfix"></div>
+															            </h3>
+
+															            <table class="table table-bordered">
+															                <thead>
+															                    <tr>
+															                        <th>Title</th>
+															                        <th>Primary color</th>
+															                        <th>Secondary color</th>
+															                        <th>Starts at</th>
+															                        <th>Ends at</th>
+															                        <th>Remove</th>
+															                    </tr>
+															                </thead>
+															                <tbody>
+															                    <tr ng-repeat="event in vm.events track by $index">
+															                        <td>
+															                            <input type="text" class="form-control" ng-model="event.title">
+															                        </td>
+															                        <td>
+															                            <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
+															                        </td>
+															                        <td>
+															                            <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
+															                        </td>
+															                        <td>
+															                            <p class="input-group" style="max-width: 250px">
+															                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="event.startsAt" is-open="event.startOpen"
+															                                    close-text="Close">
+															                                <span class="input-group-btn">
+															                                    <button type="button" class="btn btn-default" ng-click="vm.toggle($event, 'startOpen', event)">
+															                                        <i class="glyphicon glyphicon-calendar"></i>
+															                                    </button>
+															                                </span>
+															                            </p>
+															                            <div uib-timepicker ng-model="event.startsAt" hour-step="1" minute-step="15" show-meridian="true">
+															                            </div>
+															                        </td>
+															                        <td>
+															                            <p class="input-group" style="max-width: 250px">
+															                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="event.endsAt" is-open="event.endOpen"
+															                                    close-text="Close">
+															                                <span class="input-group-btn">
+															                                    <button type="button" class="btn btn-default" ng-click="vm.toggle($event, 'endOpen', event)">
+															                                        <i class="glyphicon glyphicon-calendar"></i>
+															                                    </button>
+															                                </span>
+															                            </p>
+															                            <div uib-timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true">
+															                            </div>
+															                        </td>
+															                        <td>
+															                            <button class="btn btn-danger" ng-click="vm.events.splice($index, 1)">
+															                                Delete
+															                            </button>
+															                        </td>
+															                    </tr>
+															                </tbody>
+															            </table>
+															        </div>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div id="patients" class="tab-pane fade ">
+	                                                    <div class=" clearfix" style="margin-top: 2px ">
+	                                                        <div class="table-responsive">
+	                                                            <div  >
+															        <div  ng-controller="tableCtrl">
+															            <div class="panel-body">
+															                <div class="table-responsive">
+															                    <table class="table table-bordered bordered table-striped table-condensed datatable" ui-jq="dataTable" ui-options="dataTableOpt">
+															                        <thead>
+															                            <tr>
+															                                <th>
+															                                    <input type="checkbox" ng-model="IsAllChecked" ng-change="CheckUncheckAll()" /> All</th>
+															                                <th>Name</th>
+															                                <th>Email</th>
+															                                <th>Mobile</th>
+															                                <th>Last Visit</th>
+															                                <th>Next Visit</th>
+															                            </tr>
+															                        </thead>
+															                        <tbody>
+															                            <tr ng-repeat="n in patient">
+															                                <td class="text-left">
+															                                    <input type="checkbox" ng-model="n.Selected" ng-change="CheckUncheckHeader()" class="text-left" />
+															                                </td>
+															                                <td class="text-left">{{n[0]}}</td>
+															                                <td class="text-left">{{n[1]}}</td>
+															                                <td class="text-left">{{n[2]}}</td>
+															                                <td class="text-left">{{n[3]}}</td>
+															                                <td class="text-left">{{n[4] | date:'yy/mm/dd'}}</td>
+
+															                            </tr>
+															                        </tbody>
+															                    </table>
+															                </div>
+
+															            </div>
+															        </div>
+															    </div>
+	                                                        </div>
+	                                                        <div class="btn-bottom-wpr clearfix">
+	                                                            <div class="col-md-12">
+	                                                                <a href="#" class="btn  btn-danger table-edit-btn btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a>
+	                                                                <a href="#" class="btn  btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete </a>
+	                                                                <a href="#" class="btn  btn-info btn-sm" data-toggle="modal" data-target="#create-patient"><i class="fa fa-plus" aria-hidden="true" ></i> Create </a>
+	                                                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-upload" aria-hidden="true"></i> Import </a>
+	                                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-download" aria-hidden="true"></i> Export </a>
+	                                                                <a href="#" class="btn btn-default btn-sm"><i class="fa fa-comments-o" aria-hidden="true"></i> Send message </a>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                
+	                                                <div id="message" class="tab-pane fade">
+	                                                    <div class="tab-details grey-back clearfix">
+	                                                        <div class="col-md-12 clinic-detail-tab p-0">
+	                                                            <div class="col-md-2 p-0">
+	                                                                <ul class="nav nav-tabs nav-stacked cal-left-tab mr-0">
+	                                                                    <li class="active">
+	                                                                        <a href="#dr_profile1" aria-controls="dr_profile" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-eye mr-right" aria-hidden="true"></i>  Appointment
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#registerDocument1" aria-controls="registerDocument" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-bell mr-right" aria-hidden="true"></i>  Reminder
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#dr_clinic1" aria-controls="dr_clinic" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-phone mr-right" style="font-size: 10px;" aria-hidden="true"></i> Recall
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#dr_account1" aria-controls="dr_account" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-file mr-right" aria-hidden="true"></i> Acknowledgement
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#cancellation" aria-controls="cancellation" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-ban mr-right" aria-hidden="true"></i> Cancellation
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#acceptance" aria-controls="acceptance" class="text-left" role="tab" data-toggle="tab">
+	                                                                            <i class="fa fa-thumbs-o-up mr-right" aria-hidden="true"></i> Acceptance
+	                                                                        </a>
+	                                                                    </li>
+	                                                                     <li>
+	                                                                        <a href="#rejection" aria-controls="rejection" class="text-left" role="tab" data-toggle="tab"><i class="fa fa-times mr-right" aria-hidden="true"></i> Rejection
+	                                                                        </a>
+	                                                                    </li>
+	                                                                     <li>
+	                                                                        <a href="#appointment-series" aria-controls="ppointment-series" class="text-left" role="tab" data-toggle="tab"><i class="fa fa-clipboard mr-right" aria-hidden="true"></i> Appointment Series
+	                                                                        </a>
+	                                                                    </li>
+	                                                                     <li>
+	                                                                        <a href="#series-cancellation" aria-controls="series-cancellation" class="text-left" role="tab" data-toggle="tab"><i class="fa fa-clipboard mr-right" aria-hidden="true"></i> Series Cancellation
+	                                                                        </a>
+	                                                                    </li>
+	                                                                      <li>
+	                                                                        <a href="#follow-up" aria-controls="follow-up" class="text-left" role="tab" data-toggle="tab"><i class="fa fa-hand-o-right mr-right" aria-hidden="true"></i> Follow Up
+	                                                                        </a>
+	                                                                    </li>
+	                                                                       <li>
+	                                                                        <a href="#birthday" aria-controls="birthday" class="text-left" role="tab" data-toggle="tab"><i class="fa fa-birthday-cake mr-right" aria-hidden="true"></i> Birthday
+	                                                                        </a>
+	                                                                    </li>
+	                                                                </ul>
+	                                                            </div>
+	                                                            <div class="col-md-10 pd-r-0">
+	                                                                <div class="tab-content">
+	                                                                    <div id="dr_profile1" class="tab-pane fade in active">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment notification</h2>
+	                                                                                  
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p >This is an automatic notification sent to a patient when an appointment is created or updated.</p>
+
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-2 pd-l-0">
+	                                                                                                <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                            </div>
+	                                                                                            <div class="col-md-4">
+	                                                                                                <select class="form-control  modal-input">
+	                                                                                                <option value="0">Hindi</option>
+	                                                                                                <option value="1">English</option>
+	                                                                                                <option value="2">Bengali</option>
+	                                                                                                <option value="4">French</option>
+	                                                                                                <option value="8">Marathi</option>
+	                                                                                            </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>${DoctorName} appointment notification for ${PatientName}</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>This is an update regarding ${PatientName}'s appointment with ${DoctorName} on ${startDate} at ${startTime}. You can view your appointment details here: ${AppointmentUrl} .</p>
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="registerDocument1" class="tab-pane fade ">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                    <h2 class="wpr-heading">Appointment Reminder</h2>
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p >Appointment reminder is a notification sent to the patient about an approaching appointment.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Channel</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Email</option>
+	                                                                                                    <option value="1">Text</option>
+	                                                                                                    <option value="2">Voice</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                            <div class="col-md-6">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>${DoctorName} appointment notification for ${PatientName}</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>This is a reminder that ${PatientName} has an appointment with ${DoctorName} coming up on ${startDate} at ${startTime}. Please confirm it or cancel at your earliest convenience: ${AppointmentUrl}.</p>
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    
+	                                                                    <div id="dr_clinic1" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Patient Recall</h2>
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p>Patient recall is a message sent to the patient to remind them to schedule a new continuing care appointment.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Channel</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Email</option>
+	                                                                                                    <option value="1">Text</option>
+	                                                                                                    <option value="2">Voice</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                            <div class="col-md-6">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>It is time for ${PatientName}'s regular check-up or continuing care appointment with ${DoctorName}.</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>It is time for ${PatientName}'s regular check-up or continuing care appointment with ${DoctorName}. Please call us at ${OfficePhone} or visit ${ProfileUrl} to schedule your next appointment at your earliest convenience. </p>
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="dr_account1" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment Request Acknowledgement</h2>
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p>This is an automatic notification sent to a patient to acknowledge their appointment request made through patient self-service.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Channel</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Email</option>
+	                                                                                                    <option value="1">Text</option>
+	                                                                                                    <option value="2">Voice</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                            <div class="col-md-6">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>${DoctorName} appointment for ${PatientName} on ${startDate}</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>Your appointment for ${PatientName} with ${DoctorName} on ${startDate} at ${startTime} has been scheduled. You can view your appointment details here: ${AppointmentUrl} .</p>
+	                                                                                    <p>Please note that your request has not yet been accepted by ${DoctorName}'s office. You will receive a separate confirmation soon.</p>
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="cancellation" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment Cancellation</h2>
+	                                                                                    
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p>This is an automatic notification sent to a patient when an appointment is cancelled. </p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>Appointment with ${DoctorName} was cancelled</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>This email confirms the cancellation of your appointment for ${PatientName} with ${DoctorName}, which was scheduled on ${startDate} at ${startTime}. You can schedule your next appointment with ${DoctorName} online at ${ProfileUrl} .</p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="acceptance" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment Request Acceptance</h2>
+	                                                                                    <div class="col-md-12 mr-tp-10  p-0">
+	                                                                                    	<p  >This is an automatic notification sent to a patient when their appointment request is accepted.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>Appointment with ${DoctorName} was accepted</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>${DoctorName} confirmed your appointment request for ${PatientName}. Your appointment is scheduled for ${startDate} at ${startTime}. </p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="rejection" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment Request Rejection</h2>
+	                                                                                    
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p>This is an automatic notification sent to a patient when their appointment request is not accepted.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>Appointment request with ${DoctorName}</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>We are sorry, but your request for an appointment with ${DoctorName} for ${PatientName} on ${startDate} at ${startTime} could not be accommodated. Please contact our office to reschedule this appointment at your earliest convenience. </p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="appointment-series" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Recurring Appointment Notification</h2>
+	                                                                                    
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0 ">
+	                                                                                    	<p>This is an automatic notification sent to a patient when a recurring appointment is created or updated.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>${DoctorName} appointment notification for ${PatientName}</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>This is an update regarding ${PatientName}'s appointment with ${DoctorName} occurring ${seriesDescription} at ${startTime} between ${seriesStart} and ${seriesEnd}. You can view your appointment details here: ${AppointmentUrl} . </p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="series-cancellation" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Recurring Appointment Cancellation</h2>
+	                                                                                    
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0">
+	                                                                                    	<p  class="col-md-12">This is an automatic notification sent to a patient when a recurring appointment is cancelled.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>Your appointment with ${DoctorName} was cancelled</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>This email confirms the cancellation of ${PatientName}'s appointment with ${DoctorName} occurring ${seriesDescription} at ${startTime} between ${seriesStart} and ${seriesEnd}. You can schedule your next appointment with ${DoctorName} online at ${ProfileUrl} . </p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="follow-up" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Appointment Follow-up</h2>
+	                                                                                    
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0 ">
+	                                                                                    	<p>This is an automatic follow-up message which can be scheduled to be sent to the patient after their appointment.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>How was your appointment with ${DoctorName}?</h4>
+	                                                                                    <p>Dear ${CaregiverName},</p>
+	                                                                                    <p>Thank you for coming in for your appointment with ${DoctorName}. Please rate us on Yelp! It only takes a moment and helps other patients choose a doctor.<br>
+	                                                                                    When you are ready for your next appointment, click here to schedule it: ${ProfileUrl}. </p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="birthday" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-12 ">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                	<h2 class="wpr-heading">Birthday Greeting</h2>
+	                                                                                    <div class="col-md-12 mr-tp-10 p-0 ">
+	                                                                                    	<p>This is a congratulatory message sent to a patient on their birthday.</p>
+	                                                                                        <div class="form-group clearfix">
+	                                                                                            <div class="col-md-6 pd-l-0">
+	                                                                                                <div class="col-md-4 pd-l-0">
+	                                                                                                    <label for="name" style="padding-top: 10px" >Language</label>
+	                                                                                                </div>
+	                                                                                                <div class="col-md-8">
+	                                                                                                    <select class="form-control  modal-input">
+	                                                                                                    <option value="0">Hindi</option>
+	                                                                                                    <option value="1">English</option>
+	                                                                                                    <option value="2">Bengali</option>
+	                                                                                                    <option value="4">French</option>
+	                                                                                                    <option value="8">Marathi</option>
+	                                                                                                </select>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                                <div class="doc-template clearfix">
+	                                                                                    <h4>Happy Birthday, ${PatientName}</h4>
+	                                                                                    <p>On behalf of our office, we would like to send you best wishes on your special day!</p>
+	                                                                                    <p>We always value good health and happiness and we would like to thank you for allowing us to be a part of it! We hope this has been a great year for you and that the year ahead will be even better.</p>
+	                                                                                   
+	                                                                                    <p>Thank you, <br> ${DoctorName}</p>
+	                                                                                    <p>${OfficePhone} <br> ${OfficeEmail}</p>
+	                                                                                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div id="setting" class="tab-pane fade">
+	                                                    <div class="tab-details grey-back clearfix">
+	                                                        <div class="col-md-12 clinic-detail-tab p-0">
+	                                                            <div class="col-md-2 pd-l-0 ">
+	                                                                <ul class="nav nav-tabs nav-stacked cal-left-tab mr-0">
+	                                                                    <li class="active">
+	                                                                        <a href="#patient_portal" aria-controls="patient_portal" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-eye mr-right" aria-hidden="true"></i>  Patient Portal
+	                                                                            </a>
+	                                                                    </li>
+	                                                                    <li>
+	                                                                        <a href="#premium_services" aria-controls="premium_services" class="text-left" role="tab" data-toggle="tab">
+	                                                                               <i class="fa fa-star mr-right" aria-hidden="true"></i> Premium Services
+	                                                                            </a>
+	                                                                    </li>
+	                                                                </ul>
+	                                                            </div>
+	                                                            <div class="col-md-10 p-0">
+	                                                                <div class="tab-content">
+	                                                                    <div id="patient_portal" class="tab-pane fade in active">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="col-md-8 pd-l-0">
+	                                                                                <div class="ap-top-sec clearfix">
+	                                                                                    <div class="mes-headings"><strong>Patient Portal</strong> </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <div class="form-group">
+	                                                                                                    <label for="Number input">Max. number of daily appointment offers : </label>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0">1</option>
+	                                                                                                    <option value="1">2</option>
+	                                                                                                    <option value="2" selected="">3</option>
+	                                                                                                    <option value="4">4</option>
+	                                                                                                    <option value="5">5</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <div class="form-group">
+	                                                                                                    <label for="Number input">Max. number of appointment cancelled by doctor : </label>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0">1</option>
+	                                                                                                    <option value="1" selected="">2</option>
+	                                                                                                    <option value="2" >3</option>
+	                                                                                                    <option value="4">4</option>
+	                                                                                                    <option value="5">5</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <div class="form-group">
+	                                                                                                    <label for="Number input">Appointment Duration </label>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0">10 minites</option>
+	                                                                                                    <option value="1" selected="">15 minutes</option>
+	                                                                                                    <option value="2" >20 minutes</option>
+	                                                                                                    <option value="4">25 minutes</option>
+	                                                                                                    <option value="5">30 minutes</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Number of days to earliest available appointment:</label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <input type="text" name="" class="form-control port-input" placeholder="1" value="1">
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Number of days to latest available appointment :</label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <input type="text" name="" class="form-control port-input" placeholder="180" value="180">
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Extra time for new patients (minutes) :</label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <input type="text" name="" class="form-control port-input" placeholder="0" value="0">
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Late cancellation period (hours):</label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <input type="text" name="" class="form-control port-input" placeholder="0" value="0">
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Late cancellation logic: </label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0" selected="">Warn</option>
+	                                                                                                    <option value="1">Disallow</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <div class="form-group">
+	                                                                                                    <label for="Number input">Confirmation window (hours): </label>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0" selected="">anytime</option>
+	                                                                                                    <option value="1">12</option>
+	                                                                                                    <option value="1">24</option>
+	                                                                                                    <option value="1">36</option>
+	                                                                                                    <option value="1">48</option>
+	                                                                                                    <option value="1">60</option>
+	                                                                                                    <option value="1">72</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <label for="Number input">Consecutive only self-service appointments:</label>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0">Yes</option>
+	                                                                                                    <option value="1" selected="">No</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                        <div class="col-md-8 pd-l-0">
+	                                                                                            <div class="form-group">
+	                                                                                                <div class="form-group">
+	                                                                                                    <label for="Number input">Automatically accept appointment requests:</label>
+	                                                                                                </div>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                        <div class="col-md-4 pd-lr-8">
+	                                                                                            <div class="form-group">
+	                                                                                                <select class="form-control port-input">
+	                                                                                                    <option value="0">Yes</option>
+	                                                                                                    <option value="1" selected="">No</option>
+	                                                                                                </select>
+	                                                                                            </div>
+	                                                                                        </div>
+	                                                                                    </div>
+	                                                                                    <div class="col-md-12 ">
+	                                                                                       <a href="#" class="btn btn-sm btn-info">Save</a>
+	                                                                                       <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+	                                                                                    </div>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                            <div class="col-md-4">
+	                                                                                
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                    <div id="premium_services" class="tab-pane fade">
+	                                                                        <div class="tab-details clearfix">
+	                                                                            <div class="u-table service-table">
+	                                                                                <div class="table-responsive">
+	                                                                                    <table class="table">
+	                                                                                        <thead>
+	                                                                                            <tr>
+	                                                                                                <th>SERVICE NAME</th>
+	                                                                                                <th>RATE</th>
+	                                                                                                <th>STATUS</th>
+	                                                                                            </tr>
+	                                                                                        </thead>
+	                                                                                        <tbody>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Voice Reminders</a></td>
+	                                                                                                <td>    $0.10 per reminder</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Text Reminders</a></td>
+	                                                                                                <td>   $0.10 per reminder</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Instant Email</a></td>
+	                                                                                                <td>    $0.009 per message</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Change History</a></td>
+	                                                                                                <td>  $10.00 per provider per month</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Text Recalls</a></td>
+	                                                                                                <td>    $0.25 per recall</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Deep Message Customization</a></td>
+	                                                                                                <td>    $10.00 per provider per month</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                            <tr>
+	                                                                                                <td><a href="#">Multilingual Messaging</a></td>
+	                                                                                                <td>    $10.00 per provider per month</td>
+	                                                                                                <td>Disabled <a href="#" class="en-btn">Enable</a></td>
+	                                                                                            </tr>
+	                                                                                        </tbody>
+	                                                                                    </table>
+	                                                                                </div>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,275 @@
+<searchMenu>
+</searchMenu>
+ <section ng-controller="problemShowThreadedCtrl">
+        <div class="center-part-section">
+          <div class="container">
+            <div class="center-part-section-inner">
+              
+              <!-- drop down menu -->
+              
+             <div class="row">
+              <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+                
+                <div class="left-sidebar">
+                  <div id="sidebar-wrapper2">
+                  <div class="search-section3">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="select-div">
+                 <select class="selectpicker show-menu-arrow">
+                 <option>Category</option>
+                 <option>Doctors</option>
+                 <option>Clients</option>
+                  </select></div>
+                 </div>
+        
+                </div>
+                
+              </div>
+
+             
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="tags-area-div">
+                  <span class="tag" ng-repeat="i in problem.tags track by $index">
+                  {{i}} <i class="icon-cross72 fonix"></i>
+                  </span>
+                </div>
+              </div></div>
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="blank-data-div"></div>
+                </div>
+
+              </div>
+
+
+            </div>
+                    
+                  </div>
+                  </div> -->
+        
+        <div class="col-md-offset-2 col-sm-offset-2 col-md-10 col-sm-10 col-xs-12">
+          <div class="center-part-section-inner">
+            
+            
+            <!-- drop down menu -->
+   <!--                <div class="filter-section-div2">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="sort-div">
+                    <i class="icon-indent2"></i>
+                    <span class="newest-item">Sort by : Newest Item</span>
+                    <div class="up-down-icon">
+                    <i class="icon-triangle12 caret-up-icon "></i><br>
+                    <i class="icon-triangle122 caret-down-icon"></i>
+                  </div>
+                  </div>
+                 </div>
+                 <div class="col-md-3 col-sm-3 col-xs-12 padding0">
+                  <div class="sort-div">
+                   <i class="icon-calendar calendar"></i>
+                    <span>Added any date</span>
+                    <div class="up-down-icon">
+                    <i class="icon-triangle12 caret-up-icon "></i><br>
+                    <i class="icon-triangle122 caret-down-icon"></i>
+                  </div>
+                  </div>
+                 </div>
+                 <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="sort-div">
+                  <i class="icon-fallow"></i>
+                  <span class="follow">Followers</span>
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>   -->         <!-- end drop down -->
+             <div class="question-heading-section-div">
+              <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="profile-comment-section2">
+
+                  <div class="main-img-div">
+                  <div class="img-div">
+                  <img ng-src="{{getUserImage(problem.isPrivate == 'true' ? 'user' : problem.details.role,problem.isPrivate == 'true' ? '' : problem.details.image,problem.isPrivate == 'true' ? 'Male' : problem.details.gender, problem.isPrivate == 'true' ? '' : problem.details.social_image)}}" alt="" class="img-responsive">
+                  <p class="dr-name-para">{{ problem.isPrivate == "true" ? 'Anonymous' : problem.details.name }}</p>
+                  </div>
+                     
+                  </div>
+                  <div class="">
+                  <div class="profile-content">
+                  <h4 class="question-class">
+               {{problem.question}}
+                  </h4>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            
+            <!-- start page 1 content -->
+            <div class="search-result-main-div2">
+              <!-- star profile section -->    
+              <div class="main-comment-section">
+                <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="profile-comment-section">
+                  <div class="">
+                   <a href="#" ui-sref="singledoctorInfo({id:problem.answer[answerIndex].repliedBy._id,val:0})">
+                  <div class="main-img-div">
+                   <div class="img-div">
+                   <a href="{{ problem.answer[answerIndex].repliedBy.role == 'doctor' ? '/#/singledoctorInfo/'+ problem.answer[answerIndex].repliedBy.userId : '/#/problemComment' }}">
+                  <img ng-src="{{getUserImage(problem.answer[answerIndex].repliedBy.role,problem.answer[answerIndex].repliedBy.image,problem.answer[answerIndex].repliedBy.gender,problem.answer[answerIndex].repliedBy.social_image)}}" alt="" class="img-responsive">
+                  </a>
+                  <p class="dr-name-para">{{problem.answer[answerIndex].repliedBy.name}}</p>
+                  </div>
+                  </div>
+                  </a>
+                      <div class="profile-content">
+                        <p>{{problem.answer[answerIndex].comment}}</p>
+                      </div>
+                  </div>
+                </div>
+                 <div class="comment">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="smile-icon-div1">
+                          <!-- <div class="share-icon">
+                            <i class="icon-sharing3"></i>
+                          </div> -->
+
+                       <i class="icon-helpful1 smile"></i> 
+
+                       <button class="number votenumber" ng-click="helpful(problem.answer[answerIndex].answerId,problem.answer[answerIndex].answerId,problem.answer[answerIndex].comment,problem.answer[answerIndex].feedback[0].details.userId)" ng-disabled="checkhelp(problem.answer[answerIndex].answerId)" ng-class="{myclass:checkhelp(problem.answer[answerIndex].answerId)}"><i class="icon-help  smile1 fontsize"></i> helpful</button>
+
+                      <span class="number">{{problem.helpcount}}
+                      </span>
+                     
+                    </div>
+                    </div>
+                     <div class="col-md-3 col-sm-4 col-xs-12 pull-right">
+                      <div class="comment-btn-div">
+                      <div class="hand-icon-div">
+                     
+                      </div>
+                      <div class="user-eye-div">
+                        
+                    <button class="icon-report eye-icon votenumber" ng-click="reportAnswercomment(problem.answer[answerIndex].answerId,problem.answer[answerIndex].repliedBy._id,problem.question)" ng-disabled="checkloginReport(problem.answer[answerIndex].answerId)" data-toggle="modal" data-target="#alertmodal" ng-class="{myclass:checkloginReport(problem.answer[answerIndex].answerId)}"></button>
+
+                    <!--  <button class="votenumber" ng-click="toggleModal(x.answerId,problem.details.userId,problem.question)" ng-disabled="checkloginReport(x.answerId)" data-toggle="modal" data-target="#alertmodal" ng-class="{myclass:checkloginReport(x.answerId)}"><i class="icon-report eye-icon"></i></button>
+                  -->
+                     </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                </div>
+                </div>
+              </div>
+            </div>
+             
+         
+             <!-- start comments -->
+               <div class="row" ng-repeat="x in problem.answer[answerIndex].feedback track by $index">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div ng-class="{'profile-comment-section2' : $even , 'profile-comment-section-white' : $odd}">
+
+                  <div class="main-img-div">
+                  <div class="img-div">
+                  <a href="{{ x.details.role == 'doctor' ? '/#/singledoctorInfo/'+ x.details.userId : '/#/problemComment' }}">
+                  <img ng-src="{{getUserImage(x.details.role,x.details.image,x.details.gender,x.details.social_image)}}" alt="" class="img-responsive">
+                  </a>
+                  <p class="dr-name-para">{{x.details.name}}</p>
+                  </div>
+                     
+                  </div>
+                  <div class="">
+                 <div class="profile-content">
+                        <p>{{x.comment}}</p>
+                       
+                      </div>
+                  </div>
+                       <div class="comment">
+                  <div class="row">
+                   
+                     <div class="col-md-3 col-sm-4 col-xs-12 pull-right">
+                      <div class="comment-btn-div">
+                      <div class="hand-icon-div">
+                     
+                      </div>
+                      <div class="user-eye-div" ng-show="ifOwnerProblemComment(x)">
+                          <a ng-click="delProblemComment(problem._id,x.feedbackId,answerIndex); problem.answer[answerIndex].feedback.splice($index,1)"><i class="fa fa-trash"></i></a>
+                      </div>
+                      <div class="user-eye-div">
+
+  <!-- <button class=" votenumber" ng-click="toggleModal(x.feedbackId,problem.ownerId,problem.question)" ng-disabled="checkfeedbackLogin(x.feedbackId)" ng-class="{myclass:checkfeedbackLogin(x.feedbackId)}"></button>
+
+ <button class="votenumber" ng-click="toggleModal(x.answerId,problem.details.userId,problem.question)" ng-disabled="checkloginReport(x.answerId)" data-toggle="modal" data-target="#alertmodal" ng-class="{myclass:checkloginReport(x.answerId)}"><i class="icon-exclamationmark eye-icon"></i></button> -->
+                     </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                </div>
+            
+              </div>
+              </div>
+              <!-- end commentd -->
+              <div class="text-area-div" ng-show="infoAllData._id">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                  <textarea class="form-control text-area-class" rows="5" ng-model="data2" id="comment" placeholder="Your comment to this problem" ></textarea>
+
+                  <button class=" textarea-btn" value="Reply" ng-disabled="data2.length <= 0 " ng-click="addComment(problem._id,data2,problem.question,problem.details.userId); followProblem(problem,true);">reply</button>
+                </div>
+              </div>
+            </div>
+
+<!-- end page 1 -->
+          </div>
+        </div>     
+      </div>
+    </div>
+    <modal title="Login form"  id="confirmAlert" visible="showModal">
+    <form role="form">  
+      <div class="form-group">
+        <label for="password">Confirm Box</label>  
+      </div>
+      <button class="btn btn-default" ng-click="triggerEvent()" >Yes</button>
+       <button class="btn btn-default" ng-click="noTriggerEvent()">No</button>
+    </form>
+  </modal>
+  </div>
+        
+        
+      </section>
+        <script type="text/javascript">
+         $(document).on('click','.caret-down-icon',function (){
+        $(this).addClass("green");
+        $(".caret-up-icon").removeClass("green");
+       });
+        $(document).on('click','.caret-up-icon',function (){
+        $(this).addClass("green");
+         $(".caret-down-icon").removeClass("green");
+       });
+         $(document).on('click','.remove-other',function (){
+         $(".custom-nav-tabs-new li").removeClass("active");
+       });
+      </script>
+      <style>
+      .btnstyle{
+        background: none;
+        border: none;
+      }
+       .myclass
+        {
+         color:#1ba4aa;
+          }
+      </style>

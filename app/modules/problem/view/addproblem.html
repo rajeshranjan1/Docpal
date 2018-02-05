@@ -1,0 +1,147 @@
+<section>
+   <div class="section1-div-new">
+      <div class="container">
+         <div class="inner-section-div-ask">
+            <!-- drop down menu -->
+            <div class="row" >
+               <div class="col-md-2 col-sm-2 col-xs-12 padding15 text-center">
+                  <div class="profile-image-div-ask">
+                     <img ng-src="{{getMyImage()}}" alt="" class="img-responsive dr-profile-image">
+                  </div>
+                  <h4>
+                     {{user.name}}
+                  </h4>
+               </div>
+               <div class="bootstrap-tagsinput tags-class">
+                  <span class="tag label label-info" ng-repeat="i in tags track by $index">
+                  {{i}}&nbsp;&nbsp;
+                  <span class="icon-cross72 cross-remove" ng-click="delTag($index)">
+                  </span>
+                  </span>
+               </div>
+               <div class="col-md-10 col-sm-10 col-xs-12">
+                  <div class="center-section-ask">
+                     <div class="one-row-div-ask">
+                        <h4>
+                           This problem is related to
+                        </h4>
+                        <p class="style_slect">
+                           <select class="select-item" ng-model="relation1" ng-change="relationChange()">
+                              <option value="" ng-selected=true>Choose a Relation</option>
+                              <option ng-repeat="relationName in relations track by $index" value="{{relationName}}">
+                                 {{relationName.name}}
+                              </option>
+                           </select>
+                        </p>
+                     </div>
+                     <div class="one-row-div-ask" ng-show="show1" ng-switch on="relation.name">
+                        <h4 ng-switch-default>
+                           {{relation.gender == "Male" ? "He is" : "She is"}}
+                        </h4>
+                        <h4 ng-switch-when="myself">
+                           I am
+                        </h4>
+                        <p>
+                           <input type="text" ng-pattern="/^[0-9]*$/" value="52" ng-model="data.age" ng-change="ageChange = true" class="editable-class width-set"/>
+                        </p>
+                        <h4>
+                           Years old
+                        </h4>
+                        <p>
+                           {{relation.gender}}
+                        </p>
+                     </div>
+                     <div class="one-row-div-ask" ng-show="ageChange" ng-switch on="relation.name">
+                        <h4 ng-switch-default>
+                           and {{relation.gender == "Male" ? "he has" : "she has"}}
+                        </h4>
+                        <h4 ng-switch-when="myself">
+                           I have
+                        </h4>
+                        <p>
+                           <input type="text" auto-complete ui-items="problemtype" class="editable-class width-set-new" ng-model="data.problem">  
+                        </p>
+                        <h4>
+                           problem since
+                        </h4>
+                        <p>
+                           <input type="text" value="0" ng-pattern="/^[0-9]*$/" class="editable-class width-set" ng-model="data.period">
+                        </p>
+                        <h4>
+                           <p class="style_slect_period">
+                              <select class="select-item  height-select" ng-model="data.duration" ng-change="yearChange = true">
+                                 <option value="" ng-selected=true>Choose Period</option>
+                                 <option ng-repeat="x in period track by $index" value="{{x}}">
+                                    {{x}}
+                                 </option>
+                              </select>
+                           </p>
+                        </h4>
+                     </div>
+                     <div class="one-row-div-ask" ng-show="yearChange">
+                        <p class="width100 textarea_inc">
+                           <!-- <textarea ng-model="data.question" ng-attr-rows="{{row || '1'}}" ng-keyup="$event.keyCode == 13 ? row=incrow() : null" ng-change="problemChange = true"></textarea> -->
+                           <textarea placeholder="My problem discription" ng-model="data.question" ng-change="problemChange = true" rows="3"></textarea>
+                        </p>
+                        <p>
+                        <div class="check">
+                           <input type="checkbox"  ng-model="data.isPrivate" value="email" name="email" id="email_check" class="Echeck">
+                           <label for="email_check"></label>
+                           <span>Private Problem.</span>
+                        </div>
+                        </p>
+                        <h4>
+                           <p class="style_slect_category">
+                              <select class="select-item" ng-model="data.category">
+                                 <option value="" ng-selected=true>Choose a Category(optional)</option>
+                                 <option ng-repeat="x in docCat track by $index" value="{{x}}">
+                                    {{x}}
+                                 </option>
+                              </select>
+                           </p>
+                        </h4>
+                     </div>
+                     <div class="one-row-div-ask" ng-show="problemChange">
+                        <div class="col-md-12">
+                           <div class="col-md-6">
+                              <div class="img-problem">
+                                 <!-- <span ng-show="showChange" type="file" class="icon-uploading24 uploadImg prblm-img" ngf-select ng-model="data.picFile" ng-change="changeIcon()" name="file" accept="image/*" ngf-max-size="2MB" required  ngf-model-invalid="errorFiles" ng-hide="data.picFile">
+                                    <p class="fuller_icon_upload">upload image</p>
+                                 </span>
+                                 <img ngf-src="data.picFile" ng-show="data.picFile" class="img-responsive" ngf-thumbnail="data.picFile"> -->
+                                 <label for="fileInput" class="icon-uploading24 uploadImg prblm-img" accept="image/*">
+                                 </label> 
+                                 <input type="file" id="fileInput" style="display: none">
+                                 <div ngf-drop ng-model="myImage.data" ngf-pattern="image/*" class="cropArea" ng-show="showImgUpload">
+                                    <img-crop image="myImage.data" result-image="myCroppedImage" ng-init="myCroppedImage=''" name="img" area-type="square">
+                                    </img-crop>
+                                 </div>
+                                 <span class="err" ng-show="errorMsg"> Choose any file </span>                                 
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="">
+                                 <button class="btn submit-prblm" style="float : right;" ng-click="addproblem(data,myCroppedImage,myImage)" ng-disabled="data.question.length<=0">Submit</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <span ng-show="data.question.length<=0">Enter your problem</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<style type="text/css">
+.cropArea {
+   background: #E4E4E4;
+   overflow: hidden;
+   /* width: 100%; */
+   height: 250px;
+   clear: both;
+}
+</style>

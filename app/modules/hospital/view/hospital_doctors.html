@@ -1,0 +1,595 @@
+<searchmenu>
+</searchmenu>
+
+  
+ <!-- Central Part Starts here -->
+      <section ng-controller="hospitalGetCtrl">
+        <div class="center-part-section" >
+          <div class="container">
+            <div class="center-part-section-inner">
+              
+              <!-- drop down menu -->
+              
+             <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-12">         
+                <div class="left-sidebar">
+                  <div id="sidebar-wrapper2">
+                  <div class="search-section3">
+              <div class="row">
+               <div class="">        
+                  <div class="input-div">        
+                
+                  <locality id="location" city="{{currentCity}}" ng-model="filterData.location"  ng-required="true" class="form-control input-box-width"></locality>
+                   <i class="icon-geolocation crosshairs"></i>
+                      <button class="btn search-btn2" ng-click="setFilterdata(filterData.location,'location')">
+                         <span class="icon-search74 searchy">
+                         </span>
+                       </button>
+                     </div>
+                     </div> 
+                </div> 
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="new-filter-div">
+                 <div class="col-md-6 col-sm-6 col-xs-6 mypadding"><span class="filter-title-span">Your Filters</span></div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                    <div class="clear-all-div">
+                    <a href=""  ng-click="clearFilter()">Clear all</a></div></div>
+                    <div class="inner-filter-div">
+
+                    <span class="tag" ng-show="filter.location.completeaddres.length > 0 && filter.location.completeaddres.split(',')[0] != ''" ng-click="crossclick('val','loc')"> 
+                    {{filter.location.completeaddres.split(",")[0]}} <i class="icon-cross72 icon-size"></i> </span>
+
+                     <span class="tag" ng-repeat="fil in filter.day track by $index"
+                    ng-click="crossclick(fil,'day')"> 
+                    {{fil}} <i class="icon-cross72 icon-size"></i> </span>
+                    <span class="tag" ng-repeat="fil in filter.speciality track by $index" ng-click="crossclick(fil,'speciality')"> 
+                    {{fil}}  <i class="icon-cross72 icon-size"></i></span>
+
+                    <span class="tag" ng-show="filter.time.end > 0"> 
+                      <i class="icon-clock iconPos"></i>
+                    {{ filter.time.start == 12 ? 12 : filter.time.start == 0 ? 12 : filter.time.start < 12 ? filter.time.start :
+                      filter.time.start - 12}} {{ filter.time.start >= 12 ? "PM" : "AM"}} - {{filter.time.end == 12 ? 12 :filter.time.end == 24 ? '11 : 59' :  filter.time.end < 12 ? filter.time.end :
+                      filter.time.end-12 }} {{ filter.time.end >= 12 ? "PM" : "AM"}}
+                    <i class="icon-cross72 icon-size"></i></span>
+                    <span class="tag" ng-repeat="fil in filter.facilities track by $index" ng-click="crossclick(fil,'facilities')"> 
+                    {{fil}} <i class="icon-cross72 icon-size"></i> </span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="blank-data-div">
+                     <div class="category-section">
+                      <ul class="sidebar-category-ul">
+                        <li class="category-li pop-up-custom">
+                        <span class="folder"><i class="icon-healthcare"></i></span>
+                        <span class="category-li-span"><a href="" class="category-anchor">Speciality</a></span>
+                    <span class="category-arrow-li"><i class="fa fa-angle-right"></i>
+                    </span>
+                     </li> 
+                     <!-- pop up -->
+                     <div class="category-toggle-class-div pop-up-custom-div" >
+                         <div class="remove-btn"><i class="fa fa-remove"></i></div>
+                         <ul class="toggle-ul">
+                         <li class="toggle-li asd" ng-repeat="x in docCat track by $index" addlist><span class="padding_span" ng-click="setFilterdata(x,'speciality')" ng-class="filter.speciality.indexOf(x) == -1 ? 'noactive' : 'blueactive'" >{{x}}</span></li>
+                          </ul>
+                      </div>
+                          <!-- pop up -->
+
+                          <!--pv!-->
+                        <li class="languages-li pop-up-custom">
+                        <span class="language-folder"><i class="icon-conversation18"></i></span>
+                        <span class="language-li-span"><a href="" class="category-anchor">Facilities</a></span>
+                        <span class="category-arrow-li"><i class="fa fa-angle-right"></i></span>
+                        </li> 
+                     <!-- pop up -->
+                     <div class="category-toggle-class-div-languages pop-up-custom-div">
+                          <div class="remove-btn"><i class="fa fa-remove"></i></div>
+                          <ul class="toggle-ul">
+                          <li class="toggle-li asd" ng-repeat="x in hosFac track by $index" addlist><span class="padding_span" ng-click="setFilterdata(x,'facilities')" ng-class="filter.facilities.indexOf(x) == -1 ? 'noactive' : 'blueactive'" >{{x}}</span></li>
+                          </ul>
+                          </div>
+                          <!-- pop up -->
+                          <!--end pv!-->
+                       <li class="avail-days">
+                         <span class="availabity-folder"><i class="icon-calendar53"></i></span>
+                      <div class="avail">Availability</div>
+                      <ul class="days-ul">
+                        <li ng-repeat="x in days" class="asd" ng-click="setFilterdata(x,'day')" ng-class="filter.day.indexOf(x) == -1 ? 'noactive' : 'blueactive'" >{{x | limitTo:1}}</li>
+                      </ul>
+                     </li>
+                      <li class="progress-li">
+                         <div id="range_37"></div>
+                          <span class="availabity-folder"><i class="icon-clock"></i></span>
+                          <label class="bar-class">Time</label>
+                          <span class="hospitalTime"> 
+                          {{ filterData.availability.time.start == 12 ? 12 :filterData.availability.time.start == 0 ? 12 : filterData.availability.time.start < 12 ? filterData.availability.time.start :
+                      filterData.availability.time.start - 12}} {{ filterData.availability.time.start < 12 ? "AM" : "PM"}} to {{filterData.availability.time.end == 12 ? 12 : filterData.availability.time.end == 24 ? '11 : 59' : filterData.availability.time.end < 12 ? filterData.availability.time.end :
+                      filterData.availability.time.end-12 }} {{ filterData.availability.time.end < 12 ? "AM" : "PM"}}
+                      </span>
+                          <div id="slider-3" class="hospitalTimeFilterRange" slider config="sliderConfigTime" model="filterData.availability.time" ng-mouseup="setFilterdata(filterData.availability.time,'time')"></div>
+                      </li>
+
+                      
+                 
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                  <div class="blank-data-div"></div>
+                </div>
+
+              </div>
+
+
+            </div>
+                    
+                  </div>
+                  <!-- /#sidebar-wrapper -->
+                  </div>
+        
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <div class="center-part-section-inner" >
+            
+            
+            <!-- drop down menu -->
+            <div class="filter-section-div2">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="main_sec_header">
+                 <div class="col-md-9 col-sm-9 col-xs-7 padding0">
+                  <div class="sort-div-new">
+                  <div class="sort-div-new-1">
+                    <i class="icon-indent2 float-left"></i>
+                    <span class="newest-item float-left">Sort by : </span></div>
+                    <span class="relevence" ng-click="filter.type = filter.type === 'asc' ? 'desc' : 'asc'; filter.sort = 'relevence'; getFilterList(filter,'hospitals','#loadingPlaceholerHospital');" ng-class="filter.sort == 'relevence' ? 'active' : 'noactive'">Relevence</span>
+                 </div>
+               </div>
+                 <div class="col-md-3 col-sm-3 col-xs-5 padding0">
+                  <div class="float-right map-view-class">
+                 <span class ="icon-map-pointer2 maps-icon"></span>
+                 <span class="follow"><a href="/docpal/map.html">Map View</a></span>
+                </div>
+                 </div>
+               </div>
+
+                 </div>
+                </div>
+              </div>
+            
+            <!-- end drop down -->
+            
+            <!-- start page 1 content -->
+
+
+
+             <div id="loadingPlaceholerHospital">
+            <div ng-include="'modules/doctors/view/loading.html'"></div>
+              <div ng-include="'modules/doctors/view/loading.html'"></div>
+                <div ng-include="'modules/doctors/view/loading.html'"></div>
+                  <div ng-include="'modules/doctors/view/loading.html'"></div>
+                    <div ng-include="'modules/doctors/view/loading.html'"></div>
+            </div>
+           <div class="search-result-main-div2" ng-repeat="x in hospitalDetail track by $index">
+              <!-- start profile section -->
+              <div class="profile-section" >
+
+                 <!--pvicon!-->
+                 <div class="up-down-iconnew" ng-show="loading[$index]">
+                   <br>
+
+                    <i class="icon-triangle12 caret-down-icon font-class remove-other" ng-click="toggleupward($index)"></i>
+                  </div>
+                  <!--end!-->
+
+                <div class="lab-image-section">
+                  
+                  <div class="image-lab">
+                 <img ng-src=" {{x.image!=undefined ? imageServer+'/'+x.image+'' : 'assets/img/hospital.png'}}" alt="" class="img-responsive lab-image-round"></div>
+
+                  <div class="icon-boxes">
+                    <div class="web-view-navbar">
+                  <ul class="nav nav-tabs custom-nav-tabs-new">
+                    <li class="" id="{{x._id}}" ng-click="toggleMe($index,x._id)">
+                      <a data-toggle="tab" href="#home" class="pulse" title="Show Profile Details">
+                       <span class="icon-hospitals4 medi-icon"></span>
+                      </a>
+                    </li>
+                  
+                  <li id="googlemap" ng-click="toggleMap($index,x._id,x.location.lat,x.location.lng)" id="{{x._id}}">
+                      <a data-toggle="tab" href="#menu1" class="" title="Show Map">
+                        <span class="icon-map-pointer2 medi-icon"></span>
+
+                      </a>
+                    </li>
+                    <li>
+                      <a data-toggle="tab" href="#menu2" class="" ng-click="togglegallery($index,x._id)" title="Show Gallery">
+                        <span class="icon-photos9 medi-icon"></span>
+                      </a>
+                    </li>
+                </ul>
+
+              </div>
+              </div>
+              </div>
+                
+                <div class="info-section">
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="profile-intro">
+
+                     
+    <div class="option-icon-box-div"><ul >
+               
+                        <ul>
+                        </div>
+                        
+
+                        <h3 class="name-div">
+                     <a href="#"  ui-sref="hospital_profile({id:x._id})">
+                      {{x.name | limitTo:25}}</a>
+                      <span style="font-size: 13px !important; color: #1ba4aa !important;" class="address-dots popover_docpal" ng-show="x.name.length > 25">
+                     <span class ="glyphicon glyphicon-option-horizontal efg " title = "Name" data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true" data-content=" {{x.name}}" data-toggle = "popoverSchedule">
+
+                        </span>
+                      </span>
+                        </h3>
+                        
+                        <div class="profile-btn" >
+                         
+                         
+                       </div>
+
+
+                       <div class="text-div">
+
+                        <span ng-repeat="spec in x.speciality | limitTo:3 track by $index">
+                     {{spec}}
+                        </span>     
+                      </text>
+                      </div>                          
+                      </div>                                             
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                      <div class="doctor-clinic-details">
+                       <!-- new icons -->
+                        <div class="doctor-details-search-result-1">
+                        </div>
+                        <div class="doctor-details-search-result-1">
+                        </div>
+                        <!-- end new icons -->
+                       <div class="doctor-details-search-result-1">
+                          
+                          <div class="search-result-icon-div">
+                            
+                            <i class="icon-clock clinic-icon">
+                            </i>
+
+                            <div class="option-icon1">
+ <span class="address-dots popover_docpal">
+               <span class ="glyphicon glyphicon-option-horizontal efg " title = "OPD Timing"  
+      data-container = "body" data-toggle = "popover" data-placement = "right" isPopover="true"data-content="{{timingX = gettime(x.timing)}}" data-toggle = "popoverSchedule">
+    </span>
+  </span>
+                        </div>
+                         <div class="option-icon1-box-div"></div>
+                          </div>
+                          <div class="search-result-text-div1">
+                            <span>{{x.timing[0].days[0]}}-{{x.timing[0].days[x.timing[0].days.length-1]}}<br></span>
+                            {{x.timing[0].time[0].startTime}} : {{x.timing[0].time[0].startMinute == undefined || x.timing[0].time[0].startMinute == 0 ? '00' : x.timing[0].time[0].startMinute}} {{x.timing[0].time[0].shiftstart}}-{{x.timing[0].time[0].endTime}} : {{x.timing[0].time[0].endMinute == undefined || x.timing[0].time[0].endMinute == 0 ? '00' : x.timing[0].time[0].endMinute}} {{x.timing[0].time[0].shiftend}}
+                          </div>
+                        </div>
+                         <div class="option-icon1-box-div"></div>
+                          </div>
+                        
+                   
+                        
+                        <div class="doctor-details-search-result-1">
+                          <div class="search-result-icon-div">
+                            <i class="icon-map-pointer7 map-icon-new">
+                            </i>
+                            <div class="option-icon1">
+                              <span class="address-dots popover_docpal">
+<span class="glyphicon glyphicon-option-horizontal efg" title="Address" data-container="body" data-toggle="popover" isPopover="true" data-placement="right" data-content="{{x.location.completeaddres}}">
+               </span> 
+                </span> 
+               </div>
+               </div>
+                          <div class="search-result-text-div">
+                            <span class="address-fix-div">{{x.location.completeaddres}}</span>
+
+                          </div>
+                          
+                         </div>
+                          <div class="doctor-details-search-result-1">
+                          <div style="display:none">
+                            <span class="address-fix-div"><i class="icon-rupee rupee"></i><span class="money-fee">{{x.fee}} </span></span>
+                            </div>
+                          </div>
+                        </div>
+                       </div>       
+                      </div>
+                      <div class="inner-section padding-inner" id="sec{{x._id}}" ng-show="loading[$index]">
+                    
+                       
+</div>
+<input type="text" class="editable-class" id="longitute" placeholder="{{longitute ? longitute : 'enter your longitute'}}"   readonly style="display:none">
+
+                         <input type="text" class="editable-class" id="latitute" placeholder="{{latitute ? latitute : 'enter your address'}}" ng-model="doctor.latitute" readonly style="display:none">
+                     </div>
+                    </div>
+ 
+              <!-- inner-toggle section -->
+
+              
+
+ <!-- end toggle-section -->
+           <div class="clear"><br></br></div>   
+            </div>
+<div class="clear"><br></br></div>
+         <div id="hospital_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{caption}}</h4>
+      </div>
+      <div class="modal-body">
+    <img class="lazyOwl" ng-src="{{imageServer3}}" alt="Lazy Owl Image">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+       
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 padding0"> 
+    <div class="btn_for_load_more" ng-show="hospitalDetail.length > 0 && hospitalDetail.length >= 10">
+      <a class="loadmore_btn" ng-click="showMore()">Load More</a>
+      </div>
+
+       <div class="btn_for_load_more" ng-show="hospitalDetail.length <= 0">
+    No Hospital To Show
+      </div>
+    </div> 
+      </section>
+      <style>
+      .abc{
+        cursor: pointer;
+      }
+      .option-icon-box-div {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 2px 0;
+    float: right;
+    height: 105px;
+    margin: 20px 42px;
+    position: absolute;
+    right: -8px;
+    width: 151px;
+
+    z-index: 91;
+   display: none; 
+}
+.option-icon-box-div:after{
+  background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    content: "";
+    height: 15px;
+    left: -9px;
+    position: absolute;
+    top: 26px;
+    transform: rotate(45deg);
+    width: 17px;
+}
+.option-icon1{
+  cursor: pointer;
+}
+ .option-icon1-box-div {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 2px 0;
+    float: right;
+    height: 105px;
+    margin-right:-2px ;
+    position: absolute;
+    right: -95px;
+    width: 101px;
+    z-index: 91;
+    top:6px;
+    display: none;
+}
+.option-icon1-box-div:after{
+  background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    content: "";
+    height: 15px;
+    left: -9px;
+    position: absolute;
+    top: 26px;
+    transform: rotate(45deg);
+    width: 17px;
+}
+.nostyle
+{
+  border: none;
+  background: none;
+  outline: none;
+}
+.changefolow {
+  color: #1ba4aa;
+}
+      </style>
+     <script>
+      $(document).ready(function()
+      {
+        $('#tokenfield').tagsinput();
+      });
+</script>
+
+ <script> 
+    $(document).ready(function(){
+      $(".btn1-stethoscope").click(function(){
+        
+        $(".inner-section").toggle("slow");  
+      }
+                           );
+       $(document).on('click','.caret-down-icon',function (){
+        $(this).addClass("green");
+        $(".caret-up-icon").removeClass("green");
+       });
+        $(document).on('click','.caret-up-icon',function (){
+        $(this).addClass("green");
+         $(".caret-down-icon").removeClass("green");
+       });
+         $(document).on('click','.remove-other',function (){
+         $(".custom-nav-tabs-new li").removeClass("active");
+       });
+
+      $(".icon-up").click(function(){
+        
+        $(".inner-section").toggle("slow");
+        $(".icon-down").show();
+        $(this).hide();
+ 
+      });
+
+      $(".category-li").click(function(){
+          $('.pop-up-custom-div').toggle().hide();
+          $(this).next().toggle();
+          
+      });
+    
+      
+        
+       $(".languages-li").click(function(){
+        $('.pop-up-custom-div').toggle().hide();
+        $(this).next().toggle();
+          });
+        
+  
+       $(".remove-btn").click(function(){
+          
+          $(this).parent().hide(); 
+
+      });
+       $(".remove").click(function(){
+          
+        //  $(this).parent().hide(); 
+
+      });
+       
+       
+    });
+  </script>
+
+  <script>
+$(document).on('click','#googlemap',function(){
+ 
+  var lat=$("#latitute").attr("placeholder");
+  var log=$("#longitute").attr("placeholder");
+
+  var icon = {
+    url: "http://www.clker.com/cliparts/I/l/L/S/W/9/map-marker-hi.png",
+    scaledSize: new google.maps.Size(40, 30)
+  }; // marker image
+   $("#map").width("100%").height("320px").gmap3({
+        map:{
+          options:{
+                center:[lat,log], //location where map has be shown
+                zoom: 15 //zoom level of map
+              },
+          events:{
+            idle: function(){
+              var map = $(this).gmap3("get");
+              var map_bounds = map.getBounds() ; // get current lat and long of the bounded region of map
+             // alert(map_bounds);
+            }
+          }
+       },
+       marker:{
+            values:[
+      {latLng:[log,lat], data:"Paris !"}
+    ],
+            
+            options:{
+              draggable: false,
+              icon: icon
+            },
+          }
+       });
+})
+</script>
+<script>
+ $(document).on('click','.address-dots',function (){
+      $("[data-toggle = 'popover']").popover({
+         html : true,
+        content: function() {
+         return $('#address-div').html();
+    }
+      });
+
+   });
+
+    $(document).on('click','.efg',function (){
+      $("[data-toggle = 'popover']").popover({
+         html : true,
+        content: function() {
+         return $('#language-div').html();
+    }
+      });
+
+   });
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+<script type="text/javascript">
+$("body").on('click', function (e) {
+    $('[data-toggle="popover"]').each(function () {
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});
+</script>
+<script>
+ $(document).on('click','.popover_docpal',function (){
+
+      var po = $(this).find("[isPopover = 'true']");
+      po.popover('show');
+
+   }); 
+     $(document).on('click','.read-dots',function (){
+    
+     
+      $("[data-toggle = 'popoverlanguage']").popover({
+         html : true,
+         content: function() {
+        return $(this).next().html();
+    }
+      });
+
+   }); 
+</script>
+
+

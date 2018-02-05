@@ -1,0 +1,115 @@
+<section>
+<div class="container">
+<div class="custom-login-section">
+<div class="row">
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+<div class="paragraph-section-div">
+<div class="col-md-3"></div>
+  
+<div class="col-md-9">
+<div class="validation-div-section">
+validation here
+</div>
+</div>
+</div>
+</div>
+
+<!-- form section -->
+<div class="form-section">
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <div class="header-row">
+  <div class="col-md-2"></div>
+ <div class="col-md-9"><p class="heading-para-signup">Sign Up as a</p><p class="heading-para2" ng-click=""><a
+ >User</a></p></div>
+</div>
+<form ng-submit="myform.$valid && registeruser(user)"  name="myform" novalidate ng-app="myApp">
+<div class="email-row">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+<label class="left-align">Full Name</label>
+<div class="input-text-section">
+   <input type="text" class="input-row-class"  ng-model="user.name" name="fname" required>
+                       
+
+</div>
+</div>
+
+
+<div class="col-md-4">
+<label class="left-align">Email</label>
+<div class="input-text-section">
+   <input type="email" class="input-row-class" ng-model="user.email" name="email" ng-blur="checkemail(user.email)" required>
+                       
+
+
+</div>
+
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<div class="email-row">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+<label class="left-align">Phone number</label>
+<div class="input-text-section">
+<input type="number" class="input-row-class"  ng-model="user.mobile" name="mobile">
+   
+  
+</div>
+</div>
+
+
+<div class="col-md-4">
+<label class="left-align">Password</label>
+<div class="input-text-section">
+<input type="password" class="input-row-class" name="password" ng-model="user.password" required>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<div class="btn-row">
+
+
+
+<div class="continue-btn-div" style="min-height:60px">
+
+<span style="color:red;display:inherit;" ng-show="submitted && myform.fname.$invalid">
+<span ng-show="myform.fname.$error.required">Full Name is required.</span>
+</span>
+	
+<span style="color:red;display:inherit;" ng-show="submitted && myform.email.$invalid">
+<span ng-show="myform.email.$error.required">Email is required.</span>
+<span ng-show="myform.email.$error.email"> Not valid email! </span>
+</span>
+
+<span style="color:red;display:inherit;" ng-show="submitted && myform.password.$invalid">
+<span ng-show="myform.password.$error.required">Password is required.</span>
+</span>
+
+</div>
+
+  <div class="continue-btn-div">
+  
+   <button  class="btn create-btn-continue" ng-disabled ="noEmail()">Submit</button>
+</form>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+
+</div>
+</div>
+<!-- end form section -->
+
+</div>
+</div>
+</div>
+</section>
+ <script>
+$(document).ready(function() {
+	$(".footer").css('display','none');
+});
+</script>

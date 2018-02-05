@@ -1,0 +1,47 @@
+<section>
+<div class="container-fluid">
+    <div class="row">
+      <div class="search-section2" style="float:left;width:100%;">
+        <div class="profile-section-div">
+          
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-lg-3 col-xs-12 text-center">
+              <div class="stetho-icon">
+                <img ng-src="{{menuimage}}" alt="" class="img-responsive stetho-icon-image">
+              </div>
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-7 col-lg-8">
+              <div class="input-box">
+                <input type="text" placeholder="Doctors,Hospitals,Health-care and Others" class="form-control txt-box-inpt1" ng-model="s1.setvalueSearchBox" ng-enter="setSearchBox(s1)">
+                <button class="btn search-btn1" ng-click="setSearchBox(s1)">
+                  <i class="icon-search74 searchy1" >
+                  </i>
+                </button>
+              </div>
+              
+              <!-- dr list div -->
+              
+              <div class="doctors-list-div">
+                <ul class="dr-ul">
+                  
+                  <li ng-repeat="filter in filters" ng-click="select($index)" ng-class="{reactive: $index == selectedMenu}" class="dr-li" ui-sref="{{filter.url}}">
+                <h6 class="new-class-h4">
+                    </h6>
+                  <a> {{filter.text}}</a>
+                
+                  </li>
+
+                </ul>
+              </div>
+              
+             
+            </div>
+          </div>
+        </div>
+        
+        <!-- end dr list -->
+      </div>
+    </div>
+  </div>
+ 
+

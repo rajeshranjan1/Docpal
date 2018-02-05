@@ -1,0 +1,131 @@
+<div  ng-controller="doctorProfileCtrl">
+   <section id="main-header-section" ng-include="'modules/doctors/view/dr_header.view.html'"></section>
+   <!-- end search section -->
+   <!-- Central Part Starts from here -->
+   <section id="dr_notification">
+      <div class="section1-div">
+         <div class="container">
+            <div class="inner-section-div">
+               <!-- drop down menu -->
+                  <!--  notification -->
+                  <!-- <div class="col-md-3 col-sm-3 col-xs-12 padding15"  ng-include="'modules/doctors/view/dr_notification.view.html'"></div> -->
+                  <!---end of notification -->
+                  <!-- start of profile controller -->
+                  <div class="col-md-12 col-sm-12 col-xs-12" >
+                     <doctormenu></doctormenu>
+                     <problemview></problemview>
+                     <div class="plus plus-effect-3 plus-effect-3a">
+                        <a href="#/addProblem" class="plus pluswa" id="plus"><i class="fa fa-question"></i>
+                        </a> 
+                     </div>
+                  </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
+       <style>
+         .your-class::-webkit-input-placeholder {
+           color: rgba(90, 110, 111, 0.61);
+           
+         }
+
+       </style>
+       
+       <script type="text/javascript">
+         
+         
+         $(document).ready(function() {
+           
+           $("#owl-demo").owlCarousel({
+             
+             autoPlay: false, //Set AutoPlay to 3 seconds
+             
+             items :5,
+             itemsDesktop : [1199,3],
+             itemsDesktopSmall : [979,3]
+             
+           }
+                                     );
+           
+           $(".custom-anchor-tag").click(function(){
+             
+             $(".search-result-main-div2").hide();
+             
+           }
+                                        );
+           
+           
+           
+         }
+                          );
+       </script>
+       
+
+       
+       <script>
+         (function() {
+           if (!String.prototype.trim) {
+             (function() {
+               // Make sure we trim BOM and NBSP
+               var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+               String.prototype.trim = function() {
+                 return this.replace(rtrim, '');
+               }
+                 ;
+             }
+             )();
+           }
+           
+           [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+             // in case the input is already filled..
+             if( inputEl.value.trim() !== '' ) {
+               classie.add( inputEl.parentNode, 'input--filled' );
+             }
+             
+             // events:
+             inputEl.addEventListener( 'focus', onInputFocus );
+             inputEl.addEventListener( 'blur', onInputBlur );
+           }
+                                                                                     );
+           
+           function onInputFocus( ev ) {
+             classie.add( ev.target.parentNode, 'input--filled' );
+           }
+           
+           function onInputBlur( ev ) {
+             if( ev.target.value.trim() === '' ) {
+               classie.remove( ev.target.parentNode, 'input--filled' );
+             }
+           }
+         }
+         )();
+       </script>
+       
+      
+       <script type="text/javascript">
+$(document).click(function(e) {
+ // Check if click was triggered on or within #menu_content 
+if( $(e.target).closest(".btns-div").length > 0 ) {
+ return false; 
+} 
+$(".custom-pop-up").hide();
+});
+// Otherwise // trigger your click function });
+        </script>
+
+       <style type="text/css">
+.toggle{
+  display: none;
+}
+.toggle-2{
+  display: none;
+}
+.myclass {
+  color:#1ba4aa;
+}
+       </style>
+
+
+
+     

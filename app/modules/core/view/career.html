@@ -1,0 +1,50 @@
+<!-- <div class="career-wpr">
+        <div class="container">
+                <div class="col-md-12">
+                        <div class="inner-career text-center">
+                                <img src="assets/img/under.png" alt="" class="img-100" />
+                        </div>
+                </div>
+        </div>
+</div>
+-->
+
+<div class="container">
+    <div class="top-div">
+        <div class="full-color">
+            <div class="row">
+                <div class="col-md-11 col-sm-12 margin-zero">
+                    <div class="whole-content">
+                        <div class="headings pg-head text-center">
+                            <h2>Careers</h2>
+                            <div class="text-center">
+                                <img src="assets/img/heart.png" alt="heart ">
+                            </div>
+                        </div>
+                        <div class="about-details clearfix">
+                            <div class="col-md-6">
+                                <h3 class="job-heading">Job Openings</h3>
+                                <ul class="job-list " >
+                                    <li class="clearfix" ng-repeat="x in careers track by $index">
+                                        <h4 class="job-profile">{{x.profile}}</h4>
+                                        <p class="job-location">Location:<a href="javascript:void(0);">{{x.location}}</a></p>
+                                        <h5 class="job-desc-h eading">Job Description: </h5>
+                                        <p class="job-desc" ng-bind-html="x.job_desc| limitTo : 200"></p>
+                                        <a ui-sref="apply_job({id:x._id})" class="apply-btn pull-right">Apply <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <h3  class="right-heading">We don't offer a <span class="green">Job</span></h3> 
+                                <h3  class="right-heading-one">We offer a  <span class="green">Career</span></h3>
+                                <div class="cr-right-img">
+                                    <img src="assets/img/career-right.png" alt="Girl Image" class="img-100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

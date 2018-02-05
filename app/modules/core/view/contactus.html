@@ -1,0 +1,71 @@
+<div class="contact-wpr">
+    <div class="container">
+        <div class="headings pg-head text-center">
+            <h2>Contact Us</h2>
+            <div class="text-center">
+                <img src="assets/img/heart.png" alt="heart ">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="inner-contact text-center">
+                <div class="col-md-4">
+                    <div class="location">
+                        <div class="contact-icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="contact-text text-center">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="location bd-lr">
+                        <div class="contact-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="contact-text text-center">
+                            <p>+91 8527659622</p>
+                            <p>+91 8527659622</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="location">
+                        <div class="contact-icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="contact-text text-center">
+                            <p>info@docpal.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact_map"></div>
+            <div class="headings pg-head text-center">
+                <h2>Send A Query</h2>
+                <div class="text-center">
+                    <img src="assets/img/heart.png" alt="heart ">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="inner-contact">
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" ng-model="inquiry.name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" ng-model="inquiry.phone" name="phone" required placeholder="Your phone">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" ng-model="inquiry.email" name="email" required  placeholder="Your email">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <textarea rows="10" class="form-control" cols="113" ng-model="inquiry.description" name="description" placeholder="What is the nature of your appointment and who would you like to see ?"></textarea>
+                    </div>
+                    <div class="text-center col-md-12">
+                        <button type="button" class="btn btn-info submit-btn-admin" ng-click="sendInquiry(inquiry)">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

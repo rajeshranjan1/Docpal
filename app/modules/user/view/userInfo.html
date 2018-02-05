@@ -1,0 +1,197 @@
+<div class="form-section"  ng-controller="UserCtrl">
+   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+	 <form ng-submit="saveUserInfo(user)"  name="myform"  ng-app="myApp">
+  <!-- strip sec -->
+   <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding">
+   <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 no-col-md-2 col-sm-2 col-lg-2 col-xs-12 no-padding">
+<div class="strip strip_high dr_shadow">
+       <div class="image-div1">      
+       <div class="img-div1">
+<!-- <img class="img-responsive round-border-shadow" src="assets/img/user_img.png"> -->
+ <img class="img-responsive round-border-shadow" src="assets/img/user_img.png" ng-src="{{getMyImage()}}"  ng-show="accountData.type==undefined">
+<p class="heading-para1">User's</p><p class="heading-para-signup1">login</p>
+</div>
+</div>
+</div></div>
+   <!-- end stripsec -->
+   <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+  <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 col-center">
+  <div class="register_info margin_info">
+    <div class="email-row">
+      
+      <div class="col-md-6">
+        <div class="input1 input1--hoshi1 left-aling">
+          <div class="genderm">
+            <span class="g1">
+              Gender
+            </span>
+            <span class="m1">
+              <input type="radio" name="gender" ng-model="user.gender" value="Male" ng-checked="true">
+              <span class="g2">
+                Male
+              </span>
+            
+            <input type="radio" name="gender" ng-model="user.gender" value="Female" >
+             <span class="g2">
+            Female
+          </span>
+        </span>
+        </div>
+        
+      </div>
+    </div>
+    
+    
+   
+  </div>
+
+  <div class="email-row margin0">
+   
+    <div class="col-md-6">
+      <div class="input1 input1--hoshi1 left-aling">
+       <select class="drpdwn" ng-model="user.BloodGroup" name="Bloodgroup">
+       <option value="Bloodgroup" ng-selected=true>Bloodgroup</option>
+       <option value="B+">B+</option>
+       <option value="B-">B-</option>
+       <option value="AB+">AB+</option>
+       <option value="AB-">AB-</option>
+       <option value="A+">A+</option>
+       <option value="A-">A-</option>
+       <option value="O+">O+</option>
+       <option value="O+">O-</option>
+       </select> 
+       </div>
+       </div>
+        <!--input class="input__field1 input__field--hoshi1" type="text" id="input-4"  name="BloodGroup" ng-model="user.BloodGroup" required/>
+        <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+          <span class="input__label-content1 input__label-content--hoshi1">
+            Blood-group
+          </span!-->
+        
+        <!--/label!-->
+     
+    
+    <div class="col-md-6">
+      <div class="input1 input1--hoshi1 left-aling">
+       <!-- <location-picker-info id="location" ng-model="user.location"  ng-required="true" class="input__field1 input__field--hoshi1" style="border:none"></location-picker-info> -->
+         <location-picker-info id="location" ng-model="user.location.completeaddres" class="input__field1 input__field--hoshi1" style="border:none" ng-change="changeValue(user.location)"></location-picker-info>
+
+        <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+          <span class="input__label-content1 input__label-content--hoshi1">
+           Address
+          </span><span class="required-mark">*</span>
+        </label>
+      </div>
+    
+    </div>
+    
+  </div>
+  <div class="email-row margin0">
+    
+    <div class="col-md-6">
+        <div class="input1 input1--hoshi1 left-aling">
+        <select class="drpdwn" ng-model="user.timeZone" name="timezone"> 
+           <option value="" ng-selected=true>Timezone</option>
+        <option value="{{x.text}}" ng-repeat="x in timezone track by $index" >{{x.text}}</option>
+        </select>
+         </div>
+    </div>
+      
+     
+    
+    
+     <div class="col-md-6">
+
+      <div class="input1 input1--hoshi1 left-aling">
+        <input class="input__field1 input__field--hoshi1" type="text" id="input-4" name="zipCode" ng-model="user.zipCode" min="0" allow-pattern="[0-9]" />
+        <label class="input__label1 input__label--hoshi1 input__label--hoshi1-color-1" for="input-4">
+          <span class="input__label-content1 input__label-content--hoshi1">
+            Zipcode
+          </span>
+        </label>
+      </div>
+    </div>
+    
+  </div>
+ 
+  <div class="btn-row"> 
+      <div class="continue-btn-div">
+        <span style="color:red;display:inherit;" ng-show="submitted && myform.gender.$invalid">
+        <span ng-show="myform.gender.$error.required">Gender is required.</span>
+        </span>
+
+         <span style="color:red;display:inherit;" ng-show="submitted && myform.timezone.$invalid">
+        <span ng-show="myform.timezone.$error.required">Time Zone is required.</span>
+        </span>
+
+         <span style="color:red;display:inherit;" ng-show="submitted && myform.Bloodgroup.$invalid">
+        <span ng-show="myform.Bloodgroup.$error.required">Blood Group is required.</span>
+        </span>
+
+         <span style="color:red;display:inherit;" ng-show="submitted && myform.dob.$invalid">
+        <span ng-show="myform.dob.$error.required">dob is required.</span>
+        </span>
+          
+        <span style="color:red;display:inherit;" ng-show="submitted && myform.Address.$invalid">
+        <span ng-show="myform.Address.$error.required">Address is required.</span>
+        </span>
+  
+        <span style="color:red;display:inherit;" ng-show="submitted && myform.zipCode.$invalid">
+        <span ng-show="myform.zipCode.$error.required">zipCode is required.</span>
+        </span>
+
+        <button class="btn create-btn-continue" id="save-usr-info" ng-click="submitted=true" > Register</button>
+  </div>
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+  
+  <!--pv!-->
+  
+  <!--end pv!-->
+</div>
+</form>
+<style type="text/css">
+.input__label--hoshi1-color-1::after {
+    border-color: #1ba4aa;
+}
+
+
+.drpdwn {
+    border-color: transparent transparent #b9c1ca;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    margin-top: 41px;
+    width: 100%;
+    color: #5a6e6f;
+}
+</style>
+<script>
+   $(document).ready(function() {
+     $('#save-usr-info').on('click',function(){
+         var isFormValid = true;
+          $(".required-filled").each(function(){
+              if ($.trim($(this).val()).length == 0){
+                  $(this).addClass("highlight");
+                  isFormValid = false;
+              }
+              else{
+                  $(this).removeClass("highlight");
+              }
+          });
+
+          if (!isFormValid){
+            alert("Please fill in all the required fields (indicated by *)");
+            return isFormValid;
+          } 
+     })
+     $("#datePicker").datepicker({ changeYear: true });
+       $(".footer").css('display','none');
+   });
+</script>
+
+
+
+

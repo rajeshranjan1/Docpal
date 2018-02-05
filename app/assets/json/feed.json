@@ -1,0 +1,18 @@
+{
+	"_id": "0cd84f40-f269-11e7-843c-775d3f9c34a1",
+	"patientId": "asadas-11e6-a3b5-a321e7f7d",
+	"patientName": "dummy patient",
+	"patientProfilePicLink": "http://sadadad",
+	"createdDate": "12 Jan 2018",
+	"updatedDate": "",
+	"feedbackText": "dummy feedback text",
+	"rating": {
+		"helpfulness": 4,
+		"waitTime": 2,
+		"overall": 3
+	},
+	"doctorId": "asadas-11e6-a3b5-a321e7f7d",
+	"doctorName": "vishesh dummy patient",
+	"doctorProfilePicLink": "http://sadadad",
+	"doctorReply": "dummy doctor reply text"
+}

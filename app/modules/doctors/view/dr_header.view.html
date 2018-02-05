@@ -1,0 +1,211 @@
+<toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+<div class="container-fluid">
+   <div class="row">
+      <div class="search-section2">
+         <div class="profile-section-div">
+            <div class="">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3 text-center">
+                     <div class="profile-image-div"> 
+                    
+                        <img ng-src="{{getMyImage()}}" alt="" class="img-responsive dr-profile-image"  style="height: 88px; width: 88px;">
+                        
+                     </div>
+                     <div class="imageEditDiv">
+                        <i class="icon-edit5  editImage whiteIcon"  ng-click="$parent.changeIcon($event)"></i>
+                        <i class="icon-check66    whiteIcon saveNewImage"  ng-click="uploadFile(picFile, $event)"></i>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                     <div class="dr-introduction-div-header">
+                        <div class="name-div-2">
+                           <h3 class="capitalize">
+                              {{ doctorInfoAllData.name }}
+                           </h3>
+                        </div>
+                        <div class="text-div">
+                           {{doctorInfoAllData.speciality }}
+                           <br>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
+                     <div class="statistics-div">
+                        <ul>
+                           <li>
+                              {{ profileProblemCount.doctor || 0}}
+                              <br>
+                              <a ui-sref="doctorprofileproblem()" style="color:white"> Questions</a>
+                           </li>
+                           <li ng-click="getListFollower(doctorInfoAllData.following)">
+                              {{doctorheaderdata.following.length || 0}}
+                              <br>
+                              <a class="following-btn"> Following</a>
+                           </li>
+                           <li ng-click="getListFollower(doctorInfoAllData.follower)">
+                              {{doctorheaderdata.follower.length || 0}}
+                              <br>
+                              <a class="follow-btn" >Followed</a>
+                           </li>
+                           <li>
+                              {{doctorheaderdata.views || 0}}
+                              <br> 
+                              View
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <!-- new content -->
+                  <!-- start page 1 content -->
+                  <!-- end content -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- modal -->
+   <div class="row">
+      <div class="modal fade" id="followmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="image-gallery-title"></h4>
+               </div>
+               <div>
+                  <div class="col-md-12">
+                     <div class="Title">
+                        <h3 class="centeralign">Follower</h3>
+                     </div>
+                     <div class="common-row-follow scrollY myScroll" ng-show="followlist.length > 0">
+                        <div class="viewport">
+                           <div class="content">
+                              <div>
+                                 <ul>
+                                    <li ng-repeat="data in followlist track by $index">
+                                       <div class="img9ti">
+                                          <img ng-src="{{getUserImage(data.role,data.image,data.gender,data.social_image)}}">
+                                       </div>
+                                       <div class="information">
+                                          <p>{{data.name}}</p>
+                                       </div>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="loaderWrapper" ng-show="loadingData"><div class="loaderSpiner" ></div></div>
+                     <div ng-show="followlist.length == 0">No followers</div>
+                                       </div>
+               </div>
+               <div class="modal-footer">
+                  <div class="col-md-2">
+                  </div>
+                  <div class="col-md-8 text-justify" id="image-gallery-caption">  
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end modal-->
+   <!-- modal 2-->
+   <div class="row" >
+      <div class="modal fade" id="followingmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content" >
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="image-gallery-title"></h4>
+               </div>
+               <div>
+                  <div class="col-md-12">
+                     <div class="Title">
+                        <h3 class="centeralign">Following </h3>
+                     </div>
+                     <div class="common-row-follow scrollY myScroll" ng-show="followlist.length>0">
+                        <div class="viewport">
+                           <div class="content" >
+                              <div>
+                                 <ul>
+                                    <li ng-repeat="data in followlist track by $index">
+                                       <div class="img9ti">
+                                          <img ng-src=" {{getUserImage(data.role,data.image,data.gender,data.social_image)}}">
+                                       </div>
+                                       <div class="information">
+                                          <p>{{data.name}}</p>
+                                       </div>
+                                       <div class="unfollow">
+                                          <a href="" ng-click="newFollow(data._id,$event,true)" >Unfollow</a>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="loaderWrapper" ng-show="loadingData"><div class="loaderSpiner" ></div></div>
+                     <div class="common-row-follow" ng-show="followlist.length == 0"> No Followings </div>
+                                       </div>
+               </div>
+               <div class="modal-footer">
+                  <div class="col-md-2">
+                  </div>
+                  <div class="col-md-8 text-justify" id="image-gallery-caption">  
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+    <div class="" ng-include="'modules/core/view/uploadModal.html'"></div>
+   <!-- imge upload modal -->
+ 
+<!-- end modal-->
+<style type="text/css">
+   .fileIcon
+   {
+   position: relative;
+   top: -30px;
+   display: none !important;
+   }
+   .showFileSelect {
+   opacity: 0;
+   display: block;
+   position: relative;
+   top: -30px;
+   width: 81px;
+   }
+   .Title
+   {
+   float: left;
+   width:100%;
+   border-bottom: 1px solid #ccc;
+   padding: 10px 0;
+   text-align: center;
+   }
+   .see-all{
+   float:left;
+   width:100%;
+   text-align: center;
+   }
+   .see-all a{
+   color:#333;
+   }
+   .see-all a:hover{
+   color:#1ba4aa;
+   }
+   .saveNewImage {
+   display: none;
+   }
+  
+   
+</style>
+

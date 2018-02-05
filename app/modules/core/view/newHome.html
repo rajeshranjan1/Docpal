@@ -1,0 +1,419 @@
+
+<style type="text/css">
+    .owl-carousel{ width:100vw; }
+    .formcontrolinfo {
+        padding: 0px; 
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .homeTab .nav-tabs li p{
+        font-size: 17px;
+    }
+    
+    .pac-container
+    {
+        left: 252px !important;
+        top: 305px !important;
+    }
+</style>
+
+<div ng-controller="HomesCtrl">
+
+    <div id="mycarouselOne" class="carousel slide" data-ride="carousel">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item">
+            <img src="assets/img/slider1.jpg" data-color="lightblue" alt="First Image">
+        </div>
+        <div class="item">
+            <img src="assets/img/slider2.jpg" data-color="firebrick" alt="Second Image">
+        </div>
+      </div>
+
+      <div class="above-slider-content">
+           <h1 class="slider-heading text-center">For Your Medical Assistance</h1>
+            <p class="slider-second-heading text-center">We help you select the right doctor &amp; hospital</p>
+            <div class="col-md-12 null-padding text-left ask-btn-wpr">
+                <a href="#/addProblem" id="addProblem" class="btn btn-info text-left ask-btn"> Ask Question <i class="fa fa-question-circle" aria-hidden="true"></i></a>
+            </div>
+            
+            <div class="row dr_shadow mainContentHome">
+                <div class="our-text clearfix searchContent" >
+                    <div class="searchBoxAddress col-md-4 no-margin no-padding">
+                        <div class="input-group loc-pos full-width">
+                            <locality id="location" city="{{currentCity}}" ng-model="user.location" ng-required="true" class="location-input form-control city-input standard-height text-padding city-input ng-isolate-scope ng-pristine ng-invalid ng-invalid-required" required="required">
+                                <input type="text" style="font-size:18px;" class="formcontrolinfo font16 padding_input" placeholder="Enter a location" autocomplete="off">
+                            </locality>
+                            <div class="fa fa-map-marker location-icon" aria-hidden="true"></div>
+                        </div>                                        
+                    </div>
+                    <div class="searchBoxText col-md-8 no-margin no-padding">
+                        <div class="input-group full-width">
+                            <div class="col-md-10 col-xs-12 null-padding">
+                                <input type="text" style="font-size: 20px;padding-top: 13px;" class="form-control search-doctor standard-height text-padding font16" placeholder="Doctors,Hospitals,Health-care and Others" ng-model="user.setvalueSearchBox" id="category"  ng-change="setSearchBoxx(user.setvalueSearchBox)" ng-keyup="matchCategory(user.setvalueSearchBox, $event)">
+                                <div class="row">
+                                    <div class="col-md-11 ">
+                                        <span class="width_input">
+                                            <ul class="service-drop">
+                                                <li style="text-align: left" ng-repeat="data in newList.list track by $index | filter:{visible: true} | limitTo: 10" ng-click="setfilter(data.catgName, data.catg)" ng-class="{hovered : $index == 0}">
+                                                    {{data.catgName}}       
+                                                    <p>{{data.catg}}</p>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-12 null-padding search-btn">
+                                <button class="btn standard-height mobile-none btn-font " type="button" ng-click="setSearch(user)" ><img src="assets/img/search.png" alt="search-icon"></button>
+
+                                <button class="btn mob-ser-btn standard-height btn-font " type="button" ng-click="setSearch(user)" ><img src="assets/img/search.png" alt="search-icon">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <section class="counters-wpr">
+        <div class="container">
+            <div class="col-md-12 clearfix">
+                <div class="counters clearfix">
+                    <div class="col-md-3 col-xs-3">
+                        <img src="assets/img/doctor.png" alt="Doctor image">
+                    </div>
+                    <div class="col-md-9 col-xs-9">
+                        <h3 class="white counter-heading">100,000+</h3>
+                        <p class="white counter-last-heading">DOCTORS</p>
+                    </div>
+                </div>
+                <div class="counters clearfix">
+                    <div class="col-md-3 col-xs-3">
+                        <img src="assets/img/hospital.png" alt="hospital image">
+                    </div>
+                    <div class="col-md-9 col-xs-9">
+                        <h3 class="white counter-heading">1,000+</h3>
+                        <p class="white counter-last-heading">HOSPITALS &amp; CLINICS</p>
+                    </div>
+                </div>
+                <div class="counters clearfix">
+                    <div class="col-md-3 col-xs-3">
+                        <img src="assets/img/lab.png" alt="lab image">
+                    </div>
+                    <div class="col-md-9 col-xs-9">
+                        <h3 class="white counter-heading">8,000+</h3>
+                        <p class="white counter-last-heading">TEST-LABS</p>
+                    </div>
+                </div>
+                <div class="counters clearfix">
+                    <div class="col-md-3 col-xs-3">
+                        <img src="assets/img/problem.png" alt="Web image">
+                    </div>
+                    <div class="col-md-9 col-xs-9">
+                        <h3 class="white counter-heading">0</h3>
+                        <p class="white counter-last-heading">PROBLEMS</p>
+                    </div>
+                </div>
+                <div class="counters clearfix">
+                    <div class="col-md-3 col-xs-3">
+                        <img src="assets/img/web.png" alt="Doctor image">
+                    </div>
+                    <div class="col-md-9 col-xs-9">
+                        <h3 class="white counter-heading">WORLDWIDE</h3>
+                        <p class="white counter-last-heading">OVER 20+ COUNTRIES</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-wpr">
+        <div class="container">
+            <div class="headings text-center">
+                <h2>TOP CATEGORIES</h2>
+                <div class="text-center">
+                    <img src="assets/img/heart.png" alt="heart ">
+                </div>
+            </div>
+            <div class="row dr_shadow mainContentHome">
+                <div class="col-md-7 margin-zero">
+                    <ul class="nav nav-tabs main-tab">
+                        <li role="presentation" ng-class="{active: 0 == selectedMenu}" class="col-md-3 pd-lr-0" ng-click="changeType('doctor')">
+                            <a href="#search" aria-controls="search" role="tab" data-toggle="tab">
+                               Doctors
+                            </a>
+                        </li>
+                        <li role="presentation" ng-class="{active: 1 == selectedMenu}" class="col-md-3 pd-lr-0" ng-click="changeType('hospital')">
+                            <a href="#best-hospital" aria-controls="best-hospital" role="tab" data-toggle="tab">
+                                Hospitals
+                            </a>
+                        </li>
+                        <li role="presentation" ng-class="{active: 2 == selectedMenu}" class="col-md-3 pd-lr-0" ng-click="changeType('lab')">
+                            <a href="#test-lab" aria-controls="test-lab" role="tab" data-toggle="tab">
+                                Test-Labs
+                            </a>
+                        </li>
+                        <li role="presentation" ng-class="{active: 3 == selectedMenu}" class="col-md-3 pd-lr-0" ng-click="changeType('problem')">
+                            <a href="#search" aria-controls="ask-problem2" role="tab" data-toggle="tab">
+                               Problems
+                            </a>
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+            <div class="container tab-content">
+                <div id="search" class="tab-pane fade in active">
+                    <div class="tab-data">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='doctorCat'; user.setvalueSearchBox=x[0].catName; setSearch(user, 'doctor')"  class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+1}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[0].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mr-tp-16">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='doctorCat'; user.setvalueSearchBox=x[1].catName; setSearch(user, 'doctor')"  class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+4}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[1].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="best-hospital" class="tab-pane">
+                    <div class="tab-data">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='hospitalCat'; user.setvalueSearchBox=x[0].catName; setSearch(user, 'hospital')" class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+1}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[0].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mr-tp-16">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='hospitalCat'; user.setvalueSearchBox=x[1].catName; setSearch(user, 'hospital')" class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+4}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[1].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="test-lab" class="tab-pane">
+                    <div class="tab-data">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='labsCat'; user.setvalueSearchBox=x[0].catName; setSearch(user, 'lab')" class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+1}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[0].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mr-tp-16">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='labsCat'; user.setvalueSearchBox=x[1].catName; setSearch(user, 'lab')" class="doctors-cat">
+                                    <img src="assets/img/doc{{$index+4}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[1].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ask-problem2" class="tab-pane">
+                    <div class="tab-data">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage1 | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='problemCat'; user.setvalueSearchBox=x[0].catName; setSearch(user, 'problem')">
+                                    <img src="assets/img/doc{{$index+1}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[0].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mr-tp-16">
+                            <div class="col-md-3 pd-lr-8" ng-repeat="x in categoryMainPage | limitTo:4 track by $index">
+                                <a href="#" ng-click="user.setValueType='problemCat'; user.setvalueSearchBox=x[1].catName; setSearch(user, 'problem')">
+                                    <img src="assets/img/doc{{$index+4}}.png" alt="doc category" class="img-100">
+                                    <div class="cat-text"><h3>{{x[1].catName}}</h3></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <!-- <a href="#" ng-click="user.setValueType='hospitalCat'; user.setvalueSearchBox=x[0].catName; setSearch(user, 'hospital')" class="view-more-btn"> View more <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                <a href="#" class="view-more-btn" ng-click="showMoreCatg()">View more <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </section> 
+
+    <section class="works-wpr">
+        <div class="container">
+            <div class="headings text-center">
+                <h2>HOW IT WORK?</h2>
+                <div class="text-center">
+                    <img src="assets/img/heart.png" alt="heart ">
+                </div>
+            </div>
+            <h4 class="after-header-text">We handhold you and your family at every step of the journey</h4>
+            <div class="inner-works-wpr clearfix">
+                <div class="work-steps" ng-repeat="x in howitworks | limitTo:5 track by $index">
+                    <figure class="step-img">
+                        <img src="assets/img/compare.png" alt="Compare Image">
+                    </figure>
+                    <div class="step-details">
+                        <h3>{{ $index+1 }} {{ x.name }}</h3>
+                        <p>{{ x.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-use-wpr">
+        <div class="container">
+            <div class="headings text-center">
+                <h2 class="white">Why Use Docpal</h2>
+                <div class="text-center">
+                    <img src="assets/img/heart1.png" alt="heart ">
+                </div>
+            </div>
+
+            <div class="col-md-12  mr-tp-30">
+                <div class="" ng-repeat="x in whyusedocpals | limitTo:4 track by $index">
+                    <div class="col-md-3" >
+                        <figure class="step-img">
+                            <img src="assets/img/verified.png" alt="verified">
+                        </figure>
+                        <div class="step-details">
+                            <h3 class="white">{{ x.name }}</h3>
+                            <p>{{ x.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-wpr">
+        <div class="container">
+            <div class="headings text-center">
+                <h2>Testimonials</h2>
+                <div class="text-center">
+                    <img src="assets/img/heart.png" alt="heart ">
+                </div>
+            </div>
+            <div class="inner-testimonial">
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#quote-carousel" data-slide-to="1"></li>
+                                <li data-target="#quote-carousel" data-slide-to="2"></li>
+                                <li data-target="#quote-carousel" data-slide-to="3"></li>
+                                <li data-target="#quote-carousel" data-slide-to="4"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item" ng-class="{'active': x == testimonials[0]}" ng-repeat="x in testimonials track by $index">
+                                    <blockquote>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-center">
+                                                <img class="img-circle testi-image" src="{{imageServer + x.image}}"  alt="Person Image">
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="testimonial-para">{{ x.description }}</p>
+                                                <div class="person-name"><strong>  - {{ x.name }} </strong><br><span>&nbsp; &nbsp;{{ x.qualification }}</span></div>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><img ng-src="assets/img/left.png" class="c-left" alt="left arrow"></a>
+                            <a data-slide="next" href="#quote-carousel" class="right carousel-control"><img src="assets/img/right.png" class="c-right" alt="right arrow"></i></a>
+                        </div>                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<input type="hidden" name="temp_value" id="temp_value" value="8">
+
+<script>
+    $('.mainContentHome a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+
+        var a = $($(e.target).attr('href'))
+        var b = a.find('.owlm')
+        var c = b.owlCarousel({
+            items: 5,
+            nav: true,
+            loop: false,
+            navText: ["<i class='fa fa-prev'></i>", "<i class='fa fa-next'></i>"],
+        });
+    })
+    
+    $('#category').keyup(function(e) {
+        var mainLi = $(".width_input li");
+        var hoveredLi = $("li.hovered");
+        var code = e.keyCode || e.which;
+        if (code !== 40 && code !== 38) {
+            mainLi.eq(0).addClass("hovered");
+        }
+        if (code == 13) {
+            hoveredLi.click();
+            return true;
+        }
+        if (code === 40) {
+            if (mainLi.length - 1 != hoveredLi.index()) {
+                hoveredLi.eq(0).removeClass("hovered").next().addClass("hovered");
+                e.preventDefault();
+            }
+        } else if (code === 38) {
+            // if($("li.hovered").index()==0) return;
+            if (hoveredLi.index() != 0) {
+                hoveredLi.eq(0).removeClass("hovered").prev().addClass("hovered");
+                e.preventDefault();
+            }
+        }
+    });
+    
+    var $item = $('#mycarouselOne .item'); 
+    var $wHeight = 500;
+    $item.eq(0).addClass('active');
+    $item.height($wHeight); 
+    $item.addClass('full-screen');
+
+    $('#mycarouselOne img').each(function() {
+      var $src = $(this).attr('src');
+      var $color = $(this).attr('data-color');
+      $(this).parent().css({
+        'background-image' : 'url(' + $src + ')',
+        'background-color' : $color,
+        'background-size' : 'cover'
+      });
+      $(this).remove();
+    });
+
+    $(window).on('resize', function (){
+      $wHeight = 500;
+      $item.height($wHeight);
+    });
+
+    $('.carousel').carousel({
+      interval: 6000,
+      pause: "false"
+    });
+</script>

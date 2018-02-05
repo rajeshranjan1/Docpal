@@ -1,0 +1,110 @@
+<section>
+
+
+
+  <div class="services-div border-class-new">
+    <div class="abouth" ng-show="labdata.about != ''">
+      <h4>About</h4>
+      <p>
+        {{labdata.about}}
+      </p>
+    </div>
+
+
+    <div class="" ng-show="labdata.facility.length >0">
+
+      <i class="icon-circle39 services-icon-new">
+  </i>
+
+      <h4 class="padding-margin">
+        Facility
+      </h4>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul class="inner-li" ng-repeat="x in labdata.facility track by $index">
+          <li>
+            {{x}}
+          </li>
+
+        </ul>
+      </div>
+
+
+    </div>
+    <div class="inner-sec">
+      <div class="col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labdata.certificate.length >0">
+        <div class="spec">
+          <i class="icon-medical96 services-icon-new">
+      </i>
+          <h4>
+            Certificate
+          </h4>
+          <ul class="inner-li specialization-ul" ng-repeat="x in labdata.certificate track by $index">
+            <li class="padding14">
+              {{x}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00" ng-show="labdata.test.length > 0">
+        <div class="spec">
+          <i class="icon-cup2 services-icon-new">
+          </i>
+          <h4>
+            Test
+          </h4>
+          <ul class="inner-li awards-ul">
+            <li ng-repeat="x in labdata.test  track by $index" class="padding14">
+              <span>{{x.testName}}</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span>{{x.testPrice}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="inner-sec">
+      <div class="col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labdata.awards.length >0">
+
+
+
+        <div class="spec">
+          <i class="icon-cup2 services-icon-new">
+        </i>
+          <h4>
+            Awards
+          </h4>
+          <ul class="inner-li awards-ul">
+            <li ng-repeat="x in labdata.awards track by $index" class="padding14">
+
+              {{x}}
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <!--    <div class="col-md-6 col-sm-6 col-xs-12 spec-section" ng-show="labdata.membership.length >0">
+      <div class="spec" >
+          <i class="icon-identification10 services-icon-new">
+
+            </i>
+            <h4>
+              Memberships
+            </h4>
+            <ul class="inner-li members-ul" ng-repeat="x in labdata.membership track by $index">
+              <li class="padding14">
+             {{x}}
+              </li>
+            </ul>
+          </div>
+              </div> -->
+    </div>
+  </div>
+  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+
+
+    </span>
+  </div>
+  </div>
+  </div>
+
+
+</section>

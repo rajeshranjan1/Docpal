@@ -1,0 +1,257 @@
+  <section>
+<div class="container-fluid">
+    <div class="row">
+      <div class="position-div">
+      <div class="search-section2_home" style="float:left;width:100%;">
+        <div class="profile-section-div">
+          
+          <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-2 box-middle">
+            <div class="input-box box_inline">
+   <locality id="location" ng-model="user.location" ng-required="true" class="form-control inputwidth txt-box-inpt1 ng-isolate-scope ng-pristine ng-invalid ng-invalid-required" required="required">
+    <input type="text" class="formcontrolinfo padding_input" placeholder="Enter a location" autocomplete="off"></locality>
+
+
+                  <i class="icon-geolocation crosshairs_home"></i>
+                <input type="text" placeholder="Doctors category" class="form-control widthinpt txt-box-inpt1 ng-pristine ng-valid" ng-model="user.setvalueSearchBox" id="category"  ng-change="setSearchBoxx(user.setvalueSearchBox)" style="border-radius: 0 !important;" >
+
+                <button class="btn search-btn1" ng-click="setSearch(user)">
+                  <i class="icon-search74 searchy1">
+                  </i>
+                </button>
+              </div>
+              <div class="row">
+
+     <div class="col-md-6 col-md-offset-3">         
+              <span class="width_input">
+            <ul>
+              <li  ng-repeat="data in setSearchList | limitTo:10 track by $index" ng-click="setfilter(data.dat)">
+                {{data.dat}}       <p>{{data.type}}</p>
+              </li>
+            </ul>
+          </span>
+        </div>
+      </div>
+           <!--  <div class="col-md-4 col-sm-4 col-lg-3 col-xs-12 text-center">
+              <div class="stetho-icon">
+                <img src="{{menuimage}}" alt="" class="img-responsive stetho-icon-image">
+              </div>
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-7 col-lg-8">
+              <div class="input-box">
+               <!--    <select class="drpdwn" ng-model="user.speciality" name="category" required> 
+          <option value="" ng-selected=true>Choose a Category</option>
+          <option value="{{x}}" ng-repeat="x in docCat track by $index">{{x}}</option>
+          </select> -->
+
+          <!--  <input type="text" placeholder="Doctors,Hospitals,Health Care etc" class="form-control txt-box-inpt1" ng-model="user.setvalueSearchBox" ng-change="setSearch(user.setvalueSearchBox)"> -->
+           <span>
+
+
+           <!--  <ul>
+              <li ng-repeat="data in listOfSearch track by $index" ng-click="setfilter()">
+                {{data.Category}}       {{data.type}}      
+              </li>
+            </ul>
+ -->
+        <!--   <location-picker-info id="location" ng-model="user.location"  ng-required="true" class="form-control input__field1 input__field--hoshi1" style="border:none"></location-picker-info> -->
+               <!--  <button class="btn search-btn1" ng-click="homepage(user)">
+                  <i class="icon-search74 searchy1">
+                  </i>
+                </button> -->
+              </div>
+              <div class="doctors-list-div">
+              </div>
+            </div> -->
+
+          </div>
+
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 margin_btn">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+           
+              <div class="icon_doc" ui-sref="doctors">
+               <a  class="">
+                 <i class="icon-stethoscope icon_color"></i>
+                </a>  
+              </div>
+              <div class="text_home">
+               <a ui-sref="doctors">
+                <h4 class="search_heading">Search Doctor</h4>
+                <p class="search_heading">No waiting:no hold music</p>
+                 </a>
+              </div>
+             
+            </div>
+            <div class="col-md-2">
+           
+              <div class="icon_doc" ui-sref="hospital_list">
+              <a >
+                 <i class="icon-catholic icon_color"></i>
+                 </a>
+              </div>
+              <div class="text_home">
+               <a ui-sref="hospital_list">
+                <h4 class="search_heading">Choose best hospital</h4>
+                <p class="search_heading">No waiting:no hold music</p>
+                </a>
+              </div>
+              
+            </div>
+            <div class="col-md-2">
+            
+            <div class="icon_doc" ui-sref="labs">
+            <a >
+                 <i class="icon-stethoscope icon_color"></i>
+                 </a>
+              </div>
+              <div class="text_home">
+              <a ui-sref="labs">
+                <h4 class="search_heading">Test-lab near you</h4>
+                <p class="search_heading">No waiting:no hold music</p>
+                </a>
+              </div>
+              
+            </div>
+            <div class="col-md-2">
+            
+            <div class="icon_doc" ui-sref="problemInfo">
+            <a >
+                 <i class="icon-speech3 icon_color"></i>
+                 </a>
+              </div>
+              <div class="text_home">
+              <a href="">
+                <h4 class="search_heading">Ask problem</h4>
+                <p class="search_heading">No waiting:no hold music</p>
+                </a>
+              </div>
+              
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+         
+        </div>
+        
+         
+      </div>
+    </div>
+  </div>
+  </div>
+
+   <footer>
+            <div class="home_footer">
+            <div class="col-md-6">
+              
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav li_padding">
+                <li>About</li>
+                <li>Carrer</li>
+                <li>Contact Us</li>
+                <li>Privacy&Terms</li>
+              </ul>
+
+            </div>
+          </div>
+        
+            <div class="col-md-6 pull-right">
+              <span class="icon_class_home">
+              <i class="icon-doubts"></i>
+              </span>
+              <p class="text_right_class">
+                Ask your Problem to our best doctors.Just submit your inquire.
+              </p>
+              
+            </div>
+            
+            <p class="copyright">Copyright@ 2016 Trancis Group.All rights reserved.</p>
+         
+            </div>
+
+          </footer> 
+
+           <script>
+$(document).ready(function() {
+    $(".footer").css('display','none');
+});
+</script>
+
+
+
+<style>
+.ripplelink{
+  display:block;
+  
+  width:61.6%;
+ 
+  height:8em;
+  line-height:10em;
+  text-align:center;
+  color:#fff;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  z-index:0;
+  border-radius: 50%;
+}
+
+.ripplelink:hover{
+  z-index:1000;
+  box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -webkit-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -moz-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+}
+
+.ink {
+  display: block;
+  position: absolute;
+  background:rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  -webkit-transform:scale(0);
+     -moz-transform:scale(0);
+       -o-transform:scale(0);
+          transform:scale(0);
+}
+
+.animate {
+  -webkit-animation:ripple 0.65s linear;
+   -moz-animation:ripple 0.65s linear;
+    -ms-animation:ripple 0.65s linear;
+     -o-animation:ripple 0.65s linear;
+        animation:ripple 0.65s linear;
+}
+
+@-webkit-keyframes ripple {
+    100% {opacity: 0; -webkit-transform: scale(2.5);}
+}
+@-moz-keyframes ripple {
+    100% {opacity: 0; -moz-transform: scale(2.5);}
+}
+@-o-keyframes ripple {
+    100% {opacity: 0; -o-transform: scale(2.5);}
+}
+@keyframes ripple {
+    100% {opacity: 0; transform: scale(2.5);}
+}
+
+
+.cyan{
+  background:#00bcd4;
+}
+
+.lightgreen{
+  background:#8bc34a;
+}
+
+.amber{
+  background:#ffc107;
+}
+
+.orange{
+  background:#ff9800;
+}
+</style>

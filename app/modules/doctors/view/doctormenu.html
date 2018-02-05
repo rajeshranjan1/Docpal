@@ -1,0 +1,64 @@
+<div class="centerpart-top-div">
+   <!-- <div class="problems-button-div ">
+      <h3 class="margin0 padding0" ></h3>
+   </div> -->
+   <div class="web-view-navbar">
+      <ul class="nav nav-tabs custom-nav-tabs">
+         <!-- <li  ng-click="problems()" >
+            <a data-toggle="tab" href="javascript:void();" class="custom-anchor-tag">
+               <i class="fa fa-exclamation-triangle custom-nav-icon" aria-hidden="true"></i>
+               <span class="mobile-hide">Problems </span>
+            </a>
+         </li> -->
+
+          <li  ui-sref="doctorprofileproblem" ng-class="{active: seturl=='/doctorprofileproblem'}">
+            <a data-toggle="tab" href="javascript:void();" class="custom-anchor-tag">
+               <i class="fa fa-exclamation-triangle custom-nav-icon" aria-hidden="true"></i>
+               <span class="mobile-hide">Problems </span>
+            </a>
+         </li>
+
+         <li ui-sref="doctorprofile" ng-class="{active: seturl=='/doctorprofile'}">
+            <a data-toggle="tab" href="#home" class="custom-anchor-tag" id="ome">
+               <i class="icon-medical94 custom-nav-icon"> </i>
+               <span class="mobile-hide">Profile </span>
+            </a>
+         </li>
+     <!--     <li ui-sref="doctorprofileMap" ng-class="{active: seturl=='/doctorprofileMap'}">
+            <a data-toggle="tab" href="#menu1" class="custom-anchor-tag" id="googlemap">
+               <i class="icon-map-pointer2 custom-nav-icon"></i>
+               <span class="mobile-hide"> Map Location </span>
+            </a>
+         </li>
+         <li ui-sref="doctorprofilegallery" ng-class="{active: seturl=='/doctorprofilegallery'}">
+            <a data-toggle="tab" href="#menu2" class="custom-anchor-tag">
+            <i class="icon-photos9 custom-nav-icon"></i>
+            <span class="mobile-hide">Gallery</span>
+            </a>
+         </li>
+         <li ui-sref="doctorprofileAccount" ng-class="{active: seturl=='/doctorprofileAccount'}">
+            <a data-toggle="tab" href="#account" class="custom-anchor-tag">
+               <i class="icon-settings62 custom-nav-icon"></i>
+               <span class="mobile-hide">  Account Setting</span>
+            </a>
+         </li> -->
+         <li ui-sref="doctorAppointment" ng-class="{active: seturl=='/doctorAppointment'}">
+            <a data-toggle="tab" href="#account" class="custom-anchor-tag">
+               <i class="fa fa-map-marker custom-nav-icon"></i>
+               <span class="mobile-hide">My Appointment</span>
+            </a>
+         </li> 
+         <li ui-sref="doctorFeedback" ng-class="{active: seturl=='/doctorFeedback'}">
+            <a data-toggle="tab" href="#doc_feed" class="custom-anchor-tag">
+               <i class="fa fa-comments-o  custom-nav-icon  " aria-hidden="true"></i>
+               <span class="mobile-hide"> Feedback</span>
+            </a>
+         </li>
+      </ul>
+    </div>
+</div>
+<style>
+.selectedurl {
+    color: red !important;
+}
+</style>

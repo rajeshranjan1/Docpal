@@ -1,0 +1,564 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?60ps2y');
+    src:    url('fonts/icomoon.eot?60ps2y#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?60ps2y') format('truetype'),
+        url('fonts/icomoon.woff?60ps2y') format('woff'),
+        url('fonts/icomoon.svg?60ps2y#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mri-scan:before {
+    content: "\e9b2";
+}
+.icon-blood-urea:before {
+    content: "\e9ae";
+}
+.icon-cardiac-check:before {
+    content: "\e9af";
+}
+.icon-pregnancy:before {
+    content: "\e9b0";
+}
+.icon-ribbon:before {
+    content: "\e9b1";
+}
+.icon-Cardiologist:before {
+    content: "\e900";
+}
+.icon-Complete-blood-count:before {
+    content: "\e901";
+}
+.icon-Dentist:before {
+    content: "\e902";
+}
+.icon-Dermatologist:before {
+    content: "\e903";
+}
+.icon-Ear-nose-throatentSpecialist:before {
+    content: "\e904";
+}
+.icon-Gastroenterologist:before {
+    content: "\e905";
+}
+.icon-General:before {
+    content: "\e906";
+}
+.icon-GynecologistObstetrician:before {
+    content: "\e907";
+}
+.icon-Homeopath:before {
+    content: "\e908";
+}
+.icon-Lipid-profile:before {
+    content: "\e909";
+}
+.icon-mark:before {
+    content: "\e90a";
+}
+.icon-Neurologist:before {
+    content: "\e90b";
+}
+.icon-Ophthalmologist:before {
+    content: "\e90c";
+}
+.icon-Psychiatrist:before {
+    content: "\e90d";
+}
+.icon-science:before {
+    content: "\e90e";
+}
+.icon-Thyroid-profile:before {
+    content: "\e90f";
+}
+.icon-Urologist:before {
+    content: "\e910";
+}
+.icon-X-ray:before {
+    content: "\e911";
+}
+.icon-avatars:before {
+    content: "\e912";
+}
+.icon-blog1:before {
+    content: "\e913";
+}
+.icon-building83:before {
+    content: "\e914";
+}
+.icon-business56:before {
+    content: "\e915";
+}
+.icon-calendar53:before {
+    content: "\e916";
+}
+.icon-catholic:before {
+    content: "\e917";
+}
+.icon-chat57:before {
+    content: "\e918";
+}
+.icon-check10:before {
+    content: "\e919";
+}
+.icon-check66:before {
+    content: "\e91a";
+}
+.icon-chevron8:before {
+    content: "\e91b";
+}
+.icon-chevrons:before {
+    content: "\e91c";
+}
+.icon-circle39:before {
+    content: "\e91d";
+}
+.icon-clock104:before {
+    content: "\e91e";
+}
+.icon-college1:before {
+    content: "\e91f";
+}
+.icon-conversation18:before {
+    content: "\e920";
+}
+.icon-cross72:before {
+    content: "\e921";
+}
+.icon-cup2:before {
+    content: "\e922";
+}
+.icon-direction129:before {
+    content: "\e923";
+}
+.icon-doctor2:before {
+    content: "\e924";
+}
+.icon-document4:before {
+    content: "\e925";
+}
+.icon-document238:before {
+    content: "\e926";
+}
+.icon-doubts:before {
+    content: "\e927";
+}
+.icon-edit5:before {
+    content: "\e928";
+}
+.icon-email19:before {
+    content: "\e929";
+}
+.icon-exclamationmark:before {
+    content: "\e92a";
+}
+.icon-fastforward4:before {
+    content: "\e92b";
+}
+.icon-favorite7:before {
+    content: "\e92c";
+}
+.icon-file148:before {
+    content: "\e92d";
+}
+.icon-finger13:before {
+    content: "\e92e";
+}
+.icon-formspring:before {
+    content: "\e92f";
+}
+.icon-game61:before {
+    content: "\e930";
+}
+.icon-gender5:before {
+    content: "\e931";
+}
+.icon-geolocation:before {
+    content: "\e932";
+}
+.icon-healthcare:before {
+    content: "\e933";
+}
+.icon-healthy12:before {
+    content: "\e934";
+}
+.icon-help23:before {
+    content: "\e935";
+}
+.icon-history2:before {
+    content: "\e936";
+}
+.icon-hospital10:before {
+    content: "\e937";
+}
+.icon-hospitals4:before {
+    content: "\e938";
+}
+.icon-identification10:before {
+    content: "\e939";
+}
+.icon-identification27:before {
+    content: "\e93a";
+}
+.icon-inbox50:before {
+    content: "\e93b";
+}
+.icon-indent2:before {
+    content: "\e93c";
+}
+.icon-india1:before {
+    content: "\e93d";
+}
+.icon-like82:before {
+    content: "\e93e";
+}
+.icon-list6:before {
+    content: "\e93f";
+}
+.icon-love22:before {
+    content: "\e940";
+}
+.icon-male157:before {
+    content: "\e941";
+}
+.icon-maleuser:before {
+    content: "\e942";
+}
+.icon-map-pointer2:before {
+    content: "\e943";
+}
+.icon-map-pointer7:before {
+    content: "\e944";
+}
+.icon-maths62:before {
+    content: "\e945";
+}
+.icon-medical88:before {
+    content: "\e946";
+}
+.icon-medical94:before {
+    content: "\e947";
+}
+.icon-medical96:before {
+    content: "\e948";
+}
+.icon-menu51:before {
+    content: "\e949";
+}
+.icon-minus104:before {
+    content: "\e94a";
+}
+.icon-more20:before {
+    content: "\e94b";
+}
+.icon-network11:before {
+    content: "\e94c";
+}
+.icon-new100:before {
+    content: "\e94d";
+}
+.icon-newspapers:before {
+    content: "\e94e";
+}
+.icon-notify:before {
+    content: "\e94f";
+}
+.icon-online11:before {
+    content: "\e950";
+}
+.icon-open131:before {
+    content: "\e951";
+}
+.icon-pencil43:before {
+    content: "\e952";
+}
+.icon-photos9:before {
+    content: "\e953";
+}
+.icon-playvideo4:before {
+    content: "\e954";
+}
+.icon-plus79:before {
+    content: "\e955";
+}
+.icon-question40:before {
+    content: "\e956";
+}
+.icon-review4:before {
+    content: "\e957";
+}
+.icon-round69:before {
+    content: "\e958";
+}
+.icon-round76:before {
+    content: "\e959";
+}
+.icon-scroll12:before {
+    content: "\e95a";
+}
+.icon-search74:before {
+    content: "\e95b";
+}
+.icon-select4:before {
+    content: "\e95c";
+}
+.icon-settings62:before {
+    content: "\e95d";
+}
+.icon-show8:before {
+    content: "\e95e";
+}
+.icon-silhouette121:before {
+    content: "\e95f";
+}
+.icon-social20:before {
+    content: "\e960";
+}
+.icon-sort14:before {
+    content: "\e961";
+}
+.icon-sort27:before {
+    content: "\e962";
+}
+.icon-speech3:before {
+    content: "\e963";
+}
+.icon-speechballoons1:before {
+    content: "\e964";
+}
+.icon-star40:before {
+    content: "\e965";
+}
+.icon-stars64:before {
+    content: "\e966";
+}
+.icon-stats2:before {
+    content: "\e967";
+}
+.icon-stethoscope:before {
+    content: "\e968";
+}
+.icon-talk11:before {
+    content: "\e969";
+}
+.icon-time51:before {
+    content: "\e96a";
+}
+.icon-tool305:before {
+    content: "\e96b";
+}
+.icon-transport9:before {
+    content: "\e96c";
+}
+.icon-triangle12:before {
+    content: "\e96d";
+}
+.icon-triangle122:before {
+    content: "\e96e";
+}
+.icon-two122:before {
+    content: "\e96f";
+}
+.icon-up7:before {
+    content: "\e970";
+}
+.icon-uploading24:before {
+    content: "\e971";
+}
+.icon-woman105:before {
+    content: "\e972";
+}
+.icon-button8:before {
+    content: "\e973";
+}
+.icon-clock:before {
+    content: "\e974";
+}
+.icon-curriculum3:before {
+    content: "\e975";
+}
+.icon-follow:before {
+    content: "\e976";
+}
+.icon-followers:before {
+    content: "\e977";
+}
+.icon-hospitals:before {
+    content: "\e978";
+}
+.icon-revelant:before {
+    content: "\e979";
+}
+.icon-rupee:before {
+    content: "\e97a";
+}
+.icon-sharing3:before {
+    content: "\e97b";
+}
+.icon-shortby:before {
+    content: "\e97c";
+}
+.icon-view1:before {
+    content: "\e97d";
+}
+.icon-accountsettings:before {
+    content: "\e97e";
+}
+.icon-availavilty:before {
+    content: "\e97f";
+}
+.icon-award:before {
+    content: "\e980";
+}
+.icon-categories:before {
+    content: "\e981";
+}
+.icon-category:before {
+    content: "\e982";
+}
+.icon-certficats:before {
+    content: "\e983";
+}
+.icon-connection:before {
+    content: "\e984";
+}
+.icon-docterprofile:before {
+    content: "\e985";
+}
+.icon-doctoraddras:before {
+    content: "\e986";
+}
+.icon-facility:before {
+    content: "\e987";
+}
+.icon-fallow:before {
+    content: "\e988";
+}
+.icon-female100:before {
+    content: "\e989";
+}
+.icon-gallery:before {
+    content: "\e98a";
+}
+.icon-language:before {
+    content: "\e98b";
+}
+.icon-login12:before {
+    content: "\e98c";
+}
+.icon-man443:before {
+    content: "\e98d";
+}
+.icon-maplocation:before {
+    content: "\e98e";
+}
+.icon-membership2:before {
+    content: "\e98f";
+}
+.icon-money:before {
+    content: "\e990";
+}
+.icon-register:before {
+    content: "\e991";
+}
+.icon-reply:before {
+    content: "\e992";
+}
+.icon-test:before {
+    content: "\e993";
+}
+.icon-time:before {
+    content: "\e994";
+}
+.icon-userprofile:before {
+    content: "\e995";
+}
+.icon-view:before {
+    content: "\e996";
+}
+.icon-edit:before {
+    content: "\e997";
+}
+.icon-edit1:before {
+    content: "\e998";
+}
+.icon-home:before {
+    content: "\e999";
+}
+.icon-interface:before {
+    content: "\e99a";
+}
+.icon-internet:before {
+    content: "\e99b";
+}
+.icon-location:before {
+    content: "\e99c";
+}
+.icon-location1:before {
+    content: "\e99d";
+}
+.icon-location2:before {
+    content: "\e99e";
+}
+.icon-next:before {
+    content: "\e99f";
+}
+.icon-prev:before {
+    content: "\e9a0";
+}
+.icon-registration:before {
+    content: "\e9a1";
+}
+.icon-registration1:before {
+    content: "\e9a2";
+}
+.icon-registration2:before {
+    content: "\e9a3";
+}
+.icon-save:before {
+    content: "\e9a4";
+}
+.icon-signout:before {
+    content: "\e9a5";
+}
+.icon-signout1:before {
+    content: "\e9a6";
+}
+.icon-technology:before {
+    content: "\e9a7";
+}
+.icon-relevent:before {
+    content: "\e9a8";
+}
+.icon-relevent2:before {
+    content: "\e9a9";
+}
+.icon-helpful1:before {
+    content: "\e9aa";
+}
+.icon-delete1:before {
+    content: "\e9ab";
+}
+.icon-delete2:before {
+    content: "\e9ac";
+}
+.icon-delete3:before {
+    content: "\e9ad";
+}
+

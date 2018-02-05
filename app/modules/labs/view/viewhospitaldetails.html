@@ -1,0 +1,445 @@
+<section>
+
+
+
+<div class="services-div border-class-new">
+  <div class="abouth">
+  <h4>Abo</h4>
+  <p>
+   {{labdata.about}}
+  </p>
+</div>
+</div>
+<div class="col-md-12 padding0">
+ <div class="inner-sec">
+
+  <i class="icon-circle39 services-icon-new">
+  </i>
+  
+  <h4 class="padding-margin">
+  Facility
+  </h4>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <ul class="inner-li" ng-repeat="x in labdata.facility track by $index">
+      <li>
+     {{x}} 
+      </li>
+     
+    </ul>
+  </div>
+</div>
+
+
+<div class="col-md-12 padding0">
+<div class="inner-sec">
+  <div class="col-md-6 col-sm-6 col-xs-12 spec-section">
+    <div class="spec">
+      <i class="icon-medical96 services-icon-new">
+      </i>
+      <h4>
+     Certificate
+      </h4>
+      <ul class="inner-li specialization-ul" ng-repeat="x in labdata.certificate track by $index">
+        <li class="padding14">
+        {{x}}
+        </li>
+      </ul>
+    </div>
+    </div>
+  
+
+   
+      <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00">
+        <div class="spec">
+          <i class="icon-cup2 services-icon-new">
+          </i>
+          <h4>
+          test
+          </h4>
+         
+          <ul class="inner-li awards-ul">
+            <li ng-repeat="x in labdata.test  track by $index" class="padding14">
+            <span>{{x.testName}}</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>{{x.testPrice}}</span></li>
+          </ul>
+
+     </div>
+  </div>
+</div>
+</div>
+</div>
+  <div class="inner-sec">
+    <div class="col-md-6 col-sm-6 col-xs-12 spec-section">
+      <div class="spec">
+        <i class="icon-medical96 services-icon-new">
+        </i>
+        <h4>
+          Specialization
+        </h4>
+        <ul class="inner-li specialization-ul" >
+          <li class="padding14">
+            <!--   {{uu}} -->
+          </li>
+        </ul>
+      </div>
+      <span >
+        <i class="icon-college1 srvices-icon">
+        </i>
+        <h4>
+          Education
+        </h4>
+        <ul class="inner-li education-ul"  >
+          <li class="padding14">
+            {{y}}
+          </li>
+          
+        </ul>
+      </span>
+      <span>
+        
+        <i class="icon-medical88 srvices-icon">
+        </i>
+        <h4 >
+          Experience
+        </h4>
+        <ul class="inner-li experience-ul" >
+          <li class="padding14">
+            
+            
+          </li>
+        </ul>
+      </span>
+    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00">
+      <div>
+        <i class="icon-cup2 srvices-icon">
+        </i>
+        <h4>
+          Awards
+        </h4>
+        <ul class="inner-li awards-ul">
+          <li ng-repeat="x in awards track by $index" class="padding14">
+            
+{{x}}
+            </li>
+            
+          </ul>
+        </div>
+        <span>
+          <i class="icon-identification10 srvices-icon">
+
+            </i>
+            <h4>
+              Memberships
+            </h4>
+            <ul class="inner-li members-ul" ng-repeat="x in labdata.membership track by $index">
+              <li class="padding14">
+             {{x}}
+              </li>
+            </ul>
+          </span>
+              </div>
+              </div>
+              </div>
+             
+  </div>
+  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+    <div class="inner_bttom_sec border-class-new">
+       <span class="info_cards">
+                            <!-- Trigger the modal with a icon -->
+                    
+                          <a href="#myModal_hospitaldata" data-toggle="modal" data-target="#myModal_hospitaldata">
+                       <i class="fa fa-ellipsis-h dott">
+                       </i>
+                     </a>
+                    
+                        </span>
+    
+                 
+                  <div class="col-md-4" ng-repeat="det in doctordetails track by $index">
+                    <div class="search-result-main-div2" >
+              <!-- start profile section -->
+              <div class="profile-section" >
+
+               
+                <div class="my-image-section">
+                  
+                  <div class="img-div1">
+                  <img src="assets/img/Dr1.png" alt="" class="img-responsive border-round  e-img"></div>
+                 
+              </div>
+                
+                <div class="info-section sec_new">
+                  <div class="row">
+                    <div class="col-lg-11 col-md-11 col-sm-8 col-xs-12">
+                                          
+
+                        <h3 class="name-div">
+                     <a href="#">{{det.name}}</a>
+                        </h3>
+                       
+
+
+                       <div class="text-div">
+
+                        <span>
+                        
+                       {{det.speciality}}
+                        </span>
+                          <span>
+                        
+                       {{det.address[det.indexId].city}}
+
+                        </span>
+                       
+                                           </div>                          
+                      </div>                                             
+                    </div>
+                  
+                      </div>
+                      </div>
+                     
+                     <!--pv modal!-->
+                     
+                     
+                    
+                    
+                    
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal_hospitaldata" role="dialog">
+                       <div class="modal-dialog">
+                         
+                         <!-- Modal content-->
+                         <div class="modal-content content_of_hospital">
+                           <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal">
+                               &times;
+                             </button>
+                             
+                           </div>
+                           <div class="modal-body">
+                             <div class="inner_bttom_sec">
+                               <div class="col-md-12">
+                                 <div class="search-result-main-div2">
+                                   <!-- start profile section -->
+                                   <div class="profile-section">
+                                     
+                                     <div class="my-image-section">
+                                       
+                                       <div class="img-div1 ">
+                                         <img class="img-responsive border-round  e-img" alt="" src="assets/img/Dr1.png">
+                                       </div>
+                                       
+                                     </div>
+                                     
+                                     <div class="info-section sec_new">
+                                       <div class="row">
+                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                           <div class="profile-intro">
+                                             
+                                             <!--pnew icons!-->
+                                             <div ng-show="showtags(x.language.length)" class="option-icon ng-hide">
+                                               <span data-placement="right" data-toggle="popover" data-container="body" title="Languages" class="glyphicon glyphicon-option-horizontal read-dots">
+                                                 <div class="hide" id="language-div">
+                                                   English
+                                                 </div>
+                                               </span>
+                                             </div>
+                                             <div class="option-icon-box-div">
+                                               <ul>
+                                                 <!-- ngRepeat: y in x.language track by $index -->
+                                                 <ul>
+                                                 </ul>
+                                               </ul>
+                                             </div>
+                                             
+                                             
+                                             <h3 class="name-div">
+                                               <a href="#">
+                                                 Dr.jain
+                                               </a>
+                                             </h3>
+                                             <div class="profile-btn">
+                                               <!-- ngRepeat: y in x.language | limitTo:quantity track by $index -->
+                                               
+                                             </div>
+                                             
+                                             
+                                             <div class="text-div">
+                                               
+                                               
+                                               
+                                               <span>
+                                                 
+                                                 Eye Doctor
+                                               </span>
+                                               
+                                               
+                                               
+                                               
+                                               
+                                             </div>
+                                             
+                                           </div>
+                                           
+                                         </div>
+                                         
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                                 
+                               </div>
+                               <div class="col-md-12">
+                                 <div class="search-result-main-div2">
+                                   <!-- start profile section -->
+                                   <div class="profile-section">
+                                     
+                                     <div class="my-image-section">
+                                       
+                                       <div class="img-div1">
+                                         <img class="img-responsive border-round  e-img" alt="" src="assets/img/Dr1.png">
+                                       </div>
+                                     </div>
+                                     
+                                     <div class="info-section sec_new">
+                                       <div class="row">
+                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                           <div class="profile-intro">
+                                             
+                                             <!--pnew icons!-->
+                                             <div ng-show="showtags(x.language.length)" class="option-icon ng-hide">
+                                               <span data-placement="right" data-toggle="popover" data-container="body" title="Languages" class="glyphicon glyphicon-option-horizontal read-dots">
+                                                 <div class="hide" id="language-div">
+                                                   English
+                                                 </div>
+                                               </span>
+                                             </div>
+                                             <div class="option-icon-box-div">
+                                               <ul>
+                                                 <!-- ngRepeat: y in x.language track by $index -->
+                                                 <ul>
+                                                 </ul>
+                                               </ul>
+                                             </div>
+                                             
+                                             
+                                             <h3 class="name-div">
+                                               <a href="#">
+                                                 Dr.jain
+                                               </a>
+                                             </h3>
+                                             <div class="profile-btn">
+                                               <!-- ngRepeat: y in x.language | limitTo:quantity track by $index -->
+                                               
+                                             </div>
+                                             
+                                             
+                                             <div class="text-div">
+                                               
+                                               
+                                               
+                                               <span>
+                                                 
+                                                 Eye Doctor
+                                               </span>
+                                               
+                                               
+                                               
+                                               
+                                               
+                                             </div>
+                                             
+                                           </div>
+                                           
+                                         </div>
+                                         
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="col-md-12">
+                                 <div class="search-result-main-div2">
+                                   <!-- start profile section -->
+                                   <div class="profile-section">
+                                     <div class="my-image-section">
+                                       
+                                       <div class="img-div1">
+                                         <img class="img-responsive border-round  e-img" alt="" src="assets/img/Dr1.png">
+                                       </div>
+                                       
+                                     </div>
+                                     
+                                     <div class="info-section sec_new">
+                                       <div class="row">
+                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                           <div class="profile-intro">
+                                             
+                                             <!--pnew icons!-->
+                                             <div ng-show="showtags(x.language.length)" class="option-icon ng-hide">
+                                               <span data-placement="right" data-toggle="popover" data-container="body" title="Languages" class="glyphicon glyphicon-option-horizontal read-dots">
+                                                 <div class="hide" id="language-div">
+                                                   English
+                                                 </div>
+                                               </span>
+                                             </div>
+                                             <div class="option-icon-box-div">
+                                               <ul>
+                                                 <!-- ngRepeat: y in x.language track by $index -->
+                                                 <ul>
+                                                 </ul>
+                                               </ul>
+                                             </div>
+                                             
+                                             
+                                             <h3 class="name-div">
+                                               <a href="#">
+                                                 Dr.jain
+                                               </a>
+                                             </h3>
+                                             <div class="profile-btn">
+                                               <!-- ngRepeat: y in x.language | limitTo:quantity track by $index -->
+                                               
+                                             </div>
+                                             
+                                             
+                                             <div class="text-div">
+                                               
+                                               
+                                               
+                                               <span>
+                                                 
+                                                 Eye Doctor
+                                               </span>
+                                               
+                                               
+                                               
+                                               
+                                               
+                                             </div>
+                                             
+                                           </div>
+                                           
+                                         </div>
+                                         
+                                       </div>
+                                     </div>
+                                   </div>
+                                   
+                                 </div>
+                               </div>
+                               
+                             </div>
+                           </div>
+                           
+                         </div>
+                         
+                       </div>
+                     </div>
+                     
+                     
+                     <!--pv modal end!-->
+                   </div>
+                  
+                  </section>

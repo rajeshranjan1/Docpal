@@ -1,0 +1,160 @@
+<style>
+.container{
+  padding-left: 0;
+  margin-left: 0;
+}
+.strip {
+    width: 178px;
+    height: 600px;
+    float:left;
+    background-color: #ebebeb;
+    position: relative;
+    left:0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;    
+  }
+.heading-para1 {
+    color: rgb(27, 164, 170);
+    font-size: 20px;
+
+} 
+.heading-para-signup1 {
+    color: #5a6e6f;
+    
+}
+.image-div1 {
+    margin-top: 150px;
+    text-align: center;
+    width: 100%;
+}
+.img-div1{
+  display: inline-block;
+  width: 80px;
+}
+.user-sign-up {
+    float: right;
+
+}
+</style>
+<section>
+    <div class="wrapper">
+        <div class="container" ng-controller="loginCtrl">
+  <div class="strip-sec">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="col-md-2"style="padding:0;">
+    <div class="strip">
+       <div class="image-div1">      
+       <div class="img-div1">
+<img src="assets/img/doctor_img.png" class="img-responsive">
+<p class="heading-para1">Doctor's</p><p class="heading-para-signup1">login</p>
+</div>
+</div>
+</div>
+</div>
+    <div class="col-md-10">
+    
+        <div class="custom-login-section">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="header">
+                 <div class="col-md-3"></div>   
+                 <div class="col-md-9 pull-right"><span class="user-sign-up"><p class="heading-para-signup">login as a</p> <p class="heading-para-dr">User.</p></span><!--p class="heading-para2" ><a ng-click="registorUser">user</a></p!--></div>
+                </div>
+              </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="login-section">
+                        <div class="header-row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <p class="heading-para">welcome</p>
+                                <p class="heading-para-dr">Doctor</p>
+                                
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <form ng-submit="loginform.$valid && login(logindata)"  name="loginform" novalidate>
+                                <input type="email" class="input-text-class" placeholder="user name" name="loginemail" ng-model="logindata.email" required>
+                                    <br>
+                                        <input type="password" class="input-text-class" name="loginpassword" placeholder="password" ng-model="logindata.password" required>
+                                            <div class="cutom-submit-btn">
+                                                <button type="submit" class="btn submit-btn-custom" value="Log In" ng-click="submitted=true">Log In</button>
+                                            </div>
+                                        </form>
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <div class="forgot-div">
+                                                <ul class="fogot-ul">
+                                                    <li class="forgot-li">
+                                                        <span style="color:red;display: inherit;" ng-show="submitted && loginform.loginemail.$invalid">
+                                                            <span ng-show="loginform.loginemail.$error.required">Email is required.</span>
+                                                            <span ng-show="loginform.loginemail.$error.email"> Not valid email!</span>
+                                                        </span>
+                                                        <span style="color:red;display: inherit;" ng-show="submitted && loginform.loginpassword.$invalid">
+                                                            <span ng-show="loginform.loginpassword.$error.required">Password is required.</span>
+                                                        </span>
+                                                        <span style="color:red;display:inherit;"
+                                                        ng-show="usernotfound">NO user found</span>
+                                                        <span style="color:red;display:inherit;"
+                                                        ng-show="servernotfound">NO Server found</span>
+                                                    </li>
+                                                    <li class="forgot-li2">
+                                                        <a ui-sref="forgotpassword" class="forgtpass">forgot password?</a>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--pv!-->
+                                        <div class="row">
+                                         <div class="col-md-2"></div>
+                                             <div class="col-md-4 col-md-offset-4">
+                                             <div class="social-row">
+                                               <div class="social-div">
+                                                  <div class="register">
+                                                   or
+                                                  </div>
+                                                  <ul>
+                                                  <li>
+                                                    <img src="assets/img/facebook.png">
+                                                   </li>
+                                                   <li>
+                                                     <img src="assets/img/google.png">
+                                                   </li>
+                                                   </ul>
+                                                  </div>
+                                               </div>
+                                           </div>
+                                     <div class="col-md-2"></div>
+                                         </div>
+                                        <!--pv!-->
+                                        <div class="purchase-div">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <p class="member">Not a member yet ? Register now </p>
+                                            </div>
+                                        </div>
+                                        <div class="cutom-create-btn">
+                                            <button ui-sref="registor" class="btn create-btn-custom">Create an account</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</section>
+<script>
+$(document).ready(function() {
+    $(".footer").css('display','none');
+});
+</script>

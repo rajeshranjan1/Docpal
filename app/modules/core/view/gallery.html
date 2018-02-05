@@ -1,0 +1,19 @@
+
+
+    <div id="owl-demo" class="owl-carousel" > 
+    <div class="item" ng-repeat="x in datagallery track by $index"  on-finish-render="gallaryLoaded" ng-click="setImageModel(imageServer+'/'+x.image+'',x.caption)"><img class="lazyOwl" ng-src="{{imageServer+'/'+x.image+''}}" alt="Lazy Owl Image">
+
+    </div>
+
+   </div>
+
+<style type="text/css">
+    #owl-demo .item {
+      margin: 3px;
+    }
+    #owl-demo .item img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+</style>

@@ -1,0 +1,18 @@
+<div class="left-sidebar-div notification" ng-controller="notification">
+  <div class="left-sidebar-heading-div">
+    <h3 class="notification-heading">Notifications</h3>
+  </div>
+  <div class="left-sidebar-data-div notify-list">
+      <ul ng-repeat="notify in notification.doc track by $index">
+        <li>
+          <p>
+              <strong>{{notify.repliedBy.name}}</strong> <span ng-show="notify.action=='relevant'">marked as</span>
+              <span ng-show="notify.action=='follow'">followed </span>
+              <span ng-show="notify.action=='feedback'">commented on</span>
+              <span ng-show="notify.action=='comment'">replied on</span>
+              <span>{{notify.question | limitTo: 100}}</span>
+          </p>
+        </li>
+      </ul>
+  </div>
+</div>

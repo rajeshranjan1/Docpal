@@ -1,0 +1,63 @@
+<div class="container">
+<toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    <div class="top-div">
+        <div class="full-color">
+            <div class="row">
+                <div class="col-md-11 col-sm-12 margin-zero">
+                    <div class="whole-content">
+                        <div class="headings pg-head text-center">
+                            <h2>Apply</h2>
+                            <div class="text-center">
+                                <img src="assets/img/heart.png" alt="heart ">
+                            </div>
+                        </div>
+                        <div class="about-details clearfix">
+                            <h4 class="apply-post">{{jobDetail.profile}}</h4>
+                            <div class="post-meta clearfix">
+                                <div class="col-md-1 pd-lr-0">
+                                    <p><i class="fa fa-briefcase" aria-hidden="true"></i>{{jobDetail.job_exp}}</p>
+                                </div>
+                                <div class="col-md-11">
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{jobDetail.location}}</p>
+                                </div>
+                            </div>
+                            <div class="post-details" ng-bind-html="jobDetail.job_desc"></div>
+                            <div class="apply-form">
+                                <div class="form-group col-md-4">
+                                    <input type="text" ng-model="jobreq.name" name="name" class="form-control" id="name" placeholder="Name*" required=""> 
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" ng-model="jobreq.mobile" name="mobile" class="form-control" id="mobile" placeholder="Mobile*" required="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="email" ng-model="jobreq.email" name="email" class="form-control" id="email" placeholder="Email*" required="">
+                                </div>
+                                <div class="form-group col-md-12">                                    
+                                    <div class="input-group col-xs-12">
+                                      <input type="file" ngf-select ng-model="jobreq.file"  name="file" ngf-max-size="2MB" required ngf-model-invalid="errorFiles">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea placeholder="Message..." ng-model="jobreq.message" name="message" class="form-control"></textarea>
+                                </div>                                    
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn post-apply-btn btn-default" ng-click="applyForPost(jobreq, jobDetail.profile)">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).on('click', '.browse', function(){
+          var file = $(this).parent().parent().parent().find('.file');
+          file.trigger('click');
+        });
+        $(document).on('change', '.file', function(){
+          $(this).parent().find('.form-control').val($(this).val().replace());
+        });
+</script>

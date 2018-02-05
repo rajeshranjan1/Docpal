@@ -1,0 +1,514 @@
+<div class="edit-btn" id="edit">
+  <a>Edit</a>
+</div>
+<div class="save-btn" id="save" ng-click="savedata();">
+  <a>Save</a>
+</div>
+<div class="info-section-profile">
+    <div class="row">
+        <form id="doctorForm" ng-submit="editdoctor(doctor)" novalidate>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-7 col-xs-12 col-sm-7 col-lg-7">
+                    <div class="profile-intro">
+                        <h3 class="name-div margin0 dr_name_div2">  
+                        <input type="text" placeholder=" Dr. your name" class="required-filled editable-class capitalize" ng-model="doctorInfoAllData.name"  /><span class="required-elem-class required-mark">*</span>
+                        </h3>
+                        <div class="text-div">
+                            <div class="one-row-class">
+                                <span class="tooltip-class" data-toggle="tooltip" title="Add education [Exp: MD (LHMC, DELHI) MRCOG (LONDON)]"><i class="fa fa-info"></i></span>
+                                <input type="text" placeholder="{{education ? education : 'Enter Education'}}" class="required-filled editable-class" ng-model="doctorInfoAllData.education" readonly/><span class="required-elem-class required-mark">*</span>
+                            </div>
+                            <div class="one-row-class">
+                                <span class="tooltip-class" data-toggle="tooltip" title="Add Experience !"><i class="fa fa-info"></i></span>
+                                <input type="text" placeholder="{{experience ? experience  : 'Enter Experience'}}" class="required-filled editable-class" ng-model="doctorInfoAllData.experience" readonly style="width: 21px;" />years<span class="required-elem-class required-mark">*</span>
+                            </div>
+                            <div class="one-row-class">
+                                <span class="tooltip-class" data-toggle="tooltip" title="Add Speciality !">
+                                <i class="fa fa-info"></i></span>
+                                <input type="text" placeholder="{{speciality ? speciality : 'Enter Speciality'}}" class="editable-class required-filled" ng-model="doctorInfoAllData.speciality" readonly/><span class="required-elem-class required-mark">*</span>
+                            </div>
+                            <div class="one-row-class">
+                                <span class="tooltip-class" data-toggle="tooltip" title="Add Clinic Detail !">
+                                <i class="fa fa-info"></i></span>
+                                <input type="text" placeholder="{{clinic ? clinic : 'clinic'}}" class="editable-class" ng-model="doctorInfoAllData.address[doctorInfoAllData.indexId].clinic" readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                    <div class="doctor-clinic-details">
+                        <!-- new icons -->
+                        <!-- end new icons -->
+                        <div class="doctor-details-search-result-1">
+                            <div class="search-result-icon-div">
+                                <i class="icon-map-pointer7 clinic-icon"></i>
+                                <input type="text" class="editable-class pull-left pad-class" ng-model="doctorInfoAllData.address[doctorInfoAllData.indexId].city" readonly/>
+                            </div>
+                            <div class="search-result-text-div">
+                                <span class="tooltip-class pull-right" data-toggle="tooltip" title="Add Address !"><i class="fa fa-info"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="inner-section2 borderBlue">
+                    <!-- new services added -->
+                    <!-- my fee -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <i class="icon-map-pointer7  services-icon-new"></i>
+                            <h4 class="padding-margin paddingBottom">
+                               Location
+                            </h4>
+                            <div class="clearfix ulborderBottom" ng-include="'modules/doctors/view/clinicLocation.html'"></div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- end fee section -->
+                    <!-- languages -->
+                    <div class="row">
+                        <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
+                            <div class="one-row-div zindex">
+                                <i class="icon-conversation18 services-icon-new"></i>
+                                <h4 class="services-icons">
+                                  Languages
+                               </h4>
+                                <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Languages !"><i class="fa fa-info"></i></p>
+                                <i class="icon-round69 plus-btn"></i>
+                                <span class="add1-span">
+                        <div id="add1">
+                           <button type="button" class="btn dropdown-btn"> 
+                           Add language 
+                           <i class="icon-triangle122 down-scroll">
+                           </i>
+                           </button>
+                        </div>
+                        <div id="add2">
+                           <div class="add2-inner">
+                              <ul class="dropdown-ul-class testSelAll2">
+                                 <li ng-repeat="lang in languages track by $index">
+                                    <div class="col-md-12 padding0">
+                                       <div class="col-md-3 pull-left">
+                                          <input type="checkbox" ng-model="formData.languages[$index]" ng-true-value="{{lang}}"  class="ng-pristine ng-valid"  ng-change="stateChanged(lang)" ng-checked="isSelected(lang);">
+                                       </div>
+                                       <div class="col-md-8 padding-right-15">
+                                          <div class="box1">
+                                             <p class="">{{lang}}</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </li>
+                                 <li>
+                                    <div class="col-md-12 padding0">
+                                       <div class="col-md-3 pull-left">
+                                          <input type="checkbox" id="other" class="check_others">
+                                          <span>
+                                          label:
+                                          </span>
+                            </div>
+                            <div class="col-md-8 padding-right-15">
+                                <div class="box1">
+                                    <p>other</p>
+                                </div>
+                            </div>
+                        </div>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+                </span>
+                <span class="input input--hoshi left-aling float-left padding-bottom language-input-span">
+                     <input ng-model="doctor.language" ng-list="" class="input__field input__field--hoshi margin0 padding0 ng-pristine ng-valid input-4" type="text" id="input-4" ng-edit="editdoctor(doctor)">
+                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                     </label>
+                     </span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="language">
+                <ul class="inner-li languages-ul-class">
+                    <li ng-repeat="seclang in doctorInfoAllData.language track by $index ">
+                        <p class="">{{seclang}}</p>
+                        <span class="remove-span" ng-click="deletelang(seclang,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                        <span class="undo-span" ng-click="deletelang(seclang,0)"><i class="fa fa-reply rep"></i></span>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</div>
+<!-- end of list  -->
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="services-div">
+            <div class="one-row-div zindex">
+                <i class="icon-circle39 services-icon-new">
+                        </i>
+                <h4 class="services-icons">
+                           Services
+                        </h4>
+                <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Services !"><i class="fa fa-info"></i></p>
+                <i class="icon-round69 plus-btn"></i>
+                <span class="input input--hoshi left-aling float-left padding-bottom width18">
+                        <input ng-model="doctor.services" ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4" ng-edit="editdoctor(doctor)" auto-complete ui-items="names" ng-keydown ="getDataForLIst(doctor.services,'services')" />
+                        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        </label>
+                        </span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="service">
+                <ul class="inner-li services-ul">
+                    <li style="border-bottom: 1px solid white;padding: 6px;" ng-repeat="ser in doctorInfoAllData.services track by $index" capitalize>
+                        <p class="wrap">{{ser}}</p>
+                        <input type="text" class="editable-class-new" ng-model="ser" ng-blur='setservices(ser,doctorInfoAllData.services[$index])' readonly>
+                        <span class="remove-span" ng-click="deleteservices(ser,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                        <span class="undo-span" ng-click="deleteservices(ser,0)"><i class="fa fa-reply rep"></i></i></span>
+                        <span class="edit-span"><i class="icon-edit5"></i></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="inner-sec">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 spec-section">
+                <div class="spec">
+                    <div class="one-row-div zindex">
+                        <i class="icon-medical96 services-icon-new">
+                              </i>
+                        <h4 class="services-icons">
+                                 Specializations
+                              </h4>
+                        <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Specialization !"><i class="fa fa-info"></i></p>
+                        <i class="icon-round69 plus-btn"></i>
+                        <span ng-model="doctor.Specializationfrom" class="input input--hoshi left-aling float-left padding-bottom width18">
+                              <input ng-model="doctor.Specializationfrom" ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4" ng-keydown ="getDataForLIst(doctor.Specializationfrom,'speciality')"/>
+                              <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                              </label>
+                              </span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="Specialization">
+                        <ul class="inner-li specialization-ul">
+                            <li ng-repeat="spec in doctorInfoAllData.Specializationfrom track by $index">
+                                <p class="wrap">{{spec}}</p>
+                                <input type="text" class="editable-class-new" ng-model="spec" ng-blur='setSpecializationfrom(spec,doctorInfoAllData.Specializationfrom[$index])' readonly style="color:#364546;">
+                                <span class="remove-span" ng-click="deleteSpecializationfrom(spec,1)"><i class="icon-cross72"></i></span>
+                                <span class="undo-span" ng-click="deleteSpecializationfrom(spec,0)"><i class="fa fa-reply rep"></i></span>
+                                <span class="edit-span"><i class="icon-edit5"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="one-row-div">
+                    <i class="icon-college1 services-icon-new">
+                           </i>
+                    <h4 class="services-icons">
+                              Education
+                           </h4>
+                    <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Education !"><i class="fa fa-info"></i></p>
+                    <i class="icon-round69 plus-btn"></i>
+                    <span ng-model="doctor.educationfrom" class="input input--hoshi left-aling float-left padding-bottom width18">
+                           <input ng-model="doctor.educationfrom"  ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4"  />
+                           <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                           </label>
+                           </span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="education">
+                    <ul class="inner-li education-ul">
+                        <li ng-repeat="edu in doctorInfoAllData.educationfrom track by $index">
+                            <p class="wrap">{{edu}}</p>
+                            <input type="text" class="editable-class-new" placeholder="{{doctorInfoAllData.educationfrom[$index]}}" ng-model="edu" ng-blur='seteducationfrom(edu,doctorInfoAllData.educationfrom[$index])' readonly>
+                            <span class="remove-span" ng-click="deleteeducationfrom(edu,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                            <span class="undo-span" ng-click="deleteeducationfrom(edu,0)"><i class="fa fa-reply rep"></i></span>
+                            <span class="edit-span"><i class="icon-edit5"></i></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="one-row-div">
+                    <i class="icon-medical88 services-icon-new">
+                           </i>
+                    <h4 class="services-icons">
+                              Experience
+                           </h4>
+                    <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Experience !"><i class="fa fa-info"></i></p>
+                    <i class="icon-round69 plus-btn"></i>
+                    <span ng-model="doctor.experiencefrom" class="input input--hoshi left-aling float-left padding-bottom width18">
+                           <input ng-model="doctor.experiencefrom" ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4"  />
+                           <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                           </label>
+                           </span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="experience">
+                    <ul class="inner-li experience-ul">
+                        <li ng-repeat="exp in doctorInfoAllData.experiencefrom track by $index">
+                            <p class="wrap">{{exp}}</p>
+                            <input type="text" class="editable-class-new" placeholder="{{doctorInfoAllData.experiencefrom[$index]}}" ng-model="exp" ng-blur='setexperiancefrom(exp,doctorInfoAllData.experiencefrom[$index])' readonly>
+                            <span class="remove-span" ng-click="deleteexperiancefrom(exp,1)"><i class="icon-cross72 confirm-delete"></i></span>
+                            <span class="undo-span" ng-click="deleteexperiancefrom(exp,0)"><i class="fa fa-reply rep"></i></span>
+                            <span class="edit-span"><i class="icon-edit5"></i></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 spec-section">
+                <div>
+                    <div class="one-row-div">
+                        <i class="icon-cup2 services-icon-new">
+                              </i>
+                        <h4 class="services-icons">
+                                 Awards
+                              </h4>
+                        <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Awards !"><i class="fa fa-info"></i></p>
+                        <i class="icon-round69 plus-btn"></i>
+                        <span ng-model="doctor.awards" class="input input--hoshi left-aling float-left padding-bottom width18">
+                              <input ng-model="doctor.awards" ng-list="~"  class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4" />
+                              <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                              </label>
+                              </span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="awards">
+                        <ul class="inner-li awards-ul">
+                            <li ng-repeat="awd in doctorInfoAllData.awards track by $index">
+                                <p class="wrap">{{awd}}</p>
+                                <input type="text" class="editable-class-new" ng-model="awd" ng-blur='setawards(awd,doctorInfoAllData.awards[$index])' readonly>
+                                <span class="remove-span" ng-click="deleteawards(awd,1)"><i class="icon-cross72"></i></span>
+                                <span class="undo-span" ng-click="deleteawards(awd,0)"><i class="fa fa-reply rep"></i></span>
+                                <span class="edit-span"><i class="icon-edit5"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="one-row-div">
+                    <i class="icon-identification10 services-icon-new">
+                           </i>
+                    <h4 class="services-icons">
+                              Memberships
+                           </h4>
+                    <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Membership !"><i class="fa fa-info"></i></p>
+                    <i class="icon-round69 plus-btn"></i>
+                    <!--  <span><input type="text" ng-model="doctor.memberships" ng-list required></span>  -->
+                    <span ng-model="doctor.membershipfrom" class="input input--hoshi left-aling float-left padding-bottom width18">
+                           <input ng-model="doctor.membershipfrom" ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4" />
+                           <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                           </label>
+                           </span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="membership">
+                    <ul class="inner-li members-ul">
+                        <li ng-repeat="memb in doctorInfoAllData.membershipFrom track by $index">
+                            <p class="wrap">{{memb}}</p>
+                            <input type="text" class="editable-class-new" ng-model="memb" ng-blur='setmemberships(memb,doctorInfoAllData.membershipFrom[$index])'>
+                            <span class="remove-span" ng-click="deletememberships(memb,1)" ng-model="membershipitem"><i class="icon-cross72"></i></span>
+                            <span class="undo-span" ng-click="deletememberships(memb,0)" ng-model="membershipitem"><i class="fa fa-reply rep"></i></span>
+                            <span class="edit-span"><i class="icon-edit5"></i></span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="one-row-div">
+                        <i class="icon-certficats services-icon-new">
+                              </i>
+                        <h4 class="services-icons">
+                                 Registrations
+                              </h4>
+                        <p class="tooltip-class pull-right top10" data-toggle="tooltip" title="Add Awards !"><i class="fa fa-info"></i></p>
+                        <i class="icon-round69 plus-btn"></i>
+                        <span ng-model="doctor.registration" class="input input--hoshi left-aling float-left padding-bottom width18">
+                              <input ng-model="doctor.registration" ng-list="~" class="input__field input__field--hoshi margin0 padding0 input-4" type="text" id="input-4" />
+                              <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                              </label>
+                              </span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="registration">
+                        <!-- <p class="wrap">{{doctorInfoAllData.registration}}</p>
+                              <input type="text" class="editable-class-new"  ng-model="doctorInfoAllData.registration" ng-blur='setregistration(registration,doctorInfoAllData.registration)' readonly>
+                              <span class="remove-span" ng-click="deleteregistration(registration,1)"><i class="icon-cross72"></i></span>
+                              <span class="undo-span" ng-click="deleteregistration(registration,0)"><i class="fa fa-reply rep"></i></span>
+                              <span class="edit-span"><i class="icon-edit5"></i></span> -->
+                        <ul class="inner-li members-ul">
+                            <li ng-repeat="reg in doctorInfoAllData.registration track by $index">
+                                <p class="wrap" style="display: inline-block;">{{reg}}</p>
+                                <input type="text" class="editable-class-new" ng-model="reg" ng-blur='setregistration(reg,doctorInfoAllData.registration[$index])'>
+                                <span class="remove-span" ng-click="deleteregistration(reg,1)" ng-model="registrationitem"><i class="icon-cross72"></i></span>
+                                <span class="undo-span" ng-click="deleteregistration(reg,0)" ng-model="registrationitem"><i class="fa fa-reply rep"></i></span>
+                                <span class="edit-span"><i class="icon-edit5"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- times days availability -->
+            <!-- end availability -->
+        </div>
+    </div>
+    <input type="hidden" ng-model="doctor.id">
+    <input type="submit" value="submit" id="saveedit" style="display:none;">
+    </form>
+    <!-- end toggle-section -->
+</div>
+</div>
+</div>
+<div class="row">
+    <div class="modal fade" id="address-remove" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="image-gallery-title">Delete Address</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-8 text-justify" id="">
+                        <input type="text" id="addressId" class="hiddenName" value="">
+                        <input type="text" id="addressIndex" class="hiddenName" value=""> Are you sure to delete this address ?
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn theme-btn confirm" id="" ng-click="deleteaddress(doctorInfoAllData._id)">Yes</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" id="" data-dismiss="modal" class="btn theme-btn">Cancel</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+.button-effect {
+    overflow: hidden;
+}
+
+.effect-wave {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: yellow;
+    opacity: 0.5;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    window.asd = $('.SlectBox').SumoSelect({ csvDispCount: 3 });
+    window.test = $('.testsel').SumoSelect({ okCancelInMulti: true });
+    window.testSelAll = $('.testSelAll').SumoSelect({ okCancelInMulti: true, selectAll: true });
+    window.testSelAll2 = $('.testSelAll2').SumoSelect({ selectAll: true });
+});
+</script>
+<style type="text/css">
+ul,
+li {
+    padding: 0px;
+    margin: 0px;
+}
+
+.dropdown-menu {
+    position: absolute !important;
+    z-index: 9999 !important;
+    margin: 100px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $("#add1").click(function() {
+        $("#add2").slideToggle("fast");
+    });
+
+    $(document).on('click', '#edit', function() {
+
+        $(".wrap").hide();
+        $(".editable-class-new").show();
+        $(".tooltip-class").show();
+        $(".required-elem-class").show();
+        $(".addchangediv").show();
+    });
+    /* $(document).on('click','#save',function(){
+       $(".wrap").show();
+       $(".editable-class-new").hide();
+        $(".tooltip-class").hide();
+      });*/
+
+    $(document).on('click', '.more-plus', function() {
+        var a = $(".dropdown-times-ul").last().clone();
+        $(this).parent().after(a);
+    });
+
+    $("#other").click(function() {
+
+        if ($(this).is(":checked")) {
+
+            $(".language-input-span").show();
+            $(".add-anchor").show();
+        } else {
+            $(".language-input-span").hide();
+            $(".add-anchor").hide();
+        }
+
+    });
+    $(".change-btn").on('click', function(argument) {
+        $(".custom-pop-up").toggle();
+    });
+
+
+    $(document).on('click', ".editAddress", function() {
+        console.log("2");
+        var parent = $(this).closest("li");
+
+        $(this).parent(".editAddr").hide();
+        $(this).parent(".editAddr").nextAll('.editAddr').hide();
+
+        $(this).parent().nextAll('.saveAddr').show();
+        $(this).parent().nextAll('.saveAddr').children('.saveEditAddress').show();
+        parent.find('.show-address').hide();
+        $('.dropdown-time-div-notedit').hide();
+        parent.find('.editable-address').show();
+        parent.find('.toggle-btn').show();
+        parent.find('input:first').focus();;
+    });
+
+    $(document).on('click', ".saveEditAddress", function() {
+
+        var getid = $(this).parents("li").attr("id");
+        console.log(getid);
+        $(this).parent(".saveAddr").hide();
+        $(this).parent().prevAll('.editAddr').show();
+        // $(this).parent(".saveAddr").nextAll('.editAddr').show();
+        $("#" + getid).find('.editable-address').hide();
+        $('.dropdown-time-div-notedit').hide();
+        $("#" + getid).find('.show-address ').show();
+        $("#" + getid).find('.toggle-btn').hide();
+    });
+
+
+
+});
+
+$(document).on("clik", ".editImage", function() {
+    alert("hi");
+    $('.FileSelect').removeClass('fileIcon').addClass('showFileSelect');
+    $(".dr-profile-image").css("opacity", '0.5');
+    $(".upicon").show();
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<script type="text/javascript">
+$(document).click(function(e) {
+    if ($(e.target).closest("#add1").length > 0) {
+        return false;
+    } else {
+
+        if ($(e.target).closest("#add2").length > 0) {
+
+        } else {
+            $("#add2").hide();
+        }
+    }
+});
+</script>

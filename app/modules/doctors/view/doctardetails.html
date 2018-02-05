@@ -1,0 +1,105 @@
+
+
+<div class="container-fluid">
+<div class="row">
+   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+      <div class="services-div border-class-new" ng-show="services.length>0">
+         <i class="icon-circle39 services-icon-new">
+         </i>
+         <h4 class="padding-margin">
+            Services
+         </h4>
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="inner-li">
+               <li  ng-repeat="ser in services track by $index" >
+                  {{ser}}
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="row">
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+   <div class="inner-sec">
+      <div class="col-md-6 col-sm-6 col-xs-12 spec-section">
+         <div class="spec" ng-show="Specializationfrom.length>0">
+            <i class="icon-medical96 services-icon-new">
+            </i>
+            <h4>
+               Specialization
+            </h4>
+            <ul class="inner-li specialization-ul" >
+               <li ng-repeat="uu in Specializationfrom track by $index" class="padding14">
+                  {{uu}}
+               </li>
+            </ul>
+         </div>
+         <span ng-show="educationfrom.length > 0">
+            <i class="icon-college1 srvices-icon">
+            </i>
+            <h4>
+               Education
+            </h4>
+            <ul class="inner-li education-ul"  >
+               <li ng-repeat="y in educationfrom track by $index" class="padding14">
+                  {{y}}
+               </li>
+            </ul>
+         </span>
+         <span ng-show="experiencefrom.length>0"> 
+         <i class="icon-medical88 srvices-icon">
+         </i>
+         <h4 >
+            Experience
+         </h4>
+         <ul class="inner-li experience-ul" >
+            <li ng-repeat="exp in experiencefrom track by $index" class="padding14">
+               {{exp}}
+            </li>
+         </ul>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 padding00">
+         <div ng-show="awards.length > 0">
+            <i class="icon-cup2 srvices-icon">
+            </i>
+            <h4>
+               Awards
+            </h4>
+            <ul class="inner-li awards-ul">
+               <li ng-repeat="x in awards track by $index" class="padding14">
+                  {{x}}
+               </li>
+            </ul>
+         </div>
+         <span ng-show="membershipFrom.length>0">
+            <i class="icon-identification10 srvices-icon">
+            </i>
+            <h4>
+               Memberships
+            </h4>
+            <ul class="inner-li members-ul">
+               <li ng-repeat="mem in membershipFrom track by $index" class="padding14">
+                  {{mem}}
+               </li>
+            </ul>
+         </span>
+         <span ng-show="registration != '' && registration != undefined">
+            <i class="icon-certficats services-icon-new srvices-icon">
+            </i>
+            <h4>
+               Registration
+            </h4>
+            <ul class="inner-li members-ul">
+               <li ng-repeat="reg in registration track by $index" class="padding14">
+                  {{reg}}
+               </li>
+               <!-- <li  class="padding14">
+                  {{registration}}
+               </li> -->
+            </ul>
+         </span>
+      </div>
+   </div>
+</div>
+
